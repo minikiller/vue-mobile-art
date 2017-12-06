@@ -1,7 +1,8 @@
 # 全局变量配置文件
 
 cacheTime = 7200000 #缓存校验时间
-baseURL = "http://192.168.1.111:8383"
+baseURL = "http://192.168.1.111:8181"
+webURL = "http://192.168.1.111:8383"
 
 systemApplicationsBaseURL = "/camel/rest/system/applications/"
 loginUrl = "/login.jsp"

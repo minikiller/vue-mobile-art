@@ -12,12 +12,12 @@
         let key = this.$route.params.key
         let params = {
           stu: {
-            username: '学生应聘',
+            username: 'admin',
             password: '123',
             resUrl: '/art/RecruitForm'
           },
           com: {
-            username: '企业招聘',
+            username: 'admin',
             password: '123',
             resUrl: '/art/recruitform'
           }
