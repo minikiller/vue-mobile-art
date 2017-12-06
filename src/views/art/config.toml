@@ -1,0 +1,58 @@
+# 系统管理項目配置文件
+
+CandidateURL = "/camel/rest/artcandidates"
+RecruitURL = "/camel/rest/recruits"
+ArtDictURL = "/camel/rest/art/dicts"
+ArtDictsTypesListURL = "/camel/rest/art/dicts/types/list"
+TeachingUnitOrgID = 22601
+FunctionCategroyURL = "/camel/rest/functioncategorys"
+
+# table 的默认按钮定义
+[[ToolButtonList]]
+  id = "view"
+  title = "查看"
+  isShow = true    # 是否显示
+  isPermission = true   # 是否进行权限认证
+[[ToolButtonList]]
+  id = "edit"
+  title = "编辑"
+  isShow = true
+  isPermission = true
+[[ToolButtonList]]
+  id = "delete"
+  title = "删除"
+  isShow = true
+  isPermission = true
+
+# 需要自动注册成全局的recruit组件
+[[RecruitComponent]]
+  path = "art/recruit/recruitView"
+  name = "ArtRecruitView"
+[[RecruitComponent]]
+  path = "art/recruit/recruitAdd"
+  name = "ArtRecruitAdd"
+[[RecruitComponent]]
+  path = "art/recruit/recruitSearch"
+  name = "ArtRecruitSearch"
+
+# 需要自动注册成全局的candidate组件
+[[CandidateComponent]]
+  path = "art/candidate/candidateView"
+  name = "ArtCandidateView"
+[[CandidateComponent]]
+  path = "art/candidate/candidateAdd"
+  name = "ArtCandidateAdd"
+[[CandidateComponent]]
+  path = "art/candidate/candidateSearch"
+  name = "ArtCandidateSearch"
+
+# 需要自动注册成全局的majorCourse组件
+[[MajorCourseComponent]]
+  path = "art/majorcourse/majorCourseView"
+  name = "MajorCourseView"
+[[MajorCourseComponent]]
+  path = "art/majorcourse/majorCourseAdd"
+  name = "MajorCourseAdd"
+[[MajorCourseComponent]]
+  path = "art/majorcourse/majorCourseSearch"
+  name = "MajorCourseSearch"
