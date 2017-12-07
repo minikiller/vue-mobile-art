@@ -19,7 +19,7 @@
           com: {
             username: 'admin',
             password: '123',
-            resUrl: '/art/recruitform'
+            resUrl: '/art/recuittest'
           }
         }
         setTimeout(() => {
