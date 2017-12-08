@@ -22,7 +22,8 @@
                       el-input(v-model="formModel.companyScale")
                   div.s-flex
                     el-form-item.s-flex_item.kalix-form-table-td(label="企业行业" prop="companyIndustry" v-bind:label-width="labelWidth")
-                      kalix-dict-select(v-model="formModel.companyIndustry" appName="art" dictType="企业行业" style="width:100%")
+                      <!--kalix-dict-select(v-model="formModel.companyIndustry" appName="art" dictType="企业行业" style="width:100%")-->
+                      art-dist-select(v-model="formModel.companyNature" appName="art" dictType="企业性质")
                     el-form-item.s-flex_item.kalix-form-table-td(label="企业年限" prop="companyLife" v-bind:label-width="labelWidth")
                       el-input(v-model="formModel.companyLife")
                   div.s-flex
@@ -68,6 +69,7 @@
   import Vue from 'vue'
   import Swiper from 'swiper'
   import {formatDate} from '@/api/typeFormat'
+  import ArtDistSelect from '../base/ArtDistSelect'
 
   export default {
     data() {
@@ -82,6 +84,7 @@
       }
     },
     components: {
+      ArtDistSelect
     },
     mounted() {
       history.pushState(null, null, document.URL)

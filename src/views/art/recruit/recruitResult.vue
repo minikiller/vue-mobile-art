@@ -3,6 +3,7 @@
     div.wrapper
       i.icon(v-bind:class="result.icon")
     div.title {{result.title}}
+    div(v-on:click="goHome") 返回
 </template>
 <script type="text/ecmascript-6">
   export default {
@@ -23,7 +24,7 @@
       let params = {
         success: {
           type: 'success',
-          title: '提交成功！',
+          title: '保存成功！',
           icon: 'iconfont icon-schedule-task-complete'
         },
         error: {
@@ -38,6 +39,11 @@
         }
       }
       this.result = params[key]
+    },
+    methods: {
+      goHome() {
+        this.$router.push({path: '/art/recuittest'})
+      }
     }
   }
 </script>

@@ -13,6 +13,9 @@ const _import = require('@/api/_import_' + process.env.NODE_ENV)
 const candidateForm = _import('art/candidate/candidateForm')
 const recruitForm = _import('art/recruit/recruitForm')
 const recruitResult = _import('art/recruit/recruitResult')
+/* 测试用 */
+const recuitTest = _import('art/recruit/recuitTest')
+const recruitFormInfo = _import('art/recruit/recruitFormInfo')
 
 Vue.use(Router)
 
@@ -25,12 +28,22 @@ export default new Router({
       component: recruitForm
     },
     {
+      path: '/art/recuittest',
+      name: 'recuittest',
+      component: recuitTest
+    },
+    {
+      path: '/art/recruitforminfo',
+      name: 'recruitforminfo',
+      component: recruitFormInfo
+    },
+    {
       path: '/art/candidateform',
       name: 'candidateform',
       component: candidateForm
     },
     {
-      path: '/art/result/:key',
+      path: '/art/recuit/:key',
       name: 'recruitResult',
       component: recruitResult
     },
