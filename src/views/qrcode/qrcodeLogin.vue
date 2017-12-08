@@ -4,7 +4,7 @@
 </template>
 <script type="text/ecmascript-6">
   import Login from '@/api/login'
-  import Cache from '@/api/cache'
+  import {Cache} from 'kalix-base'
 
   export default {
     methods: {

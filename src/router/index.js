@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import ComQrcode from '@/views/qrcode/comQrcode'
-import StrQrcode from '@/views/qrcode/strQrcode'
+import StuQrcode from '@/views/qrcode/stuQrcode'
 import QrcodeLogin from '@/views/qrcode/qrcodeLogin'
 // import candidateForm from '@/views/art/candidate/candidateForm'
 // import recruitForm from '@/views/art/recruit/recruitForm'
@@ -40,9 +40,9 @@ export default new Router({
       component: ComQrcode
     },
     {
-      path: '/qrcode/strqrcode',
-      name: 'strqrcode',
-      component: StrQrcode
+      path: '/qrcode/stuqrcode',
+      name: 'stuqrcode',
+      component: StuQrcode
     },
     {
       path: '/qrcode/login/:key',
