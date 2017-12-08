@@ -3,10 +3,8 @@
  * Created by sunlf on 2017/7/21.
  */
 import axios from 'axios'
-import Message from '@/api/message'
-import {baseURL} from '@/config/global.toml'
-import {LoadingTimeOut, LoadingFailure} from '@/config/info.toml'
-import Cache from '@/api/cache'
+import {baseURL, LoadingTimeOut, LoadingFailure} from '@/config/global.toml'
+import {Cache, Message} from 'kalix-base'
 import Router from '@/router'
 
 // axios 配置

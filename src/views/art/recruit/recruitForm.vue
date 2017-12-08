@@ -64,7 +64,7 @@
 </template>
 <script type="text/ecmascript-6">
   import FormModel from './model'
-  import Message from '@/api/message'
+  import {Message} from 'kalix-base'
   import {RecruitURL} from '../config.toml'
   import Vue from 'vue'
   import Swiper from 'swiper'

@@ -3,14 +3,8 @@
 </template>
 <script type="text/ecmascript-6">
   import {QrcodeMixin} from './qrcodeMixin'
-  import {webURL} from '@/config/global.toml'
 
   export default {
-    mixins: [QrcodeMixin],
-    data() {
-      return {
-        url: webURL + '/qrcode/login/stu'
-      }
-    }
+    mixins: [QrcodeMixin]
   }
 </script>
