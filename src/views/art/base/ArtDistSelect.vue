@@ -4,7 +4,7 @@
       option(v-for="item in items" v-bind:value="item.value") {{item.label}}
 </template>
 <script type="text/ecmascript-6">
-  import Cache from '@/api/cache'
+  import Cache from 'kalix-base'
 
   export default {
     props: {
