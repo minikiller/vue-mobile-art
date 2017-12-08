@@ -41,7 +41,7 @@ axios.interceptors.response.use(res => {
   console.log(`[kalix]-[axios.js] axios interceptor response data is `, res)
   if (res.data.code === 401) {
     Cache.clear()
-    Router.push({path: '/login'})
+    Router.push({path: '/'})
     return
   }
   return res

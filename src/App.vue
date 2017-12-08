@@ -10,7 +10,7 @@
     name: 'app'
   }
 </script>
-<style type="text/css">
+<style>
   @import "/assets/css/icon-font.css"
   @import "/assets/css/fa-font.css"
 </style>

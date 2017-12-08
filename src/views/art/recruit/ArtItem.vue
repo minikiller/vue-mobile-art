@@ -1,9 +1,10 @@
 <template lang="pug">
   div.list-item
     div.title
-      div.item
-        i.art-iconfont.icon-xuanze1
-      div.main {{itemData.position}}
+      div.item(v-on:click="onChecked")
+        i.art-iconfont.icon-xuanze(v-if="itemData.isChecked")
+        i.art-iconfont.icon-xuanze1(v-else)
+      div.main(v-on:click="onChecked") {{itemData.position}}
       div.item
         div.btn-edit(v-on:click="onEdit")
           i.art-iconfont.icon-bianji
@@ -38,7 +39,7 @@
         div.s-flex_item
           label 发布时间：
           | {{itemData.creationDate}}
-        div.btn-del
+        div.btn-del(v-on:click="onDelete")
           i.art-iconfont.icon-shanchu
           | 删除
 </template>
@@ -48,11 +49,18 @@
       itemData: null
     },
     mounted() {
-      console.log('itemData', this.itemData)
+      // console.log('itemData', this.itemData)
     },
     methods: {
       onEdit() {
         this.$emit('itemEditClick', this.itemData)
+      },
+      onDelete() {
+        this.$emit('itemDeletetClick', this.itemData)
+      },
+      onChecked() {
+        this.itemData.isChecked = !this.itemData.isChecked
+        this.$emit('itemCheckedClick', this.itemData)
       }
     }
   }
@@ -79,7 +87,8 @@
         flex 1
       .item
         &:first-child
-          margin-right 6px
+          padding 0 6px
+          margin-left -6px
         &:last-child
           margin-left 8px
     .center

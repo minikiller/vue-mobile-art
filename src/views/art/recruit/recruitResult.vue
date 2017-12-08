@@ -3,7 +3,9 @@
     div.wrapper
       i.icon(v-bind:class="result.icon")
     div.title {{result.title}}
-    div(v-on:click="goHome") 返回
+    div.btn-list
+      el-button.btn-item(v-on:click="goHome" type="warning" plain) 返回首页
+      el-button.btn-item(v-on:click="continueAdd" type="success" plain) 继续添加
 </template>
 <script type="text/ecmascript-6">
   export default {
@@ -25,17 +27,17 @@
         success: {
           type: 'success',
           title: '保存成功！',
-          icon: 'iconfont icon-schedule-task-complete'
+          icon: 'art-iconfont icon-chenggong1'
         },
         error: {
           type: 'error',
-          title: '提交失败！',
-          icon: 'iconfont icon-schedule-task-failure'
+          title: '保存失败！',
+          icon: 'art-iconfont icon-shibai'
         },
         close: {
           type: 'close',
           title: '谢谢再见！',
-          icon: 'iconfont icon-schedule-planmanager-personal'
+          icon: 'art-iconfont icon-jiangbeishengli'
         }
       }
       this.result = params[key]
@@ -43,6 +45,10 @@
     methods: {
       goHome() {
         this.$router.push({path: '/art/recuittest'})
+      },
+      continueAdd() {
+        // this.$router.push({path: '/art/recuittest/continueAdd'})
+        window.location.href = '/art/recuittest/continueAdd'
       }
     }
   }
@@ -66,9 +72,16 @@
         transform: translate3d(-50%, -50%, 0)
         font-size 100px
         color #ffffff
-      .title
-        font-size 24x
-        margin-top 30px
+    .title
+      font-size 24x
+      color #555555
+    .btn-list
+      margin-top 50px
+      text-align center
+      .btn-item
+        & + .btn-item
+          margin-left 30px
+
     &.success
       .icon
         color rgb(67, 132, 52)

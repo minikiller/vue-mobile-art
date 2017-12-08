@@ -9,29 +9,27 @@
           div.item
             div(v-on:click="onClose") 关闭
       div.bd
-        div.swiper-container
-          div.swiper-wrapper
-            div.swiper-slide
-              div.wrapper
-                el-form(ref="dialogForm" v-bind:model="formModel")
-                  el-form-item.s-flex_item.kalix-form-table-td(label="职位描述" prop="position" v-bind:label-width="labelWidth")
-                    el-input(v-model="formModel.position")
-                  el-form-item.s-flex_item.kalix-form-table-td(label="岗位要求" prop="positionRequires" v-bind:label-width="labelWidth")
-                    el-input(v-model="formModel.positionRequires")
-                  el-form-item.s-flex_item.kalix-form-table-td(label="岗位个数" prop="jobNumbers" v-bind:label-width="labelWidth")
-                    el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="width:100%")
-                  el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
-                    el-input(v-model="formModel.education")
-                  el-form-item.s-flex_item.kalix-form-table-td(label="职能类别" prop="functionCategoryId" v-bind:label-width="labelWidth")
-                    el-input(v-model="formModel.functionCategoryId")
-                  el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
-                    el-input-number(v-model="formModel.salary" v-bind:step="500" style="width:100%")
-                  el-form-item.s-flex_item.kalix-form-table-td(label="应用技术名称" prop="appliedTechnology" v-bind:label-width="labelWidth")
-                    el-input(v-model="formModel.appliedTechnology")
-                  el-form-item.s-flex_item.kalix-form-table-td(label="个人要求" prop="personRequires" v-bind:label-width="labelWidth")
-                    kalix-dict-select(v-model="formModel.personRequires" appName="art" dictType="个人要求" style="width:100%")
-                  el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
-                    kalix-dict-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
+        swiper-container(ref="swiperContainer")
+          div.wrapper
+            el-form(ref="dialogForm" v-bind:model="formModel")
+              el-form-item.s-flex_item.kalix-form-table-td(label="职位描述" prop="position" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.position")
+              el-form-item.s-flex_item.kalix-form-table-td(label="岗位要求" prop="positionRequires" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.positionRequires")
+              el-form-item.s-flex_item.kalix-form-table-td(label="岗位个数" prop="jobNumbers" v-bind:label-width="labelWidth")
+                el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="width:100%")
+              el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.education")
+              el-form-item.s-flex_item.kalix-form-table-td(label="职能类别" prop="functionCategoryId" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.functionCategoryId")
+              el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
+                el-input-number(v-model="formModel.salary" v-bind:step="500" style="width:100%")
+              el-form-item.s-flex_item.kalix-form-table-td(label="应用技术名称" prop="appliedTechnology" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.appliedTechnology")
+              el-form-item.s-flex_item.kalix-form-table-td(label="个人要求" prop="personRequires" v-bind:label-width="labelWidth")
+                art-dist-select(v-model="formModel.personRequires" appName="art" dictType="个人要求" style="width:100%")
+              el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
+                art-dist-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
       div.ft
         div.btns
           el-button.btn-item(type="primary" v-on:click="onSubmitClick") 保 存
@@ -44,18 +42,21 @@
   import Vue from 'vue'
   import Swiper from 'swiper'
   import ArtDistSelect from '../base/ArtDistSelect'
+  import SwiperContainer from './SwiperContainer'
 
   export default {
+    props: {
+      isVisible: false
+    },
     data() {
       return {
-        isVisible: false,
         formModel: Object.assign({}, FormModel),
         rules: {
           companyCode: [{required: true, message: '请输入企业组织机构代码', trigger: 'blur'}],
           companyName: [{required: true, message: '请输入企业名称', trigger: 'blur'}]
         },
         targetURL: RecruitURL,
-        labelWidth: '140px'
+        labelWidth: '100px'
       }
     },
     mounted() {
@@ -76,7 +77,10 @@
         }, 500)
       },
       open(item) {
-        this.isVisible = true
+        this.$emit('update:isVisible', true)
+        setTimeout(() => {
+          this.$refs.swiperContainer.start()
+        }, 500)
         this.initSwiper()
         if (item) {
           this.formModel = item
@@ -85,7 +89,7 @@
         }
       },
       close() {
-        this.isVisible = false
+        this.$emit('update:isVisible', false)
       },
       onClose() {
         this.close()
@@ -162,11 +166,12 @@
       },
       resultRedirect(target) {
         this.$router.push({path: '/art/recuit/' + target})
-        this.isVisible = false
+        this.$emit('update:isVisible', false)
       }
     },
     components: {
-      ArtDistSelect
+      ArtDistSelect,
+      SwiperContainer
     }
   }
 </script>

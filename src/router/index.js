@@ -33,6 +33,11 @@ export default new Router({
       component: recuitTest
     },
     {
+      path: '/art/recuittest/:key',
+      name: 'recuittest',
+      component: recuitTest
+    },
+    {
       path: '/art/recruitforminfo',
       name: 'recruitforminfo',
       component: recruitFormInfo

@@ -9,8 +9,6 @@
       i.art-iconfont.icon-chilun
 </template>
 <script type="text/ecmascript-6">
-  import '../base/font/iconfont.css'
-
   export default {
     methods: {
       optionClick() {

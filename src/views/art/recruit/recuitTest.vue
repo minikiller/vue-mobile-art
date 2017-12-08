@@ -1,24 +1,22 @@
 <template lang="pug">
-  div.art-form
+  div.art-form(data-artform)
     div
       art-form-header(v-on:optionClick="optionClick")
       div.list-title
         div.title 我的招聘信息
         div.operation
-          span.btn-item
-            i.art-iconfont.icon-guanli
-            | 管理
-          span.btn-item
-            i.art-iconfont.icon-xuanze1
+          span.btn-item(v-on:click="checkAll")
+            i.art-iconfont.icon-xuanze(v-if="isCheckAll")
+            i.art-iconfont.icon-xuanze1(v-else)
             | 全选
-          span.btn-item
+          span.btn-item(v-on:click="deleteChecked")
             i.art-iconfont.icon-shanchu
             | 删除选中
       div.list-wrapper
         swiper-container(ref="swiperContainer")
           div.split
           template(v-for="item in tableData")
-            art-item(v-bind:itemData="item" v-on:itemEditClick="onItemClick")
+            art-item(v-bind:itemData="item" v-on:itemCheckedClick="onItemChecked" v-on:itemEditClick="onItemEdit" v-on:itemDeletetClick="onItemDelete")
             div.split
         div.no-list(v-if="false")
           div.cnt
@@ -32,7 +30,7 @@
         router-link.btn(tag="div" v-if="false" v-bind:to="{path:'/art/recruitforminfo'}") 新建招聘信息
         div.btn(v-on:click="openFormInfo") 新建招聘信息
     recruit-company-info(ref="companyInfo")
-    recruit-form-info(ref="formInfo")
+    recruit-form-info(ref="formInfo" v-bind:isVisible.sync="isContinueAdd")
 </template>
 <script type="text/ecmascript-6">
   import ArtFormHeader from '../base/ArtFormHeader'
@@ -42,11 +40,15 @@
   import {PageConfig} from '@/config/global.toml'
   import {RecruitURL} from '../config.toml'
   import SwiperContainer from './SwiperContainer'
+  import '../base/font/iconfont.css'
+  import {Message} from 'kalix-base'
 
   export default {
     data() {
       return {
         tableData: [],
+        isContinueAdd: false,
+        isCheckAll: false,
         pager: {
           totalCount: 0,
           pageSizes: PageConfig.sizes,
@@ -55,6 +57,9 @@
           start: 0
         }
       }
+    },
+    created() {
+      this.chkContinue()
     },
     mounted() {
       this.tempArr = []
@@ -66,15 +71,25 @@
       window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL)
       })
-
-      this.getData()
+      this.init()
     },
+    watch: {'$route': 'chkContinue'},
     methods: {
+      chkContinue() {
+        console.log('chkContinue')
+        if (this.$route.params.key) {
+          this.isContinueAdd = true
+        }
+      },
       optionClick() {
         this.$refs.companyInfo.open()
       },
       openFormInfo() {
         this.$refs.formInfo.open()
+      },
+      init() {
+        this.getData()
+        this.$refs.swiperContainer.start()
       },
       getData() {
         let _data = {
@@ -91,12 +106,75 @@
             item.isChecked = false
             return item
           })
-          this.tableData = this.tempArr.concat(resData)
-          this.$refs.swiperContainer.start()
+          this.tableData = resData
+          // this.tempArr.concat(resData)
         })
       },
-      onItemClick(item) {
+      onItemEdit(item) {
         this.$refs.formInfo.open(item)
+      },
+      onItemDelete(item) {
+        this.$confirm('确定要删除吗?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          return this.axios.request({
+            method: 'DELETE',
+            url: RecruitURL + '/' + item.id,
+            params: {},
+            data: {
+              id: item.id
+            }
+          })
+        }).then(response => {
+          Message.success(response.data.msg)
+          this.getData()
+        }).catch(() => {
+        })
+      },
+      onItemChecked(item) {
+        let temp1 = this.tableData.filter(e => {
+          return e.isChecked
+        })
+        this.isCheckAll = this.tableData.length === temp1.length
+      },
+      checkAll() {
+        //  全选
+        this.isCheckAll = !this.isCheckAll
+        this.tableData.map(item => {
+          item.isChecked = this.isCheckAll
+        })
+      },
+      deleteChecked() {
+        //  删除选中
+        let ids = []
+        this.tableData.forEach(item => {
+          if (item.isChecked) {
+            ids.push(item.id)
+          }
+        })
+        if (ids.length > 0) {
+          this.$confirm('确定要删除吗?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            return this.axios.request({
+              method: 'DELETE',
+              url: `${RecruitURL}/remove`,
+              params: {
+                ids: ids.join(':')
+              }
+            })
+          }).then(response => {
+            Message.success(response.data.msg)
+            this.getData()
+          }).catch(() => {
+          })
+        } else {
+          Message.error('至少选择一项')
+        }
       }
     },
     components: {
@@ -113,6 +191,17 @@
     }
   }
 </script>
+<style lang="stylus" type="text/stylus">
+  *:active,
+  *:focus
+    outline none
+
+  *
+    -webkit-tap-highlight-color rgba(0, 0, 0, 0)
+
+  .el-message-box
+    width 320px
+</style>
 <style scoped lang="stylus" type="text/stylus">
   @import "../../../assets/stylus/border"
   .art-form
