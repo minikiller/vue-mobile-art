@@ -5,9 +5,9 @@ export const QrcodeMixin = {
   components: {
     KalixQrcode
   },
-  data() {
-    return {
-      url: webURL + '/qrcode/login/stu'
+  computed: {
+    url() {
+      return webURL + '/qrcode/login/' + this.name
     }
   }
 }

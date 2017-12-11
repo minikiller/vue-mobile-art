@@ -4,7 +4,7 @@
       option(v-for="item in items" v-bind:value="item.value") {{item.label}}
 </template>
 <script type="text/ecmascript-6">
-  import Cache from 'kalix-base'
+  import {Cache} from 'kalix-base'
 
   export default {
     props: {
@@ -31,6 +31,9 @@
       }
     },
     mounted() {
+      // console.log('Dist ', this.appName)
+      // console.log('Cache.get ', Cache)
+      // console.log('this.axios.get ', this.axios.get)
       this.getDict()
     },
     methods: {
@@ -70,6 +73,7 @@
         this.items = data_.filter(item => {
           return item.type === this.dictType
         })
+        console.log('items', this.items)
       }
     }
   }

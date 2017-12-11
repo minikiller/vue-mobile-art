@@ -4,7 +4,7 @@
 </template>
 <script type="text/ecmascript-6">
   import Login from '@/api/login'
-  import {Cache} from 'kalix-base'
+  import {Cache, Message} from 'kalix-base'
 
   export default {
     methods: {
@@ -38,6 +38,8 @@
             Cache.save('user_name', data.user.name)
             Cache.save('loginname', params.username)
             this.$router.push({path: params.resUrl})
+          } else {
+            Message.error('登录失败！')
           }
         })
       }

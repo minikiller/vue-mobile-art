@@ -9,7 +9,7 @@
           div.item
             div(v-on:click="onClose") 关闭
       div.bd
-        swiper-container(ref="swiperContainer")
+        scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm")
           div.wrapper
             el-form(ref="dialogForm" v-bind:model="formModel")
               el-form-item.s-flex_item.kalix-form-table-td(label="职位描述" prop="position" v-bind:label-width="labelWidth")
@@ -41,7 +41,6 @@
   import {RecruitURL} from '../config.toml'
   import Vue from 'vue'
   import ArtDistSelect from '../base/ArtDistSelect'
-  import SwiperContainer from './SwiperContainer'
   import Scroll from '../base/scroll'
 
   export default {
@@ -64,23 +63,11 @@
     methods: {
       initSwiper() {
         setTimeout(() => {
-          /* eslint-disable */
-          new Swiper('.swiper-container', {
-            direction: 'vertical',
-            slidesPerView: 'auto',
-            freeMode: true,
-            scrollbar: {
-              el: '.swiper-scrollbar'
-            },
-            mousewheel: true
-          })
-        }, 500)
+          this.$refs.scrollForm.refresh()
+        }, 20)
       },
       open(item) {
         this.$emit('update:isVisible', true)
-        setTimeout(() => {
-          this.$refs.swiperContainer.start()
-        }, 500)
         this.initSwiper()
         if (item) {
           this.formModel = item
@@ -171,12 +158,15 @@
     },
     components: {
       ArtDistSelect,
-      SwiperContainer,
       Scroll
     }
   }
 </script>
 <style lang="stylus" type="text/stylus">
+  .scroll-form
+    height: 100%
+    overflow: hidden
+
   .art-company-info[data-art]
     position fixed
     width 100%
@@ -231,9 +221,6 @@
           background-color #ae935c
           color #ffffff
 
-    .swiper-container
-      width 100%
-      height 100%
 
     .el-input__inner
       border-radius 0
