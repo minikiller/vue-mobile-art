@@ -5,6 +5,11 @@
   import {QrcodeMixin} from './qrcodeMixin'
 
   export default {
+    data() {
+      return {
+        name: 'stu'
+      }
+    },
     mixins: [QrcodeMixin]
   }
 </script>

@@ -5,6 +5,14 @@
   import {QrcodeMixin} from './qrcodeMixin'
 
   export default {
-    mixins: [QrcodeMixin]
+    data() {
+      return {
+        name: 'com'
+      }
+    },
+    mixins: [QrcodeMixin],
+    mounted() {
+      console.log('url', this.url)
+    }
   }
 </script>
