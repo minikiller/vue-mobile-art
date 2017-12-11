@@ -13,11 +13,12 @@
             i.art-iconfont.icon-shanchu
             | 删除选中
       div.list-wrapper
-        swiper-container(ref="swiperContainer")
-          div.split
-          template(v-for="item in tableData")
-            art-item(v-bind:itemData="item" v-on:itemCheckedClick="onItemChecked" v-on:itemEditClick="onItemEdit" v-on:itemDeletetClick="onItemDelete")
+        scroll.shortcut(v-bind:refreshDelay="120" ref="shortcut" v-bind:data="tableData")
+          div
             div.split
+            template(v-for="item in tableData")
+              art-item(v-bind:itemData="item" v-on:itemCheckedClick="onItemChecked" v-on:itemEditClick="onItemEdit" v-on:itemDeletetClick="onItemDelete")
+              div.split
         div.no-list(v-if="false")
           div.cnt
             i.art-iconfont.icon-meiyouchaxunjieguo.icon
@@ -42,6 +43,7 @@
   import SwiperContainer from './SwiperContainer'
   import '../base/font/iconfont.css'
   import {Message} from 'kalix-base'
+  import Scroll from '../base/scroll'
 
   export default {
     data() {
@@ -89,7 +91,6 @@
       },
       init() {
         this.getData()
-        this.$refs.swiperContainer.start()
       },
       getData() {
         let _data = {
@@ -107,6 +108,7 @@
             return item
           })
           this.tableData = resData
+          this.$refs.shortcut.refresh()
           // this.tempArr.concat(resData)
         })
       },
@@ -178,6 +180,7 @@
       }
     },
     components: {
+      Scroll,
       ArtFormHeader,
       RecruitCompanyInfo,
       RecruitFormInfo,
@@ -211,6 +214,10 @@
     width 100%
     height 100%
     background-color #ebebeb
+
+  .shortcut
+    height: 100%
+    overflow: hidden
 
   .list-title
     position relative

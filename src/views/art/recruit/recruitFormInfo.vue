@@ -40,9 +40,9 @@
   import Message from 'kalix-base'
   import {RecruitURL} from '../config.toml'
   import Vue from 'vue'
-  import Swiper from 'swiper'
   import ArtDistSelect from '../base/ArtDistSelect'
   import SwiperContainer from './SwiperContainer'
+  import Scroll from '../base/scroll'
 
   export default {
     props: {
@@ -171,7 +171,8 @@
     },
     components: {
       ArtDistSelect,
-      SwiperContainer
+      SwiperContainer,
+      Scroll
     }
   }
 </script>
