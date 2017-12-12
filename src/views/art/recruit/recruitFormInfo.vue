@@ -17,17 +17,17 @@
               el-form-item.s-flex_item.kalix-form-table-td(label="岗位要求" prop="positionRequires" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.positionRequires")
               el-form-item.s-flex_item.kalix-form-table-td(label="岗位个数" prop="jobNumbers" v-bind:label-width="labelWidth")
-                el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="width:100%")
+                el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="float:right")
               el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.education")
               el-form-item.s-flex_item.kalix-form-table-td(label="职能类别" prop="functionCategoryId" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.functionCategoryId")
               el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
-                el-input-number(v-model="formModel.salary" v-bind:step="500" style="width:100%")
+                el-input-number(v-model="formModel.salary" v-bind:step="500"  style="float:right")
               el-form-item.s-flex_item.kalix-form-table-td(label="应用技术名称" prop="appliedTechnology" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.appliedTechnology")
               el-form-item.s-flex_item.kalix-form-table-td(label="个人要求" prop="personRequires" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.personRequires" appName="art" dictType="个人要求" style="width:100%")
+                art-dist-check-list(v-model="formModel.personRequires" appName="art" dictType="个人要求" style="width:100%")
               el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
                 art-dist-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
       div.ft
@@ -41,6 +41,7 @@
   import {RecruitURL} from '../config.toml'
   import Vue from 'vue'
   import ArtDistSelect from '../base/ArtDistSelect'
+  import ArtDistCheckList from '../base/ArtDistCheckList'
   import Scroll from '../base/scroll'
 
   export default {
@@ -55,7 +56,8 @@
           companyName: [{required: true, message: '请输入企业名称', trigger: 'blur'}]
         },
         targetURL: RecruitURL,
-        labelWidth: '100px'
+        labelWidth: '100px',
+        personRequires: '2,3,4'
       }
     },
     mounted() {
@@ -158,6 +160,7 @@
     },
     components: {
       ArtDistSelect,
+      ArtDistCheckList,
       Scroll
     }
   }
@@ -221,10 +224,28 @@
           background-color #ae935c
           color #ffffff
 
-
     .el-input__inner
       border-radius 0
       border-width 0 0 1px 0 !important
+
+    .el-input-number__decrease,
+    .el-input-number__increase
+      border-radius 50%
+      border 0
+      background-color transparent
+      color #fff
+      &:after
+        position absolute
+        display block
+        content ''
+        width 20px
+        height 20px
+        background-color #ffa200
+        top 50%
+        left 50%
+        transform translate3d(-50%,-50%,0)
+        border-radius 50%
+        z-index -1
 
   .show-enter-active,
   .show-leave-active

@@ -1,7 +1,6 @@
-<template>
-  <div ref="wrapper">
-    <slot></slot>
-  </div>
+<template lang="pug">
+  div(ref="wrapper")
+    slot
 </template>
 
 <script type="text/ecmascript-6">
@@ -29,6 +28,10 @@
         default: null
       },
       pullup: {
+        type: Boolean,
+        default: false
+      },
+      pulldown: {
         type: Boolean,
         default: false
       },
@@ -64,6 +67,7 @@
         if (this.listenScroll) {
           this.scroll.on('scroll', (pos) => {
             this.$emit('scroll', pos)
+            console.log('asdf')
           })
         }
 
@@ -74,7 +78,13 @@
             }
           })
         }
-
+        if (this.pulldown) {
+          this.scroll.on('touchEnd', (pos) => {
+            if (pos.y > 50) {
+              this.$emit('pulldown')
+            }
+          })
+        }
         if (this.beforeScroll) {
           this.scroll.on('beforeScrollStart', () => {
             this.$emit('beforeScroll')
@@ -92,6 +102,9 @@
       },
       scrollTo() {
         this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
+      },
+      scrollBy() {
+        this.scroll && this.scroll.scrollBy.apply(this.scroll, arguments)
       },
       scrollToElement() {
         this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)

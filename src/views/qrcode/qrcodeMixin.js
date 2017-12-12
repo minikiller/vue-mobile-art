@@ -7,7 +7,7 @@ export const QrcodeMixin = {
   },
   computed: {
     url() {
-      return webURL + '/qrcode/login/' + this.name
+      return webURL + '/login'
     }
   }
 }

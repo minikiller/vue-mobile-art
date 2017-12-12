@@ -149,7 +149,7 @@
         }
       },
       resultRedirect(target) {
-        window.open(window.location.origin + '/art/recuit/' + target)
+        window.open(window.location.origin + `/art/recuit/${target}/company`)
       }
     },
     components: {

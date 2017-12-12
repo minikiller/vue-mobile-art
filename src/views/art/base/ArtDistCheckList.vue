@@ -1,13 +1,22 @@
 <template lang="pug">
-  div.art-select
-    select.select(v-model='currentValue')
-      option(v-for="item in items" v-bind:value="item.value") {{item.label}}
+  div.kalix-check-list
+    label.kalix-check-cell(v-for="(item,index) in items" v-bind:for="bindLabelFor(index)" v-bind:key="item.value")
+      div.s-flex
+        div.s-flex_item {{item.label}}-{{item.value}}
+        div
+          input.kalix-check-input(type="checkbox" v-bind:id="bindLabelFor(index)" v-model="currentValue" v-bind:value="item.value")
+          i.icon-1.art-iconfont.icon-xuanze1
+          i.icon-2.art-iconfont.icon-xuanze
 </template>
 <script type="text/ecmascript-6">
   import {Cache} from 'kalix-base'
 
   export default {
     props: {
+      checkKey: {
+        type: String,
+        default: 'item'
+      },
       placeholder: {
         type: String,
         default: '请选择'
@@ -26,14 +35,24 @@
     data() {
       return {
         items: [],
-        currentValue: this.value,
+        currentValue: [],
         selectedOptions: []
       }
     },
     mounted() {
+      this.initValue()
       this.getDict()
     },
     methods: {
+      bindLabelFor(index) {
+        return `checkbox-${this.checkKey}-${index}`
+      },
+      initValue() {
+        this.currentValue = []
+        if (this.value.length > 0) {
+          this.currentValue = this.value.split(',')
+        }
+      },
       getDict() {
         this.name = this.appName.toUpperCase()
         if (this.name) {
@@ -72,37 +91,50 @@
         })
         console.log('items', this.items)
       }
+    },
+    watch: {
+      value(newValue) {
+        this.initValue()
+      },
+      currentValue(newValue) {
+        this.$emit('input', newValue.join(','))
+      }
     }
   }
 </script>
 <style scoped lang="stylus" type="text/stylus">
-  .art-select
-    .select
-      width 100%
-      -webkit-appearance: none;
-      border: 0;
-      outline: 0;
-      background-color: transparent;
-      font-size: inherit;
-      height: 40px;
-      line-height: 40px;
-      position: relative;
-      z-index: 1;
-      padding-left: 15px;
-      border-radius 0
-      border-bottom 1px solid #d8dce5
-    &:after
-      content: " ";
-      display: inline-block;
-      height: 6px;
-      width: 6px;
-      border-width: 2px 2px 0 0;
-      border-color: #C8C8CD;
-      border-style: solid;
-      -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
-      transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
-      position: absolute;
-      top: 50%;
-      right: 15px;
-      margin-top: -4px;
+  @import "../../../assets/stylus/border"
+
+  .kalix-check-list
+    label
+      *
+        pointer-events: none
+    .kalix-check-cell
+      position relative
+      display block
+      font-size 16px
+      &:after
+        setTopLine(#b5b5b5)
+      &:first-child
+        &:after
+          display none
+      .weui-cells_checkbox
+      .kalix-check-input
+        position absolute
+        z-index -1
+        top -100000px
+        & ~ .icon-1,
+        & ~ .icon-2
+          font-size 26px
+        & ~ .icon-1
+          display inline-block
+          color #C9C9C9
+        & ~ .icon-2
+          display none
+          color #FF9900
+        &:checked
+          & ~ .icon-1
+            display none
+          & ~ .icon-2
+            display inline-block
 </style>

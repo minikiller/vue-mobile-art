@@ -4,22 +4,21 @@ import HelloWorld from '@/components/HelloWorld'
 import ComQrcode from '@/views/qrcode/comQrcode'
 import StuQrcode from '@/views/qrcode/stuQrcode'
 import QrcodeLogin from '@/views/qrcode/qrcodeLogin'
-// import candidateForm from '@/views/art/candidate/candidateForm'
-// import recruitForm from '@/views/art/recruit/recruitForm'
-// import recruitResult from '@/views/art/recruit/recruitResult'
+import {Cache} from 'kalix-base'
+
+Vue.use(Router)
 
 const _import = require('@/api/_import_' + process.env.NODE_ENV)
 
 const candidateForm = _import('art/candidate/candidateForm')
 const recruitForm = _import('art/recruit/recruitForm')
 const recruitResult = _import('art/recruit/recruitResult')
+const recruitFormInfo = _import('art/recruit/recruitFormInfo')
+const Login = _import('art/login/login')
 /* 测试用 */
 const recuitTest = _import('art/recruit/recuitTest')
-const recruitFormInfo = _import('art/recruit/recruitFormInfo')
 
-Vue.use(Router)
-
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -30,12 +29,14 @@ export default new Router({
     {
       path: '/art/recuittest',
       name: 'recuittest',
-      component: recuitTest
-    },
-    {
-      path: '/art/recuittest/:key',
-      name: 'recuittest',
-      component: recuitTest
+      component: recuitTest,
+      children: [
+        {
+          path: ':key',
+          component: recuitTest,
+          name: 'recuittest'
+        }
+      ]
     },
     {
       path: '/art/recruitforminfo',
@@ -50,7 +51,19 @@ export default new Router({
     {
       path: '/art/recuit/:key',
       name: 'recruitResult',
-      component: recruitResult
+      component: recruitResult,
+      children: [
+        {
+          path: ':status',
+          name: 'recruitResult',
+          component: recruitResult
+        }
+      ]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/qrcode/comqrcode',
@@ -74,3 +87,18 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (!to.path.search(/\/qrcode\//i)) {
+    // 进入二维码页面
+    next()
+    return
+  }
+  if (Cache.get('id') === null && to.name !== 'login') {
+    next({path: '/login'})
+  }
+  console.log('to', to)
+  next()
+})
+
+export default router

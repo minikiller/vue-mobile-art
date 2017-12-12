@@ -13,12 +13,22 @@
             i.art-iconfont.icon-shanchu
             | 删除选中
       div.list-wrapper
-        scroll.shortcut(v-bind:refreshDelay="120" ref="shortcut" v-bind:data="tableData")
+        transition(name="loading")
+          div.loading(v-if="isLoading") 加载中……
+        scroll.shortcut(v-bind:refreshDelay="120" ref="shortcut" v-bind:data="tableData"
+        v-bind:pullup="true"
+        v-bind:pulldown="true"
+        v-on:scrollToEnd="scrollToEnd"
+        v-on:pulldown="pulldown"
+        )
           div
             div.split
             template(v-for="item in tableData")
               art-item(v-bind:itemData="item" v-on:itemCheckedClick="onItemChecked" v-on:itemEditClick="onItemEdit" v-on:itemDeletetClick="onItemDelete")
               div.split
+            div.load-more
+              div(v-if="!isFinish") 加载更多
+              div(v-else) 没有更多记录
         div.no-list(v-if="false")
           div.cnt
             i.art-iconfont.icon-meiyouchaxunjieguo.icon
@@ -40,7 +50,6 @@
   import ArtItem from './ArtItem'
   import {PageConfig} from '@/config/global.toml'
   import {RecruitURL} from '../config.toml'
-  import SwiperContainer from './SwiperContainer'
   import '../base/font/iconfont.css'
   import {Message} from 'kalix-base'
   import Scroll from '../base/scroll'
@@ -51,6 +60,8 @@
         tableData: [],
         isContinueAdd: false,
         isCheckAll: false,
+        isLoading: false,
+        isFinish: false,
         pager: {
           totalCount: 0,
           pageSizes: PageConfig.sizes,
@@ -75,13 +86,19 @@
       })
       this.init()
     },
-    watch: {'$route': 'chkContinue'},
+    watch: {
+      '$route': 'chkContinue'
+    },
     methods: {
       chkContinue() {
-        console.log('chkContinue')
-        if (this.$route.params.key) {
-          this.isContinueAdd = true
+        this.isContinueAdd = false
+        if (this.$route.name === 'recuittest') {
+          console.log('chkContinue', this.$route.params.state)
+          if (this.$route.params.key === 'continue-add') {
+            this.isContinueAdd = true
+          }
         }
+        this.getData()
       },
       optionClick() {
         this.$refs.companyInfo.open()
@@ -90,27 +107,41 @@
         this.$refs.formInfo.open()
       },
       init() {
-        this.getData()
+        // this.getData()
       },
       getData() {
-        let _data = {
-          jsonStr: this.jsonStr,
-          page: 1,
-          start: this.pager.start,
-          limit: this.pager.limit
-        }
-        this.$http.get(RecruitURL, {
-          params: _data
-        }).then(response => {
-          let resData = response.data.data.map((item, index) => {
-            item.rowNumber = index + this.rowNo
-            item.isChecked = false
-            return item
+        if (!this.isFinish) {
+          let _data = {
+            jsonStr: this.jsonStr,
+            page: this.pager.currentPage,
+            start: this.pager.start,
+            limit: this.pager.limit
+          }
+          this.$http.get(RecruitURL, {
+            params: _data
+          }).then(response => {
+            // console.log('response', response)
+            let resData = response.data.data.map((item, index) => {
+              item.rowNumber = index + this.rowNo
+              item.isChecked = false
+              return item
+            })
+            if (this.pager.currentPage === 1) {
+              // 刷新
+              this.tempArr = resData
+            } else {
+              // 追加
+              this.tempArr = this.tempArr.concat(resData)
+            }
+            this.tableData = this.tempArr
+
+            // 已经显示全部记录
+            this.isFinish = (response.data.totalCount === this.tableData.length)
+            this.pager.currentPage += 1
+            this.isLoading = false
+            this.$refs.shortcut.refresh()
           })
-          this.tableData = resData
-          this.$refs.shortcut.refresh()
-          // this.tempArr.concat(resData)
-        })
+        }
       },
       onItemEdit(item) {
         this.$refs.formInfo.open(item)
@@ -130,8 +161,8 @@
             }
           })
         }).then(response => {
+          this.tableData.splice(this.tableData.findIndex(e => e.id === item.id), 1)
           Message.success(response.data.msg)
-          this.getData()
         }).catch(() => {
         })
       },
@@ -177,6 +208,18 @@
         } else {
           Message.error('至少选择一项')
         }
+      },
+      scrollToEnd() {
+        // 上拉
+        this.getData()
+      },
+      pulldown() {
+        // 下拉
+        this.isLoading = true
+        setTimeout(() => {
+          this.pager.currentPage = 1
+          this.getData()
+        }, 1000)
       }
     },
     components: {
@@ -184,8 +227,7 @@
       ArtFormHeader,
       RecruitCompanyInfo,
       RecruitFormInfo,
-      ArtItem,
-      SwiperContainer
+      ArtItem
     },
     computed: {
       rowNo() {
@@ -287,5 +329,29 @@
       text-align center
       color #ffffff
       background-color #ae935c
+
+  .load-more
+    margin 0
+    padding 0 0 20px
+    height 50px
+    line-height 50px
+    text-align center
+    font-size 10px
+    color #999999
+
+  .loading
+    margin 0
+    padding 0
+    height 50px
+    line-height 50px
+    text-align center
+    font-size 10px
+    color #999999
+
+  .loading-leave-active
+    transition height .5s
+
+  .loading-leave-active
+    height 0
 
 </style>

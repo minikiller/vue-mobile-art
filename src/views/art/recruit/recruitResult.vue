@@ -5,7 +5,7 @@
     div.title {{result.title}}
     div.btn-list
       el-button.btn-item(v-on:click="goHome" type="warning" plain) 返回首页
-      el-button.btn-item(v-on:click="continueAdd" type="success" plain) 继续添加
+      el-button.btn-item(v-if="isList" v-on:click="continueAdd" type="success" plain) 继续添加
 </template>
 <script type="text/ecmascript-6">
   export default {
@@ -14,7 +14,8 @@
         result: {
           title: '',
           cls: ''
-        }
+        },
+        isList: true
       }
     },
     mounted() {
@@ -22,7 +23,7 @@
       window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL)
       })
-      let key = this.$route.params.key
+      console.log('this.$route', this.$route)
       let params = {
         success: {
           type: 'success',
@@ -40,15 +41,17 @@
           icon: 'art-iconfont icon-jiangbeishengli'
         }
       }
-      this.result = params[key]
+      if (this.$route.name === 'recruitResult') {
+        this.isList = !(this.$route.params.status === 'company')
+        this.result = params[this.$route.params.key]
+      }
     },
     methods: {
       goHome() {
         this.$router.push({path: '/art/recuittest'})
       },
       continueAdd() {
-        // this.$router.push({path: '/art/recuittest/continueAdd'})
-        window.location.href = '/art/recuittest/continueAdd'
+        this.$router.push({path: '/art/recuittest/continue-add'})
       }
     }
   }

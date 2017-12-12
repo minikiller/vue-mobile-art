@@ -9,11 +9,16 @@ import KalixBase from 'kalix-base'
 // import ElementUI from 'element-ui'
 // import 'element-ui/lib/theme-chalk/index.css'
 import './element-ui'
+// import FastClick from 'fastclick'
 
 Vue.config.productionTip = false
 
 Vue.use(VueAxios, axios)
 Vue.use(KalixBase)
+Vue.use(router)
+
+// FastClick.attach(document.body)
+
 // Vue.use(ElementUI)
 
 /* eslint-disable no-new */
@@ -21,5 +26,5 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: {App}
 })
