@@ -1,62 +1,59 @@
 <template lang="pug">
   div.art-form
     div.form-container
-      div.swiper-container
-        div.swiper-wrapper
-          div.swiper-slide
-            div.wrapper
-              el-form(ref="dialogForm" v-bind:model="formModel")
-                div.el-form.kalix-form-table
-                  div.table-title 企业信息
-                  div.s-flex
-                    el-form-item.s-flex_item.kalix-form-table-td(label="企业组织机构代码" prop="companyCode" v-bind:rules="rules.companyCode" v-bind:label-width="labelWidth")
-                      div(style="display:flex;")
-                        el-input.s-flex_item(v-model="formModel.companyCode")
-                        el-button(type="primary" icon="el-icon-search" v-on:click="getCompany") 查询
-                    el-form-item.s-flex_item.kalix-form-table-td(label="企业名称" prop="companyName" v-bind:rules="rules.companyName" v-bind:label-width="labelWidth")
-                      el-input(v-model="formModel.companyName")
-                  div.s-flex
-                    el-form-item.s-flex_item.kalix-form-table-td(label="企业性质" prop="companyNature" v-bind:label-width="labelWidth")
-                      kalix-dict-select(v-model="formModel.companyNature" appName="art" dictType="企业性质" style="width:100%")
-                    el-form-item.s-flex_item.kalix-form-table-td(label="企业规模" prop="companyScale" v-bind:label-width="labelWidth")
-                      el-input(v-model="formModel.companyScale")
-                  div.s-flex
-                    el-form-item.s-flex_item.kalix-form-table-td(label="企业行业" prop="companyIndustry" v-bind:label-width="labelWidth")
-                      <!--kalix-dict-select(v-model="formModel.companyIndustry" appName="art" dictType="企业行业" style="width:100%")-->
-                      art-dist-select(v-model="formModel.companyNature" appName="art" dictType="企业性质")
-                    el-form-item.s-flex_item.kalix-form-table-td(label="企业年限" prop="companyLife" v-bind:label-width="labelWidth")
-                      el-input(v-model="formModel.companyLife")
-                  div.s-flex
-                    el-form-item.s-flex_item.kalix-form-table-td(label="地区" prop="region" v-bind:label-width="labelWidth")
-                      el-input(v-model="formModel.region")
-                    el-form-item.s-flex_item.kalix-form-table-td(label="城市" prop="city" v-bind:label-width="labelWidth")
-                      el-input(v-model="formModel.city")
-                  div.table-title 招聘信息
-                  div.s-flex
-                    el-form-item.s-flex_item.kalix-form-table-td(label="发布时间" prop="publishDate" v-bind:label-width="labelWidth")
-                      input.ipt-date(v-model="formModel.publishDate" placeholder="发布时间" type="date" )
-                    el-form-item.s-flex_item.kalix-form-table-td(label="职位描述" prop="position" v-bind:label-width="labelWidth")
-                      el-input(v-model="formModel.position")
-                  div.s-flex
-                    el-form-item.s-flex_item.kalix-form-table-td(label="岗位要求" prop="positionRequires" v-bind:label-width="labelWidth")
-                      el-input(v-model="formModel.positionRequires")
-                    el-form-item.s-flex_item.kalix-form-table-td(label="岗位个数" prop="jobNumbers" v-bind:label-width="labelWidth")
-                      el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="width:100%")
-                  div.s-flex
-                    el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
-                      el-input(v-model="formModel.education")
-                    el-form-item.s-flex_item.kalix-form-table-td(label="职能类别" prop="functionCategoryId" v-bind:label-width="labelWidth")
-                      el-input(v-model="formModel.functionCategoryId")
-                  div.s-flex
-                    el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
-                      el-input-number(v-model="formModel.salary" v-bind:step="500" style="width:100%")
-                    el-form-item.s-flex_item.kalix-form-table-td(label="应用技术名称" prop="appliedTechnology" v-bind:label-width="labelWidth")
-                      el-input(v-model="formModel.appliedTechnology")
-                  div.s-flex
-                    el-form-item.s-flex_item.kalix-form-table-td(label="个人要求" prop="personRequires" v-bind:label-width="labelWidth")
-                      kalix-dict-select(v-model="formModel.personRequires" appName="art" dictType="个人要求" style="width:100%")
-                    el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
-                      kalix-dict-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
+      div.wrapper
+        el-form(ref="dialogForm" v-bind:model="formModel")
+          div.el-form.kalix-form-table
+            div.table-title 企业信息
+            div.s-flex
+              el-form-item.s-flex_item.kalix-form-table-td(label="企业组织机构代码" prop="companyCode" v-bind:rules="rules.companyCode" v-bind:label-width="labelWidth")
+                div(style="display:flex;")
+                  el-input.s-flex_item(v-model="formModel.companyCode")
+                  el-button(type="primary" icon="el-icon-search" v-on:click="getCompany") 查询
+              el-form-item.s-flex_item.kalix-form-table-td(label="企业名称" prop="companyName" v-bind:rules="rules.companyName" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.companyName")
+            div.s-flex
+              el-form-item.s-flex_item.kalix-form-table-td(label="企业性质" prop="companyNature" v-bind:label-width="labelWidth")
+                kalix-dict-select(v-model="formModel.companyNature" appName="art" dictType="企业性质" style="width:100%")
+              el-form-item.s-flex_item.kalix-form-table-td(label="企业规模" prop="companyScale" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.companyScale")
+            div.s-flex
+              el-form-item.s-flex_item.kalix-form-table-td(label="企业行业" prop="companyIndustry" v-bind:label-width="labelWidth")
+                <!--kalix-dict-select(v-model="formModel.companyIndustry" appName="art" dictType="企业行业" style="width:100%")-->
+                art-dist-select(v-model="formModel.companyNature" appName="art" dictType="企业性质")
+              el-form-item.s-flex_item.kalix-form-table-td(label="企业年限" prop="companyLife" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.companyLife")
+            div.s-flex
+              el-form-item.s-flex_item.kalix-form-table-td(label="地区" prop="region" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.region")
+              el-form-item.s-flex_item.kalix-form-table-td(label="城市" prop="city" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.city")
+            div.table-title 招聘信息
+            div.s-flex
+              el-form-item.s-flex_item.kalix-form-table-td(label="发布时间" prop="publishDate" v-bind:label-width="labelWidth")
+                input.ipt-date(v-model="formModel.publishDate" placeholder="发布时间" type="date" )
+              el-form-item.s-flex_item.kalix-form-table-td(label="职位描述" prop="position" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.position")
+            div.s-flex
+              el-form-item.s-flex_item.kalix-form-table-td(label="岗位要求" prop="positionRequires" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.positionRequires")
+              el-form-item.s-flex_item.kalix-form-table-td(label="岗位个数" prop="jobNumbers" v-bind:label-width="labelWidth")
+                el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="width:100%")
+            div.s-flex
+              el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.education")
+              el-form-item.s-flex_item.kalix-form-table-td(label="职能类别" prop="functionCategoryId" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.functionCategoryId")
+            div.s-flex
+              el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
+                el-input-number(v-model="formModel.salary" v-bind:step="500" style="width:100%")
+              el-form-item.s-flex_item.kalix-form-table-td(label="应用技术名称" prop="appliedTechnology" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.appliedTechnology")
+            div.s-flex
+              el-form-item.s-flex_item.kalix-form-table-td(label="个人要求" prop="personRequires" v-bind:label-width="labelWidth")
+                kalix-dict-select(v-model="formModel.personRequires" appName="art" dictType="个人要求" style="width:100%")
+              el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
+                kalix-dict-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
     div.footer-toolbar
       div.btns
         el-button.btn-item(v-on:click="onCancelClick") 关 闭
@@ -67,7 +64,6 @@
   import {Message} from 'kalix-base'
   import {RecruitURL} from '../config.toml'
   import Vue from 'vue'
-  import Swiper from 'swiper'
   import {formatDate} from '@/api/typeFormat'
   import ArtDistSelect from '../base/ArtDistSelect'
 
@@ -91,17 +87,6 @@
       window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL)
       })
-
-      let swiper = new Swiper('.swiper-container', {
-        direction: 'vertical',
-        slidesPerView: 'auto',
-        freeMode: true,
-        scrollbar: {
-          el: '.swiper-scrollbar'
-        },
-        mousewheel: true
-      })
-      console.log('swiper', swiper)
     },
     methods: {
       initData() {

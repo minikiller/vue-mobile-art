@@ -16,7 +16,6 @@
     "element-ui": "^2.0.7",
     "kalix-base": "^1.0.22",
     "qrcode-vue": "^1.0.3",
-    "swiper": "^4.0.7",
     "vue": "^2.5.9",
     "vue-axios": "^2.0.2",
     "vue-router": "^3.0.1"

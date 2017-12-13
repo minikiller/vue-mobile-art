@@ -23,7 +23,7 @@
       window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL)
       })
-      console.log('this.$route', this.$route)
+      // console.log('this.$route', this.$route)
       let params = {
         success: {
           type: 'success',

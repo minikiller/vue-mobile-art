@@ -15,12 +15,28 @@ const recruitForm = _import('art/recruit/recruitForm')
 const recruitResult = _import('art/recruit/recruitResult')
 const recruitFormInfo = _import('art/recruit/recruitFormInfo')
 const Login = _import('art/login/login')
+const SignUp = _import('art/login/signup')
 /* 测试用 */
 const recuitTest = _import('art/recruit/recuitTest')
 
 const router = new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignUp
+    },
     {
       path: '/art/recruitform',
       name: 'recruitform',
@@ -61,11 +77,6 @@ const router = new Router({
       ]
     },
     {
-      path: '/login',
-      name: 'login',
-      component: Login
-    },
-    {
       path: '/qrcode/comqrcode',
       name: 'comqrcode',
       component: ComQrcode
@@ -94,8 +105,14 @@ router.beforeEach((to, from, next) => {
     next()
     return
   }
+  if (to.name === 'signup') {
+    // 进入注册
+    next()
+    return
+  }
   if (Cache.get('id') === null && to.name !== 'login') {
     next({path: '/login'})
+    return
   }
   console.log('to', to)
   next()

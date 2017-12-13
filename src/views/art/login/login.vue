@@ -5,10 +5,10 @@
         div.logo
         el-form.loginForm(v-bind:model="loginForm" v-bind:rules="rules" ref="loginForm")
           el-form-item(label="" prop="name")
-            el-input(v-model="loginForm.name")
+            el-input(v-model="loginForm.name" placeholder="请输入登录名")
               i.icon-login-user(slot="prefix")
           el-form-item(label="" prop="pass")
-            el-input(type="password" v-model="loginForm.pass" auto-complete="off")
+            el-input(type="password" v-model="loginForm.pass" placeholder="请输入密码" auto-complete="off")
               i.icon-lock(slot="prefix")
           el-form-item(label="")
             el-button.btn-submit(v-on:click="onSubmit('loginForm')" size="large") 登录
