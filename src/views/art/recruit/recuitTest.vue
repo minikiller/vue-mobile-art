@@ -5,11 +5,14 @@
       div.list-title
         div.title 我的招聘信息
         div.operation
-          span.btn-item(v-on:click="checkAll")
+          span.btn-item(v-if="false")
+            i.art-iconfont.icon-sousuo
+            | 搜索
+          span.btn-item(v-if="true" v-on:click="checkAll")
             i.art-iconfont.icon-xuanze(v-if="isCheckAll")
             i.art-iconfont.icon-xuanze1(v-else)
             | 全选
-          span.btn-item(v-on:click="deleteChecked")
+          span.btn-item(v-if="true" v-on:click="deleteChecked")
             i.art-iconfont.icon-shanchu
             | 删除选中
       div.list-wrapper
@@ -180,6 +183,28 @@
         })
       },
       deleteChecked() {
+        this.oneByOneDelete()
+      },
+      oneByOneDelete() {
+        // 逐个删除
+        this.$confirm('确定要删除吗?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.tableData.forEach(item => {
+            if (item.isChecked) {
+              this.axios.request({
+                method: 'DELETE',
+                url: RecruitURL + '/' + item.id
+              }).then(() => {
+                this.tableData.splice(this.tableData.findIndex(e => e.id === item.id), 1)
+              })
+            }
+          })
+        })
+      },
+      batchDelete() {
         //  删除选中
         let ids = []
         this.tableData.forEach(item => {

@@ -106,6 +106,9 @@
   @import "../../../assets/stylus/border"
 
   .kalix-check-list
+    position relative
+    &:after
+      setBottomLine()
     label
       *
         pointer-events: none

@@ -22,6 +22,8 @@
           el-input(type="password" v-model="formModel.confirmPassword" placeholder="确认密码" auto-complete="off")
         el-form-item(label="")
           el-button.btn-submit(v-on:click="onSubmit" size="large") 注册
+        el-form-item(label="")
+          router-link.link-btn(tag="div" v-bind:to="{path:'/login'}") 返回登录
     result(ref="result" v-on:close="resultClose")
 </template>
 <script type="text/ecmascript-6">
@@ -30,7 +32,7 @@
   import Result from './result'
   import {Cache} from 'kalix-base'
 
-  // const usersURL = '/camel/rest/users'
+  const usersURL = '/camel/rest/users'
   const logoutURL = '/logout'
 
   export default {
@@ -81,16 +83,15 @@
     methods: {
       onSubmit() {
         this.$refs.loginForm.validate((valid) => {
-          this.$refs.result.open({
-            state: 0,
-            msg: '无法注册',
-            callBack: () => {
-              console.log('this', this)
-              this.$refs.loginForm.resetFields()
-              this.autoLoginOut()
-            }
-          })
-          /*
+          // this.$refs.result.open({
+          //   state: 0,
+          //   msg: '无法注册',
+          //   callBack: () => {
+          //     console.log('this', this)
+          //     this.$refs.loginForm.resetFields()
+          //     this.autoLoginOut()
+          //   }
+          // })
           if (valid) {
             this.formModel.userType = 3 // 招聘公司
             if (!this.loginState) {
@@ -123,7 +124,6 @@
           } else {
             return false
           }
-          */
         })
       },
       resultClose() {
@@ -167,8 +167,7 @@
     left 0
     width 100%
     height 100%
-    background 50% 50%  #ffffff url("./login_bg.png") no-repeat
-    background-size cover
+    background 50% 100% url("./login_bg.png") no-repeat
     overflow auto
     .from-warpper
       padding 0 15px 50px
@@ -187,4 +186,9 @@
         background-size cover
         color #5c4611
         border none
+      .link-btn
+        font-size 14px
+        text-align center
+        text-decoration underline
+        color #cdb886
 </style>
