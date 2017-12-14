@@ -239,8 +239,9 @@
         this.getData()
       },
       pulldown() {
-        // 下拉
+        // 下拉刷新
         this.isLoading = true
+        this.isFinish = false
         setTimeout(() => {
           this.pager.currentPage = 1
           this.getData()

@@ -167,7 +167,8 @@
     left 0
     width 100%
     height 100%
-    background 50% 100% url("./login_bg.png") no-repeat
+    background 50% 50% url("./login_bg.png") no-repeat
+    background-size cover
     overflow auto
     .from-warpper
       padding 0 15px 50px
