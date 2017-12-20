@@ -16,7 +16,6 @@
       div.bd
         scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm")
           div.wrapper
-            div 基本信息
             el-form(ref="dialogForm" v-bind:model="formModel")
               el-form-item.s-flex_item.kalix-form-table-td(label="企业组织机构代码" prop="code" v-bind:label-width="labelWidth")
                 el-input.s-flex_item(v-model="formModel.code" readonly)
@@ -28,7 +27,6 @@
                 el-input(v-model="formModel.phone" readonly)
               el-form-item.kalix-form-table-td(label="手机" prop="mobile" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.mobile" readonly)
-              div 详细信息
               el-form-item.s-flex_item.kalix-form-table-td(label="企业详细地址" prop="address" v-bind:rules="rules.address" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.address")
               el-form-item.s-flex_item.kalix-form-table-td(label="企业性质" prop="companyNature" v-bind:label-width="labelWidth")
