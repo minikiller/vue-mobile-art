@@ -2,17 +2,78 @@
   div.art-header
     div.wrapper
       div.title
-        div.maintitle 企业名称
-          span.area 中国·长春
-        div.subtitle 上市公司　文化传播　500人以上　50年
+        div.maintitle {{formModel.name}}
+          span.area {{formModel.region}}·{{formModel.city}}
+        div.subtitle {{natureName}}　{{industryName}}　{{formModel.scale}}人以上　{{formModel.life}}年
     div.btn-option(v-on:click="optionClick")
       i.art-iconfont.icon-chilun
 </template>
 <script type="text/ecmascript-6">
+  import {Cache, EventBus} from 'kalix-base'
+  import FormModel from '../recruit/companyModel'
+
+  const usersURL = '/camel/rest/users'
+  const companysURL = 'camel/rest/companys'
+
   export default {
+    data() {
+      return {
+        orgName: '',
+        formModel: Object.assign({}, FormModel),
+        natureName: '',
+        industryName: ''
+      }
+    },
+    mounted() {
+      this.getUser()
+    },
+    activated() {
+      EventBus.$emit('ON_COMPANY_INFO_REFIESH', this.getUser())
+    },
     methods: {
+      getUser() {
+        this._axiosRequest(usersURL, {jsonStr: '{id: ' + Cache.get('id') + '}'})
+          .then(res => {
+            if (res.data.totalCount) {
+              let org = res.data.data[0]
+              this.getCompany(org.code)
+            }
+          })
+      },
+      getCompany(code) {
+        this._axiosRequest(companysURL,
+          {
+            jsonStr: '{"%code%": "' + code + '"}',
+            page: 1,
+            start: 0,
+            limit: 10
+          })
+          .then(res => {
+            if (res.data.totalCount) {
+              this.formModel = res.data.data[0]
+              this.natureName = this._dictTranslate(this.formModel.nature, '企业性质')
+              this.industryName = this._dictTranslate(this.formModel.industry, '企业行业')
+            }
+          })
+      },
       optionClick() {
-        this.$emit('optionClick')
+        this.$emit('optionClick', this.formModel)
+      },
+      _axiosRequest(reqUrl, reqParams) {
+        return this.axios.request({
+          method: 'GET',
+          url: reqUrl,
+          params: reqParams
+        })
+      },
+      _dictTranslate(_value, _type) {
+        let dict = JSON.parse(Cache.get('ART-DICT-KEY'))
+        if (dict) {
+          let item = dict.find(e => {
+            return e.value === _value && e.type === _type
+          })
+          return item ? item.label : ''
+        }
       }
     }
   }

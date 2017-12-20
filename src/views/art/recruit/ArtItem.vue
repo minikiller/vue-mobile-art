@@ -20,21 +20,22 @@
         div.s-flex_item
           label 学历：
           | {{itemData.education}}
-        div.s-flex_item
-          label 职能类别：
-          | {{itemData.functionCategoryId}}
         div.s-flex_item(style="text-align:right;")
           label 薪资：
           | {{itemData.salary}}
+      div.s-flex
+        div.s-flex_item
+          label 职能类别：
+          | {{functionCategoryeTranslate(itemData.functionCategoryId)}}
+        div.s-flex_item(style="text-align:right;")
+          label 工作类型：
+          | {{jobTypeTranslate(itemData.jobType)}}
       div
         label 应用技术名称：
         | {{itemData.appliedTechnology}}
       div
-        label 工作类型：
-        | {{itemData.jobType}}
-      div
         label 个人要求：
-        | {{itemData.personRequires}}
+        | {{personRequiresTranslate(itemData.personRequires)}}
       div.s-flex
         div.s-flex_item
           label 发布时间：
@@ -44,9 +45,17 @@
           | 删除
 </template>
 <script type="text/ecmascript-6">
+  import {Cache} from 'kalix-base'
+
   export default {
     props: {
       itemData: null
+    },
+    created() {
+      this.artDictKey = JSON.parse(Cache.get('ART-DICT-KEY'))
+      this.personRequires = this.artDictKey.filter(e => {
+        return e.type === '个人要求'
+      })
     },
     mounted() {
       // console.log('itemData', this.itemData)
@@ -61,6 +70,44 @@
       onChecked() {
         this.itemData.isChecked = !this.itemData.isChecked
         this.$emit('itemCheckedClick', this.itemData)
+      },
+      jobTypeTranslate(value) {
+        return this._dictTranslate(value, '工作类型')
+      },
+      personRequiresTranslate(value) {
+        let values = value.split(',')
+        let names = []
+        values.forEach(e => {
+          let item = this.personRequires.find(e2 => {
+            return e.toString() === e2.value.toString()
+          })
+          if (item) {
+            names.push(item.label)
+          }
+        })
+        return names.join('，')
+      },
+      functionCategoryeTranslate(value) {
+        let datas = JSON.parse(Cache.get('FUNCTION-CATEGROY'))
+        let itemA = datas.find(e => {
+          let item = (e.code.toString() === value.toString()) ? e : null
+          if (!item) {
+            return e.children.find(e2 => {
+              return (e2.code.toString() === value.toString()) ? e2 : null
+            })
+          } else {
+            return item
+          }
+        })
+        return itemA ? itemA.name : ''
+      },
+      _dictTranslate(_value, _type) {
+        if (this.artDictKey) {
+          let item = this.artDictKey.find(e => {
+            return e.value === _value && e.type === _type
+          })
+          return item ? item.label : ''
+        }
       }
     }
   }

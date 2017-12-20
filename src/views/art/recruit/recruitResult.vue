@@ -8,13 +8,11 @@
       el-button.btn-item(v-if="isList" v-on:click="continueAdd" type="success" plain) 继续添加
 </template>
 <script type="text/ecmascript-6">
+  const RESULT = {title: '', cls: '', type: ''}
   export default {
     data() {
       return {
-        result: {
-          title: '',
-          cls: ''
-        },
+        result: Object.assign({}, RESULT),
         isList: true
       }
     },
@@ -48,9 +46,11 @@
     },
     methods: {
       goHome() {
+        this.result = Object.assign({}, RESULT)
         this.$router.push({path: '/art/recuittest'})
       },
       continueAdd() {
+        this.result = Object.assign({}, RESULT)
         this.$router.push({path: '/art/recuittest/continue-add'})
       }
     }

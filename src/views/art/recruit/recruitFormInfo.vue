@@ -21,7 +21,7 @@
               el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.education")
               el-form-item.s-flex_item.kalix-form-table-td(label="职能类别" prop="functionCategoryId" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.functionCategoryId")
+                art-cascade(v-model="formModel.functionCategoryId")
               el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
                 el-input-number(v-model="formModel.salary" v-bind:step="500"  style="float:right")
               el-form-item.s-flex_item.kalix-form-table-td(label="应用技术名称" prop="appliedTechnology" v-bind:label-width="labelWidth")
@@ -37,12 +37,12 @@
 
 <script type="text/ecmascript-6">
   import FormModel from './model'
-  import Message from 'kalix-base'
+  import {Message, Cache} from 'kalix-base'
   import {RecruitURL} from '../config.toml'
-  import Vue from 'vue'
   import ArtDistSelect from '../base/ArtDistSelect'
   import ArtDistCheckList from '../base/ArtDistCheckList'
   import Scroll from '../base/scroll'
+  import ArtCascade from '../base/ArtCascade'
 
   export default {
     props: {
@@ -56,8 +56,7 @@
           companyName: [{required: true, message: '请输入企业名称', trigger: 'blur'}]
         },
         targetURL: RecruitURL,
-        labelWidth: '100px',
-        personRequires: '2,3,4'
+        labelWidth: '100px'
       }
     },
     mounted() {
@@ -75,7 +74,9 @@
           this.formModel = item
         } else {
           this.formModel = Object.assign({}, FormModel)
+          console.log('FormModel', FormModel)
         }
+        this.getCompany()
       },
       close() {
         this.$emit('update:isVisible', false)
@@ -85,11 +86,27 @@
       },
       onCancelClick() {
       },
+      getCompany() {
+        let rec = JSON.parse(Cache.get('CurrentCompany'))
+        this.formModel.companyName = rec.name
+        this.formModel.companyCode = rec.code
+        this.formModel.companyEmail = rec.email
+        this.formModel.companyPhone = rec.phone
+        this.formModel.companyMobile = rec.mobile
+        this.formModel.companyNature = rec.nature
+        this.formModel.companyScale = rec.scale
+        this.formModel.companyIndustry = rec.industry
+        this.formModel.companyLife = rec.life
+        this.formModel.companyRegion = rec.region
+        this.formModel.companyCity = rec.city
+        this.formModel.companyAddress = rec.address
+      },
       onSubmitClick() {
         this.$refs.dialogForm.validate((valid) => {
-          console.log('valid', valid)
+          console.log('onSubmitClick')
+          console.log('this.formModel', this.formModel)
           if (valid) {
-            Vue.axios.request({
+            this.axios.request({
               method: this.isEdit ? 'PUT' : 'POST',
               url: this.isEdit ? `${this.targetURL}/${this.formModel.id}` : this.targetURL,
               data: this.formModel,
@@ -124,35 +141,6 @@
         this.formModel.region = ''
         this.formModel.city = ''
       },
-      getCompany() {
-        this.initData()
-        let companyCode = this.formModel.companyCode
-        let sort = '[{\'property\': \'creationDate\', \'direction\': \'DESC\'}]'
-        if (companyCode) {
-          let params = {
-            params: {
-              'jsonStr': {'companyCode': companyCode},
-              'page': 1,
-              'limit': 1,
-              'sort': sort
-            }
-          }
-          Vue.axios.get(RecruitURL, params).then((response) => {
-            if (response.data.data && response.data.data.length > 0) {
-              let rec = response.data.data[0]
-              this.formModel.companyName = rec.companyName
-              this.formModel.companyNature = rec.companyNature
-              this.formModel.companyScale = rec.companyScale
-              this.formModel.companyIndustry = rec.companyIndustry
-              this.formModel.companyLife = rec.companyLife
-              this.formModel.region = rec.region
-              this.formModel.city = rec.city
-            }
-          })
-        } else {
-          alert('请输入企业组织机构代码')
-        }
-      },
       resultRedirect(target) {
         this.$router.push({path: '/art/recuit/' + target})
         this.$emit('update:isVisible', false)
@@ -161,6 +149,7 @@
     components: {
       ArtDistSelect,
       ArtDistCheckList,
+      ArtCascade,
       Scroll
     }
   }
@@ -243,7 +232,7 @@
         background-color #ffa200
         top 50%
         left 50%
-        transform translate3d(-50%,-50%,0)
+        transform translate3d(-50%, -50%, 0)
         border-radius 50%
         z-index -1
 

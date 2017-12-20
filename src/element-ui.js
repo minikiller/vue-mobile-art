@@ -73,7 +73,7 @@ import {
 } from 'element-ui'
 
 import ElCollapseTransition from 'element-ui/lib/transitions/collapse-transition'
-import 'element-ui/lib/theme-chalk/base.css'
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.component(ElCollapseTransition.name, ElCollapseTransition)
 // Vue.use(Pagination)

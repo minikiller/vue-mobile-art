@@ -16,21 +16,29 @@
       div.bd
         scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm")
           div.wrapper
+            div 基本信息
             el-form(ref="dialogForm" v-bind:model="formModel")
-              el-form-item.s-flex_item.kalix-form-table-td(label="企业组织机构代码" prop="companyCode" v-bind:rules="rules.companyCode" v-bind:label-width="labelWidth")
-                div.s-flex(style="align-items: center;")
-                  el-input.s-flex_item(v-model="formModel.companyCode")
-                  el-button(type="primary" size="mini" icon="el-icon-search" v-on:click="getCompany" style="margin-left:8px;") 查询
-              el-form-item.s-flex_item.kalix-form-table-td(label="企业名称" prop="companyName" v-bind:rules="rules.companyName" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.companyName")
+              el-form-item.s-flex_item.kalix-form-table-td(label="企业组织机构代码" prop="code" v-bind:label-width="labelWidth")
+                el-input.s-flex_item(v-model="formModel.code" readonly)
+              el-form-item.s-flex_item.kalix-form-table-td(label="企业名称" prop="name" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.name" readonly)
+              el-form-item.s-flex_item.kalix-form-table-td(label="邮箱" prop="email" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.email" readonly)
+              el-form-item.s-flex_item.kalix-form-table-td(label="固定电话" prop="phone" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.phone" readonly)
+              el-form-item.kalix-form-table-td(label="手机" prop="mobile" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.mobile" readonly)
+              div 详细信息
+              el-form-item.s-flex_item.kalix-form-table-td(label="企业详细地址" prop="address" v-bind:rules="rules.address" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.address")
               el-form-item.s-flex_item.kalix-form-table-td(label="企业性质" prop="companyNature" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.companyNature" appName="art" dictType="企业性质")
+                art-dist-select(v-model="formModel.nature" appName="art" dictType="企业性质")
               el-form-item.s-flex_item.kalix-form-table-td(label="企业规模" prop="companyScale" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.companyScale")
+                el-input(v-model="formModel.scale")
               el-form-item.s-flex_item.kalix-form-table-td(label="企业行业" prop="companyIndustry" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.companyIndustry" appName="art" dictType="企业行业" style="width:100%")
+                art-dist-select(v-model="formModel.industry" appName="art" dictType="企业行业" style="width:100%")
               el-form-item.s-flex_item.kalix-form-table-td(label="企业年限" prop="companyLife" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.companyLife")
+                el-input(v-model="formModel.life")
               el-form-item.s-flex_item.kalix-form-table-td(label="地区" prop="region" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.region")
               el-form-item.s-flex_item.kalix-form-table-td(label="城市" prop="city" v-bind:label-width="labelWidth")
@@ -40,12 +48,12 @@
           el-button.btn-item(type="primary" v-on:click="onSubmitClick") 保 存
 </template>
 <script type="text/ecmascript-6">
-  import FormModel from './model'
-  import Message from 'kalix-base'
-  import {RecruitURL} from '../config.toml'
-  import Vue from 'vue'
+  import FormModel from './companyModel'
+  import {Message, EventBus} from 'kalix-base'
   import ArtDistSelect from '../base/ArtDistSelect'
   import Scroll from '../base/scroll'
+
+  const companysUrl = '/camel/rest/companys'
 
   export default {
     data() {
@@ -53,10 +61,8 @@
         isVisible: false,
         formModel: Object.assign({}, FormModel),
         rules: {
-          companyCode: [{required: true, message: '请输入企业组织机构代码', trigger: 'blur'}],
-          companyName: [{required: true, message: '请输入企业名称', trigger: 'blur'}]
+          address: [{required: true, message: '请输入企业详细地址', trigger: 'blur'}]
         },
-        targetURL: RecruitURL,
         labelWidth: '140px'
       }
     },
@@ -68,8 +74,9 @@
           this.$refs.scrollForm.refresh()
         }, 20)
       },
-      open() {
+      open(row) {
         this.isVisible = true
+        this.formModel = row
         this.initSwiper()
       },
       close() {
@@ -82,27 +89,26 @@
       },
       onSubmitClick() {
         this.$refs.dialogForm.validate((valid) => {
-          console.log('valid', valid)
           if (valid) {
-            Vue.axios.request({
-              method: this.isEdit ? 'PUT' : 'POST',
-              url: this.isEdit ? `${this.targetURL}/${this.formModel.id}` : this.targetURL,
+            this.$delete(this.formModel, 'version')
+            this.$delete(this.formModel, 'version_')
+            this.axios.request({
+              method: 'POST',
+              url: companysUrl,
               data: this.formModel,
               params: {}
             }).then(response => {
               if (response.data.success) {
-//                Message.success(response.data.msg)
-                this.visible = false
+                this.isVisible = false
                 this.$refs.dialogForm.resetFields()
-                // this.resultRedirect('success')
-                this.$router.push({path: '/art/recuit/success'})
-                // window.open(window.location.origin + '/art/recuit/' + target)
+                EventBus.$emit('ON_COMPANY_INFO_REFIESH')
+                this.$router.push({path: '/art/recuit/success/company'})
               } else {
                 this.resultRedirect('error')
               }
               // 刷新列表
               console.log('[kalix] dialog submit button clicked !')
-              this.visible = false
+              this.isVisible = false
             })
           } else {
             Message.error('请检查输入项！')
@@ -119,37 +125,8 @@
         this.formModel.region = ''
         this.formModel.city = ''
       },
-      getCompany() {
-        this.initData()
-        let companyCode = this.formModel.companyCode
-        let sort = '[{\'property\': \'creationDate\', \'direction\': \'DESC\'}]'
-        if (companyCode) {
-          let params = {
-            params: {
-              'jsonStr': {'companyCode': companyCode},
-              'page': 1,
-              'limit': 1,
-              'sort': sort
-            }
-          }
-          Vue.axios.get(RecruitURL, params).then((response) => {
-            if (response.data.data && response.data.data.length > 0) {
-              let rec = response.data.data[0]
-              this.formModel.companyName = rec.companyName
-              this.formModel.companyNature = rec.companyNature
-              this.formModel.companyScale = rec.companyScale
-              this.formModel.companyIndustry = rec.companyIndustry
-              this.formModel.companyLife = rec.companyLife
-              this.formModel.region = rec.region
-              this.formModel.city = rec.city
-            }
-          })
-        } else {
-          alert('请输入企业组织机构代码')
-        }
-      },
       resultRedirect(target) {
-        window.open(window.location.origin + `/art/recuit/${target}/company`)
+        this.$router.push({path: `/art/recuit/${target}/company`})
       }
     },
     components: {

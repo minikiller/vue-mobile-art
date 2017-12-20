@@ -4,7 +4,7 @@
       art-form-header(v-on:optionClick="optionClick")
       div.list-title
         div.title 我的招聘信息
-        div.operation
+        div.operation(v-if="tableData.length")
           span.btn-item(v-if="false")
             i.art-iconfont.icon-sousuo
             | 搜索
@@ -18,27 +18,27 @@
       div.list-wrapper
         transition(name="loading")
           div.loading(v-if="isLoading") 加载中……
-        scroll.shortcut(v-bind:refreshDelay="120" ref="shortcut" v-bind:data="tableData"
+        scroll.shortcut(v-if="tableData.length" v-bind:refreshDelay="120" ref="shortcut" v-bind:data="tableData"
         v-bind:pullup="true"
         v-bind:pulldown="true"
         v-on:scrollToEnd="scrollToEnd"
         v-on:pulldown="pulldown"
         )
           div
-            div.split
+            split
             template(v-for="item in tableData")
               art-item(v-bind:itemData="item" v-on:itemCheckedClick="onItemChecked" v-on:itemEditClick="onItemEdit" v-on:itemDeletetClick="onItemDelete")
-              div.split
+              split
             div.load-more
               div(v-if="!isFinish") 加载更多
               div(v-else) 没有更多记录
-        div.no-list(v-if="false")
+        div.no-list(v-if="!tableData.length")
           div.cnt
             i.art-iconfont.icon-meiyouchaxunjieguo.icon
             div.text 还没有应聘信息
               br
               | 点击
-              span.here [这里]
+              span.here(v-on:click="openFormInfo") [这里]
               | 新建应聘信息
       div.footer
         router-link.btn(tag="div" v-if="false" v-bind:to="{path:'/art/recruitforminfo'}") 新建招聘信息
@@ -54,17 +54,23 @@
   import {PageConfig} from '@/config/global.toml'
   import {RecruitURL} from '../config.toml'
   import '../base/font/iconfont.css'
-  import {Message} from 'kalix-base'
+  import {Message, Cache} from 'kalix-base'
   import Scroll from '../base/scroll'
+  import Split from '../base/split'
+  import FormModel from './model'
+
+  const companysURL = '/camel/rest/companys'
 
   export default {
     data() {
       return {
+        formModel: Object.assign({}, FormModel),
         tableData: [],
         isContinueAdd: false,
         isCheckAll: false,
         isLoading: false,
         isFinish: false,
+        companyCode: '',
         pager: {
           totalCount: 0,
           pageSizes: PageConfig.sizes,
@@ -87,43 +93,78 @@
       window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL)
       })
-      this.init()
     },
     watch: {
       '$route': 'chkContinue'
     },
     methods: {
+      init() {
+        if (!this.currentUser) {
+          this.currentUser = JSON.parse(Cache.get('CurrentUser'))
+        }
+        this.getCompanyCode()
+      },
+      getCompanyCode() {
+        if (!Cache.get('CurrentCompany')) {
+          console.log('this.currentUser.code', this.currentUser.code)
+          this.$http.get(companysURL, {
+            params: {
+              jsonStr: '{"%code%": "' + this.currentUser.code + '"}',
+              page: 1,
+              start: 0,
+              limit: 10
+            }
+          }).then(res => {
+            if (res.data.totalCount) {
+              console.log('=== res', res)
+              let company = res.data.data[0]
+              console.log('=== company', company)
+              this.companyCode = this.currentUser.code
+              /* 新注册用户-完善企业信息 */
+              if (!company.address) {
+                // this.$emit('update:isVisible', true)
+                this.optionClick(company)
+              }
+              Cache.save('CurrentCompany', JSON.stringify(company))
+            }
+          })
+        } else {
+          this.companyCode = this.currentUser.code
+        }
+      },
       chkContinue() {
+        this.init()
         this.isContinueAdd = false
+        this.isFinish = false
+        this.pager.currentPage = 1
+        this.isLoading = true
         if (this.$route.name === 'recuittest') {
-          console.log('chkContinue', this.$route.params.state)
           if (this.$route.params.key === 'continue-add') {
             this.isContinueAdd = true
           }
         }
         this.getData()
       },
-      optionClick() {
-        this.$refs.companyInfo.open()
+      optionClick(company) {
+        this.$refs.companyInfo.open(company)
       },
       openFormInfo() {
+        // 添加招聘信息
         this.$refs.formInfo.open()
-      },
-      init() {
-        // this.getData()
       },
       getData() {
         if (!this.isFinish) {
           let _data = {
-            jsonStr: this.jsonStr,
+            jsonStr: '{"%companyCode%": "' + this.currentUser.code + '"}',
             page: this.pager.currentPage,
             start: this.pager.start,
             limit: this.pager.limit
           }
+          console.log('_data', _data)
           this.$http.get(RecruitURL, {
             params: _data
           }).then(response => {
-            // console.log('response', response)
+            console.log('response', response)
             let resData = response.data.data.map((item, index) => {
               item.rowNumber = index + this.rowNo
               item.isChecked = false
@@ -142,7 +183,9 @@
             this.isFinish = (response.data.totalCount === this.tableData.length)
             this.pager.currentPage += 1
             this.isLoading = false
-            this.$refs.shortcut.refresh()
+            if (this.$refs.shortcut) {
+              this.$refs.shortcut.refresh()
+            }
           })
         }
       },
@@ -253,7 +296,8 @@
       ArtFormHeader,
       RecruitCompanyInfo,
       RecruitFormInfo,
-      ArtItem
+      ArtItem,
+      Split
     },
     computed: {
       rowNo() {
@@ -326,12 +370,10 @@
     bottom: 50px;
     left: 0;
     overflow: hidden;
-    .split
-      height: 10px;
-      background-color: #ebebeb;
     .no-list
       text-align center
       margin-top 50%
+      color #999999
       .cnt
         .icon
           font-size 48px

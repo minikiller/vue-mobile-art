@@ -35,8 +35,9 @@
     },
     methods: {
       getDict() {
-        this.name = this.appName.toUpperCase()
+        this.name = this.appName
         if (this.name) {
+          // console.log('this.name', this.name)
           const DictURL = `/camel/rest/${this.name}/dicts`
           const DictKey = `${this.name.toUpperCase()}-DICT-KEY`
           if (!Cache.get(DictKey)) {
@@ -48,6 +49,7 @@
             this.axios.get(DictURL, {
               params: data
             }).then(response => {
+              console.log('response', response)
               if (response.data) {
                 Cache.save(DictKey, JSON.stringify(response.data.data))
                 this.initItems(response.data.data)
@@ -71,6 +73,11 @@
           return item.type === this.dictType
         })
         console.log('items', this.items)
+      }
+    },
+    watch: {
+      currentValue(newValue) {
+        this.$emit('input', newValue)
       }
     }
   }

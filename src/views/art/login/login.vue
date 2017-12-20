@@ -21,6 +21,8 @@
   import {Message, Cache} from 'kalix-base'
   import Login from '@/api/login'
 
+  const usersURL = '/camel/rest/users'
+  const FunctionCategroyURL = '/camel/rest/functioncategorys'
   export default {
     data() {
       return {
@@ -40,6 +42,9 @@
         }
       }
     },
+    mounted() {
+      Cache.clear()
+    },
     methods: {
       onSubmit(formName) {
         this.$refs[formName].validate((valid) => {
@@ -48,21 +53,21 @@
               'username': this.loginForm.name,
               'password': this.loginForm.pass
             }).then(data => {
+              console.log('data', data)
               if (data.success) {
-                console.log('[onSubmit] data.success', data.success)
+                console.log('[onSubmit] data.success', data)
                 Cache.save('id', data.user.id)
                 Cache.save('access_token', data.access_token)
                 Cache.save('user_token', data.user.token)
                 Cache.save('user_name', data.user.name)
                 console.log('access token is: ', data.access_token)
-                // this.setSaveLogin({
-                //   access_token: data.access_token,
-                //   user_name: data.user.name,
-                //   user_token: data.user.token,
-                //   user_id: data.user.id
-                // })
-                this.$router.push({path: '/art/recuittest'})
-                // window.location.href = '/art/recuittest'
+                this.getDict(() => {
+                  this._getFunctionCategroy(() => {
+                    this._getCurrentUser(data.user.id, () => {
+                      this.$router.push({path: '/art/recuittest'})
+                    })
+                  })
+                })
               } else {
                 Message.error(data.message)
               }
@@ -71,6 +76,59 @@
             })
           } else {
             return false
+          }
+        })
+      },
+      _getFunctionCategroy(callBack) {
+        if (!Cache.get('FUNCTION-CATEGROY-DICT')) {
+          this.axios.request({
+            method: 'GET',
+            url: FunctionCategroyURL,
+            params: {}
+          }).then(res => {
+            Cache.save('FUNCTION-CATEGROY', JSON.stringify(res.data.children))
+            callBack()
+          })
+        } else {
+          callBack()
+        }
+      },
+      _getCurrentUser(_id, callBack) {
+        if (!Cache.get('CurrentUser')) {
+          this.$http.get(usersURL, {
+            params: {jsonStr: '{id: ' + _id + '}'}
+          }).then(res => {
+            if (res.data.totalCount) {
+              Cache.save('CurrentUser', JSON.stringify(res.data.data[0]))
+              // console.log('GetCurrentUser Complet!')
+              callBack()
+            }
+          })
+        } else {
+          // console.log('GetCurrentUser Complet!')
+          callBack()
+        }
+      },
+      getDict(callBack) {
+        /* 初始化数据字典 */
+        const name = 'art'
+        const DictURL = `/camel/rest/${name}/dicts`
+        const DictKey = `${name.toUpperCase()}-DICT-KEY`
+        const data = {
+          page: 1,
+          start: 0,
+          limit: 200
+        }
+        this.axios.request({
+          method: 'GET',
+          url: DictURL,
+          params: data
+        }).then(response => {
+          console.log('art response', response)
+          if (response.data) {
+            Cache.save(DictKey, JSON.stringify(response.data.data))
+            console.log('GetDict complet!')
+            callBack()
           }
         })
       }

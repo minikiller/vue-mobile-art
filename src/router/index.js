@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import ComQrcode from '@/views/qrcode/comQrcode'
 import StuQrcode from '@/views/qrcode/stuQrcode'
-import QrcodeLogin from '@/views/qrcode/qrcodeLogin'
+// import QrcodeLogin from '@/views/qrcode/qrcodeLogin'
 import {Cache} from 'kalix-base'
 
 Vue.use(Router)
@@ -86,11 +86,11 @@ const router = new Router({
       name: 'stuqrcode',
       component: StuQrcode
     },
-    {
-      path: '/qrcode/login/:key',
-      name: 'qrcodelogin',
-      component: QrcodeLogin
-    },
+    // {
+    //   path: '/qrcode/login/:key',
+    //   name: 'qrcodelogin',
+    //   component: QrcodeLogin
+    // },
     {
       path: '/',
       name: 'HelloWorld',
