@@ -74,7 +74,7 @@
           this.formModel = item
         } else {
           this.formModel = Object.assign({}, FormModel)
-          console.log('FormModel', FormModel)
+          // console.log('FormModel', FormModel)
         }
         this.getCompany()
       },
@@ -142,8 +142,9 @@
         this.formModel.city = ''
       },
       resultRedirect(target) {
-        this.$router.push({path: '/art/recuit/' + target})
         this.$emit('update:isVisible', false)
+        // this.$router.push({path: '/art/recuit/' + target})
+        window.location.href = '/art/recuit/' + target
       }
     },
     components: {

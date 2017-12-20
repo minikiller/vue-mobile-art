@@ -1,7 +1,7 @@
 <template lang="pug">
   div.casacde
     div.casacde-ipt_wrapper
-      input.casacde-ipt(placeholder="请选择" v-on:click="onClick" v-model="currentText")
+      div.casacde-ipt(v-on:click="onClick") {{currentText}}
     div.mark(v-if="visible" ref="cascadeMark")
     transition(name="show")
       div.options-wrapper(v-if="visible" ref="casacdeWrapper")
@@ -10,17 +10,20 @@
         div.options-hd
           div.title 职能类别
         div.options-bd
-          div.cell(v-for="(item,index) in options")
-            split(v-if="index!==0")
-            div.s-flex.cell-title
-              div.s-flex_item.tit(v-on:click="selected(item)" v-bind:class="{'active':item.code === currentValue}") {{item.name}}
-            div.cell-cnt(v-if="item.children.length")
-              div.cell-item(v-for="itemChildren in item.children")
-                el-button(plain size="small" v-on:click="selected(itemChildren)" v-bind:class="{'active':itemChildren.code === currentValue}") {{itemChildren.name}}
+          scroll.scroll-cell(v-bind:refreshDelay="120" ref="scrollCell")
+            div
+              div.cell(v-for="(item,index) in options")
+                split(v-if="index!==0")
+                div.s-flex.cell-title
+                  div.s-flex_item.tit(v-on:click="selected(item)" v-bind:class="{'active':item.code === currentValue}") {{item.name}}
+                div.cell-cnt(v-if="item.children.length")
+                  div.cell-item(v-for="itemChildren in item.children")
+                    el-button(plain size="small" v-on:click="selected(itemChildren)" v-bind:class="{'active':itemChildren.code === currentValue}") {{itemChildren.name}}
 </template>
 <script type="text/ecmascript-6">
   import {Cache} from 'kalix-base'
   import Split from '../base/split'
+  import Scroll from '../base/scroll'
 
   export default {
     props: {
@@ -41,7 +44,6 @@
     },
     methods: {
       selected(item) {
-        console.log('item', item)
         this.$emit('input', item.code)
         this.currentValue = item.code
         this.currentText = item.name
@@ -59,25 +61,42 @@
       },
       getData() {
         this.options = JSON.parse(Cache.get('FUNCTION-CATEGROY'))
+        this.setCurrentText()
+      },
+      setCurrentText() {
+        this.options.forEach((e) => {
+          let itemA = (e.code === this.currentValue.toString()) ? e : null
+          if (itemA) {
+            this.currentText = itemA.name
+            return false
+          }
+          e.children.forEach(e2 => {
+            if (e2.code === this.currentValue.toString()) {
+              this.currentText = e2.name
+              return false
+            }
+          })
+        })
       }
     },
     components: {
-      Split
+      Split,
+      Scroll
     },
     watch: {
-      options(newValue, oldValue) {
-        let itemA = newValue.find(e => {
-          let item = e.code === this.currentValue
-          if (!item) {
-            return e.children.find(e2 => {
-              return e2.code === this.currentValue
-            })
-          } else {
-            return item
-          }
-        })
-        this.currentText = itemA.name
-      }
+      // options(newValue, oldValue) {
+      //   let itemA = newValue.find(e => {
+      //     let item = e.code === this.currentValue
+      //     if (!item) {
+      //       return e.children.find(e2 => {
+      //         return e2.code === this.currentValue
+      //       })
+      //     } else {
+      //       return item
+      //     }
+      //   })
+      //   this.currentText = itemA.name
+      // }
     }
   }
 </script>
@@ -172,6 +191,10 @@
     position fixed
     bottom 15px
     right 15px
+
+  .scroll-cell
+    height: 100%
+    overflow: hidden
 
   .show-enter-active,
   .show-leave-active

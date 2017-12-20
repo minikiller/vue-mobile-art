@@ -2,11 +2,11 @@
   div.kalix-check-list
     label.kalix-check-cell(v-for="(item,index) in items" v-bind:for="bindLabelFor(index)" v-bind:key="item.value")
       div.s-flex
-        div.s-flex_item {{item.label}}
         div
           input.kalix-check-input(type="checkbox" v-bind:id="bindLabelFor(index)" v-model="currentValue" v-bind:value="item.value")
           i.icon-1.art-iconfont.icon-xuanze1
           i.icon-2.art-iconfont.icon-xuanze
+        div.s-flex_item {{item.label}}
 </template>
 <script type="text/ecmascript-6">
   import {Cache} from 'kalix-base'
@@ -115,7 +115,7 @@
     .kalix-check-cell
       position relative
       display block
-      font-size 16px
+      font-size 14px
       &:after
         setTopLine(#b5b5b5)
       &:first-child
@@ -128,7 +128,9 @@
         top -100000px
         & ~ .icon-1,
         & ~ .icon-2
-          font-size 26px
+          font-size 20px
+          margin-right 8px
+          line-height 1em
         & ~ .icon-1
           display inline-block
           color #C9C9C9

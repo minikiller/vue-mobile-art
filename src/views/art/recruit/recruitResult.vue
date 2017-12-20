@@ -17,6 +17,7 @@
       }
     },
     mounted() {
+      this.result = Object.assign({}, RESULT)
       history.pushState(null, null, document.URL)
       window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL)
@@ -46,11 +47,9 @@
     },
     methods: {
       goHome() {
-        this.result = Object.assign({}, RESULT)
         this.$router.push({path: '/art/recuittest'})
       },
       continueAdd() {
-        this.result = Object.assign({}, RESULT)
         this.$router.push({path: '/art/recuittest/continue-add'})
       }
     }

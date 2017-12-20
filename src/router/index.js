@@ -24,7 +24,7 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
+      name: '/',
       component: Login
     },
     {
@@ -50,7 +50,7 @@ const router = new Router({
         {
           path: ':key',
           component: recuitTest,
-          name: 'recuittest'
+          name: 'recuittestkey'
         }
       ]
     },
@@ -71,7 +71,7 @@ const router = new Router({
       children: [
         {
           path: ':status',
-          name: 'recruitResult',
+          name: 'recruitResultkey',
           component: recruitResult
         }
       ]

@@ -2,8 +2,8 @@
   div.list-item
     div.title
       div.item(v-on:click="onChecked")
-        i.art-iconfont.icon-xuanze(v-if="itemData.isChecked")
-        i.art-iconfont.icon-xuanze1(v-else)
+        i.art-iconfont.icon-xuanze.icon-1(v-if="itemData.isChecked")
+        i.art-iconfont.icon-xuanze1.icon-2(v-else)
       div.main(v-on:click="onChecked") {{itemData.position}}
       div.item
         div.btn-edit(v-on:click="onEdit")
@@ -89,17 +89,21 @@
       },
       functionCategoryeTranslate(value) {
         let datas = JSON.parse(Cache.get('FUNCTION-CATEGROY'))
-        let itemA = datas.find(e => {
-          let item = (e.code.toString() === value.toString()) ? e : null
-          if (!item) {
-            return e.children.find(e2 => {
-              return (e2.code.toString() === value.toString()) ? e2 : null
-            })
-          } else {
-            return item
+        let currentText = ''
+        datas.forEach((e) => {
+          let itemA = (e.code === value.toString()) ? e : null
+          if (itemA) {
+            currentText = itemA.name
+            return false
           }
+          e.children.forEach(e2 => {
+            if (e2.code === value.toString()) {
+              currentText = e2.name
+              return false
+            }
+          })
         })
-        return itemA ? itemA.name : ''
+        return currentText
       },
       _dictTranslate(_value, _type) {
         if (this.artDictKey) {
@@ -149,6 +153,7 @@
     .btn-edit
       padding 0 6px
       margin-right -6px
+      color #999999
 
     .btn-del
       background-color #ff7318
@@ -158,4 +163,10 @@
       .art-iconfont
         font-size 12px
         margin-right 4px
+    .icon-1
+      font-size 20px
+      color #ff7318
+    .icon-2
+      font-size 20px
+      color #b5b5b5
 </style>

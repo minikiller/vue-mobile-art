@@ -9,8 +9,8 @@
             i.art-iconfont.icon-sousuo
             | 搜索
           span.btn-item(v-if="true" v-on:click="checkAll")
-            i.art-iconfont.icon-xuanze(v-if="isCheckAll")
-            i.art-iconfont.icon-xuanze1(v-else)
+            i.art-iconfont.icon-xuanze.icon-1(v-if="isCheckAll")
+            i.art-iconfont.icon-xuanze1.icon-2(v-else)
             | 全选
           span.btn-item(v-if="true" v-on:click="deleteChecked")
             i.art-iconfont.icon-shanchu
@@ -230,6 +230,16 @@
       },
       oneByOneDelete() {
         // 逐个删除
+        let ids = []
+        this.tableData.forEach(item => {
+          if (item.isChecked) {
+            ids.push(item.id)
+          }
+        })
+        if (!ids.length) {
+          Message.error('至少需要选中一条记录！')
+          return false
+        }
         this.$confirm('确定要删除吗?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -245,6 +255,8 @@
               })
             }
           })
+        }).then(() => {
+          //  cancel
         })
       },
       batchDelete() {
@@ -356,12 +368,16 @@
 
     .operation
       .btn-item
-        font-size 14px
+        font-size 15px
         .art-iconfont
-          font-size 14px
+          font-size 16px
           margin-right 4px
         &.btn-item
           margin-left 8px
+        .icon-1
+          color #ff7318
+        .icon-2
+          color #b5b5b5
 
   .list-wrapper
     position: fixed;

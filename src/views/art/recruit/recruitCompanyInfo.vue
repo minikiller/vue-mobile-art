@@ -100,7 +100,8 @@
                 this.isVisible = false
                 this.$refs.dialogForm.resetFields()
                 EventBus.$emit('ON_COMPANY_INFO_REFIESH')
-                this.$router.push({path: '/art/recuit/success/company'})
+                this.resultRedirect('success')
+                // this.$router.push({path: '/art/recuit/success/company'})
               } else {
                 this.resultRedirect('error')
               }
@@ -124,7 +125,8 @@
         this.formModel.city = ''
       },
       resultRedirect(target) {
-        this.$router.push({path: `/art/recuit/${target}/company`})
+        // this.$router.push({path: `/art/recuit/${target}/company`})
+        window.location.href = '/art/recuit/' + target + '/company'
       }
     },
     components: {

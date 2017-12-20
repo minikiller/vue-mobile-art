@@ -3,27 +3,28 @@
 -->
 <template lang="pug">
   div.signup
-    div.from-warpper
-      div.title 企业信息注册
-      el-form.loginForm(v-bind:model="formModel" v-bind:rules="rules" ref="loginForm")
-        el-form-item(label="" prop="code")
-          el-input(v-model="formModel.code" placeholder="企业组织机构代码")
-        el-form-item(label="" prop="name")
-          el-input(v-model="formModel.name" placeholder="公司名称")
-        el-form-item(label="" prop="email")
-          el-input(v-model="formModel.email" placeholder="邮箱")
-        el-form-item(label="" prop="phone")
-          el-input(v-model="formModel.phone" placeholder="固定电话")
-        el-form-item(label="" prop="loginName")
-          el-input(v-model="formModel.loginName" placeholder="请输入登录名")
-        el-form-item(label="" prop="password")
-          el-input(type="password" v-model="formModel.password" placeholder="请输入密码" auto-complete="off")
-        el-form-item(label="" prop="confirmPassword")
-          el-input(type="password" v-model="formModel.confirmPassword" placeholder="确认密码" auto-complete="off")
-        el-form-item(label="")
-          el-button.btn-submit(v-on:click="onSubmit" size="large") 注册
-        el-form-item(label="")
-          router-link.link-btn(tag="div" v-bind:to="{path:'/login'}") 返回登录
+    scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm")
+      div.from-warpper
+        div.title 企业信息注册
+        el-form.loginForm(v-bind:model="formModel" v-bind:rules="rules" ref="loginForm")
+          el-form-item(label="" prop="code")
+            el-input(v-model="formModel.code" v-on:focus="focus" placeholder="企业组织机构代码")
+          el-form-item(label="" prop="name")
+            el-input(v-model="formModel.name" placeholder="公司名称")
+          el-form-item(label="" prop="email")
+            el-input(v-model="formModel.email" placeholder="邮箱")
+          el-form-item(label="" prop="phone")
+            el-input(v-model="formModel.phone" placeholder="固定电话")
+          el-form-item(label="" prop="loginName")
+            el-input(v-model="formModel.loginName" placeholder="请输入登录名")
+          el-form-item(label="" prop="password")
+            el-input(type="password" v-model="formModel.password" placeholder="请输入密码" auto-complete="off")
+          el-form-item(label="" prop="confirmPassword")
+            el-input(type="password" v-model="formModel.confirmPassword" placeholder="确认密码" auto-complete="off")
+          el-form-item(label="")
+            el-button.btn-submit(v-on:click="onSubmit" size="large") 注册
+          el-form-item(label="")
+            router-link.link-btn(tag="div" v-bind:to="{path:'/login'}") 返回登录
     result(ref="result" v-on:close="resultClose")
 </template>
 <script type="text/ecmascript-6">
@@ -31,6 +32,7 @@
   import Login from '@/api/login'
   import Result from './result'
   import {Cache} from 'kalix-base'
+  import Scroll from '../base/scroll'
 
   const usersURL = '/camel/rest/users'
   const logoutURL = '/logout'
@@ -79,8 +81,16 @@
     },
     created() {
       this.autoLogin()
+      // setInterval(() => {
+      //   this.$refs.scrollForm.refresh()
+      // }, 500)
     },
     methods: {
+      focus() {
+        setTimeout(() => {
+          alert(window.innerHeight)
+        }, 2000)
+      },
       onSubmit() {
         this.$refs.loginForm.validate((valid) => {
           // this.$refs.result.open({
@@ -156,22 +166,27 @@
       }
     },
     components: {
-      Result
+      Result,
+      Scroll
     }
   }
 </script>
 <style scoped lang="stylus" type="text/stylus">
+  .scroll-form
+    height: 100%
+    overflow: hidden
+
   .signup
-    position fixed
+    position absolute
     top 0
     left 0
     width 100%
     height 100%
-    background 50% 50% url("./login_bg.png") no-repeat
+    background 50% 0% url("./login_bg.png") no-repeat
     background-size cover
-    overflow auto
+    overflow hidden
     .from-warpper
-      padding 0 15px 50px
+      padding 0 15px
       .title
         text-align center
         padding 40px 0 35px
