@@ -24,7 +24,7 @@
           el-form-item(label="")
             el-button.btn-submit(v-on:click="onSubmit" size="large") 注册
           el-form-item(label="")
-            router-link.link-btn(tag="div" v-bind:to="{path:'/login'}") 返回登录
+            div.link-btn(v-on:click="goLogin") 返回登录
     result(ref="result" v-on:close="resultClose")
 </template>
 <script type="text/ecmascript-6">
@@ -87,9 +87,6 @@
     },
     methods: {
       focus() {
-        setTimeout(() => {
-          alert(window.innerHeight)
-        }, 2000)
       },
       onSubmit() {
         this.$refs.loginForm.validate((valid) => {
@@ -138,6 +135,10 @@
       },
       resultClose() {
         this.$refs.loginForm.resetFields()
+      },
+      goLogin() {
+        this.$refs.loginForm.resetFields()
+        this.$router.push({path: '/'})
       },
       // 自动登录
       autoLogin() {
