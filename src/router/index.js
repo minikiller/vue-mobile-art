@@ -15,12 +15,12 @@ const recruitForm = _import('art/recruit/recruitForm')
 const recruitResult = _import('art/recruit/recruitResult')
 const recruitFormInfo = _import('art/recruit/recruitFormInfo')
 const Login = _import('art/login/login')
+const StudentLogin = _import('art/login/studentLogin')
 const SignUp = _import('art/login/signup')
 /* 测试用 */
 const recuitTest = _import('art/recruit/recuitTest')
 
 const router = new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',
@@ -31,6 +31,11 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/studentlogin',
+      name: 'studentlogin',
+      component: StudentLogin
     },
     {
       path: '/signup',

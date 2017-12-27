@@ -1,5 +1,5 @@
 <!--
-  描述：艺术中心-企业注册
+  描述：艺术中心-学生注册
   开发人：桑杨
   开发日期：2017年12月26日
 -->
@@ -10,9 +10,9 @@
         div.title 企业信息注册
         el-form.loginForm(v-bind:model="formModel" v-bind:rules="rules" ref="loginForm")
           el-form-item(label="" prop="code")
-            el-input(v-model="formModel.code" v-on:focus="focus" placeholder="企业组织机构代码")
+            el-input(v-model="formModel.code" v-on:focus="focus" placeholder="学号")
           el-form-item(label="" prop="name")
-            el-input(v-model="formModel.name" placeholder="公司名称")
+            el-input(v-model="formModel.name" placeholder="姓名")
           el-form-item(label="" prop="email")
             el-input(v-model="formModel.email" placeholder="邮箱")
           el-form-item(label="" prop="phone")
@@ -105,7 +105,7 @@
           //   }
           // })
           if (valid) {
-            this.formModel.userType = 3 // 招聘公司
+            this.formModel.userType = 1 // 学生
             if (!this.loginState) {
               this.$refs.result.open({
                 state: 0,

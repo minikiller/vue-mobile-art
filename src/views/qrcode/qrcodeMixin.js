@@ -1,5 +1,5 @@
 import KalixQrcode from './qrcode.vue'
-import {webURL} from '@/config/global.toml'
+// import {webURL} from '@/config/global.toml'
 
 export const QrcodeMixin = {
   components: {
@@ -7,7 +7,8 @@ export const QrcodeMixin = {
   },
   computed: {
     url() {
-      return webURL + '/login'
+      // return webURL + '/login'
+      return window.location.origin
     }
   }
 }

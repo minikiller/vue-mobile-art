@@ -9,10 +9,10 @@
       div.hd
         div.wrapper
           div.item
-            div(v-on:click="onClose") 返回
+            div(v-if="isEnable" v-on:click="onClose") 返回
           div.title 企业信息
           div.item
-            div(v-on:click="onClose") 关闭
+            div(v-if="isEnable" v-on:click="onClose") 关闭
       div.bd
         scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm")
           div.wrapper
@@ -61,7 +61,8 @@
         rules: {
           address: [{required: true, message: '请输入企业详细地址', trigger: 'blur'}]
         },
-        labelWidth: '140px'
+        labelWidth: '140px',
+        isEnable: true
       }
     },
     mounted() {
@@ -76,6 +77,11 @@
         this.isVisible = true
         this.formModel = row
         this.initSwiper()
+        if (!row.address) {
+          this.isEnable = false
+        } else {
+          this.isEnable = true
+        }
       },
       close() {
         this.isVisible = false

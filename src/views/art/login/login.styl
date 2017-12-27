@@ -74,20 +74,19 @@
         padding-left 40px
 
     .btn-submit
-      position: relative;
-      display: flex
+      position relative
       width: 100%
-      padding 0
-      justify-content center
-      align-items center
       background url("./button-bg.png") 50% 50% no-repeat
       background-size cover
       color #5c4611
-      border none
       span
+        position absolute
         display block
-        position: absolute;
+        text-align center
         width 100%
+        font-size 16px
+        top 50%
+        transform translate3d(0, -50%, 0)
       &:after
         display block
         content ''

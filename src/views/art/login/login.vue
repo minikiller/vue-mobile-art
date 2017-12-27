@@ -11,7 +11,8 @@
             el-input(type="password" v-model="loginForm.pass" placeholder="请输入密码" auto-complete="off")
               i.icon-lock(slot="prefix")
           el-form-item(label="")
-            el-button.btn-submit(v-on:click="onSubmit('loginForm')" size="large") 登录
+            div.btn-submit(v-on:click="onSubmit('loginForm')" size="large")
+              span 登录
           el-form-item(label="")
             router-link.link-btn(tag="div" v-bind:to="{path:'/signup'}") 注册
 </template>

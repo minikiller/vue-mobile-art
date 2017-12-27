@@ -10,6 +10,10 @@ import KalixBase from 'kalix-base'
 // import 'element-ui/lib/theme-chalk/index.css'
 import './element-ui'
 // import FastClick from 'fastclick'
+// import VConsole from 'vconsole'
+
+// let vConsole = new VConsole()
+console.log('Vue', Vue)
 
 Vue.config.productionTip = false
 
