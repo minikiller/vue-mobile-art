@@ -47,10 +47,10 @@
     },
     methods: {
       goHome() {
-        this.$router.push({path: '/art/recuittest'})
+        this.$router.push({name: 'recuittest'})
       },
       continueAdd() {
-        this.$router.push({path: '/art/recuittest/continue-add'})
+        this.$router.push({name: 'recuittest', params: {key: 'continue-add'}})
       }
     }
   }

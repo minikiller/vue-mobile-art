@@ -14,7 +14,7 @@
             div.btn-submit(v-on:click="onSubmit('loginForm')" size="large")
               span 登录
           el-form-item(label="")
-            router-link.link-btn(tag="div" v-bind:to="{path:'/signup'}") 注册
+            router-link.link-btn(tag="div" v-bind:to="{name:'signup'}") 注册
 </template>
 
 <script type="text/ecmascript-6">
@@ -65,7 +65,7 @@
                 this.getDict(() => {
                   this._getFunctionCategroy(() => {
                     this._getCurrentUser(data.user.id, () => {
-                      this.$router.push({path: '/art/recuittest'})
+                      this.$router.push({name: 'recuittest'})
                     })
                   })
                 })

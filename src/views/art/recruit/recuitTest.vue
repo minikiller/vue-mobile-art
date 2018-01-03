@@ -138,6 +138,7 @@
         this.isFinish = false
         this.pager.currentPage = 1
         this.isLoading = true
+        console.log('%cthis.$route', '#550000', this.$route)
         if (this.$route.name === 'recuittest') {
           if (this.$route.params.key === 'continue-add') {
             this.isContinueAdd = true

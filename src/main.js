@@ -10,10 +10,10 @@ import KalixBase from 'kalix-base'
 // import 'element-ui/lib/theme-chalk/index.css'
 import './element-ui'
 // import FastClick from 'fastclick'
-// import VConsole from 'vconsole'
 
-// let vConsole = new VConsole()
-console.log('Vue', Vue)
+// var VConsole = require('vconsole/dist/vconsole.min')
+// eslint-disable-next-line
+// var vConsole = new VConsole()
 
 Vue.config.productionTip = false
 
@@ -25,8 +25,9 @@ Vue.use(router)
 
 // Vue.use(ElementUI)
 
+window.Vue = Vue
 /* eslint-disable no-new */
-new Vue({
+new window.Vue({
   el: '#app',
   router,
   template: '<App/>',

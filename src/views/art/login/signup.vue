@@ -143,7 +143,7 @@
       },
       goLogin() {
         this.$refs.loginForm.resetFields()
-        this.$router.push({path: '/'})
+        this.$router.push({name: '/'})
       },
       // 自动登录
       autoLogin() {

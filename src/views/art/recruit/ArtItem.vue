@@ -90,19 +90,21 @@
       functionCategoryeTranslate(value) {
         let datas = JSON.parse(Cache.get('FUNCTION-CATEGROY'))
         let currentText = ''
-        datas.forEach((e) => {
-          let itemA = (e.code === value.toString()) ? e : null
-          if (itemA) {
-            currentText = itemA.name
-            return false
-          }
-          e.children.forEach(e2 => {
-            if (e2.code === value.toString()) {
-              currentText = e2.name
+        if (value) {
+          datas.forEach((e) => {
+            let itemA = (e.code === value.toString()) ? e : null
+            if (itemA) {
+              currentText = itemA.name
               return false
             }
+            e.children.forEach(e2 => {
+              if (e2.code === value.toString()) {
+                currentText = e2.name
+                return false
+              }
+            })
           })
-        })
+        }
         return currentText
       },
       _dictTranslate(_value, _type) {

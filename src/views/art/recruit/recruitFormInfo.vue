@@ -1,3 +1,6 @@
+<!--
+  招聘信息
+-->
 <template lang="pug">
   transition(name="show")
     div.art-company-info(v-if="isVisible" data-art="data-art")
@@ -9,7 +12,9 @@
           div.item
             div(v-on:click="onClose") 关闭
       div.bd
-        scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm")
+        scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm"
+        v-bind:beforeScroll="true"
+        v-on:beforeScroll="listScroll")
           div.wrapper
             el-form(ref="dialogForm" v-bind:model="formModel")
               el-form-item.s-flex_item.kalix-form-table-td(label="职位描述" prop="position" v-bind:label-width="labelWidth")
@@ -62,6 +67,12 @@
     mounted() {
     },
     methods: {
+      listScroll() {
+        let inputs = document.getElementsByTagName('input')
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].blur()
+        }
+      },
       initSwiper() {
         setTimeout(() => {
           this.$refs.scrollForm.refresh()
@@ -117,8 +128,6 @@
                 this.visible = false
                 this.$refs.dialogForm.resetFields()
                 this.resultRedirect('success')
-                // this.$router.push({path: '/art/recuit/success'})
-                // window.open(window.location.origin + '/art/recuit/' + target)
               } else {
                 this.resultRedirect('error')
               }
@@ -143,8 +152,8 @@
       },
       resultRedirect(target) {
         this.$emit('update:isVisible', false)
-        // this.$router.push({path: '/art/recuit/' + target})
-        window.location.href = '/art/recuit/' + target
+        console.log('resultRedirect', {name: 'recruitResult', params: {key: target}})
+        this.$router.push({name: 'recruitResult', params: {key: target, status: 'ok'}})
       }
     },
     components: {

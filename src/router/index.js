@@ -21,6 +21,7 @@ const SignUp = _import('art/login/signup')
 const recuitTest = _import('art/recruit/recuitTest')
 
 const router = new Router({
+  // mode: 'history',
   routes: [
     {
       path: '/',
@@ -70,16 +71,9 @@ const router = new Router({
       component: candidateForm
     },
     {
-      path: '/art/recuit/:key',
+      path: '/art/result/:key/:status',
       name: 'recruitResult',
-      component: recruitResult,
-      children: [
-        {
-          path: ':status',
-          name: 'recruitResultkey',
-          component: recruitResult
-        }
-      ]
+      component: recruitResult
     },
     {
       path: '/qrcode/comqrcode',
@@ -116,7 +110,7 @@ router.beforeEach((to, from, next) => {
     return
   }
   if (Cache.get('id') === null && to.name !== 'login') {
-    next({path: '/login'})
+    next({name: 'login'})
     return
   }
   console.log('to', to)

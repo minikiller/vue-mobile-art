@@ -132,7 +132,8 @@
       },
       resultRedirect(target) {
         // this.$router.push({path: `/art/recuit/${target}/company`})
-        window.location.href = '/art/recuit/' + target + '/company'
+        // window.location.href = '/art/recuit/' + target + '/company'
+        this.$router.push({name: 'recruitResult', params: {key: target, status: 'company'}})
       }
     },
     components: {

@@ -149,7 +149,7 @@
                 this.visible = false
                 this.$refs.dialogForm.resetFields()
                 // this.resultRedirect('success')
-                this.$router.push({path: '/art/result/success'})
+                this.$router.push({name: 'recruitResult', params: {status: 'success'}})
                 // window.open(window.location.origin + '/art/result/' + target)
               } else {
                 this.resultRedirect('error')
@@ -165,7 +165,7 @@
         })
       },
       resultRedirect(target) {
-        window.open(window.location.origin + '/art/result/' + target)
+        this.$router.push({name: 'recruitResult', params: {status: target}})
       }
     }
   }
