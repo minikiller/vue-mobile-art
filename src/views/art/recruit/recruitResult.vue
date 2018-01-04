@@ -4,8 +4,11 @@
       i.icon(v-bind:class="result.icon")
     div.title {{result.title}}
     div.btn-list
-      el-button.btn-item(v-on:click="goHome" type="warning" plain) 返回首页
-      el-button.btn-item(v-if="isList" v-on:click="continueAdd" type="success" plain) 继续添加
+      el-button.btn-item(v-if="result.type==='error'" v-on:click="goLogin" type="warning" plain) 重新登录
+      template(v-else)
+        el-button.btn-item(v-on:click="goHome" type="warning" plain) 返回首页
+        el-button.btn-item(v-if="isList" v-on:click="continueAdd" type="success" plain) 继续添加
+
 </template>
 <script type="text/ecmascript-6">
   const RESULT = {title: '', cls: '', type: ''}
@@ -46,6 +49,9 @@
       }
     },
     methods: {
+      goLogin() {
+        this.$router.push({name: '/'})
+      },
       goHome() {
         this.$router.push({name: 'recuittest'})
       },

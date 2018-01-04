@@ -12,7 +12,7 @@
       div.s-flex
         div.s-flex_item
           label 岗位需求：
-          | {{itemData.positionRequires}}
+          div(v-html="itemData.positionRequires")
         div
           label 岗位个数：
           | {{itemData.jobNumbers}}
@@ -90,15 +90,16 @@
       functionCategoryeTranslate(value) {
         let datas = JSON.parse(Cache.get('FUNCTION-CATEGROY'))
         let currentText = ''
+        console.log('value', value)
         if (value) {
-          datas.forEach((e) => {
-            let itemA = (e.code === value.toString()) ? e : null
+          datas[0].children.forEach((e) => {
+            let itemA = (e.id === value) ? e : null
             if (itemA) {
               currentText = itemA.name
               return false
             }
             e.children.forEach(e2 => {
-              if (e2.code === value.toString()) {
+              if (e2.id === value) {
                 currentText = e2.name
                 return false
               }
@@ -115,6 +116,8 @@
           return item ? item.label : ''
         }
       }
+    },
+    computed: {
     }
   }
 </script>

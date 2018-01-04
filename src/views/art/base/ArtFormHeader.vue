@@ -3,14 +3,18 @@
     div.wrapper
       div.title
         div.maintitle {{formModel.name}}
-          span.area {{formModel.region}}·{{formModel.city}}
-        div.subtitle {{natureName}}　{{industryName}}　{{formModel.scale}}人以上　{{formModel.life}}年
-    div.btn-option(v-on:click="optionClick")
-      i.art-iconfont.icon-chilun
+        div.subtitle {{provincesName}}·{{formModel.city}}
+        div.subtitle {{natureName}}　{{industryName}}　{{formModel.scale}}　{{formModel.life}}
+      div
+        div.btn-option(v-on:click="onLogoutClick")
+          i.art-iconfont.icon-tuichu
+        div.btn-option(v-on:click="optionClick")
+          i.art-iconfont.icon-chilun
 </template>
 <script type="text/ecmascript-6">
   import {Cache, EventBus} from 'kalix-base'
   import FormModel from '../recruit/companyModel'
+  import {logoutURL} from '@/config/global.toml'
 
   const usersURL = '/camel/rest/users'
   const companysURL = 'camel/rest/companys'
@@ -21,7 +25,8 @@
         orgName: '',
         formModel: Object.assign({}, FormModel),
         natureName: '',
-        industryName: ''
+        industryName: '',
+        provincesName: ''
       }
     },
     mounted() {
@@ -34,7 +39,7 @@
       getUser() {
         this._axiosRequest(usersURL, {jsonStr: '{id: ' + Cache.get('id') + '}'})
           .then(res => {
-            if (res.data.totalCount) {
+            if (res.data && res.data.totalCount) {
               let org = res.data.data[0]
               this.getCompany(org.code)
             }
@@ -49,12 +54,19 @@
             limit: 10
           })
           .then(res => {
-            if (res.data.totalCount) {
+            if (res.data && res.data.totalCount) {
               this.formModel = res.data.data[0]
               this.natureName = this._dictTranslate(this.formModel.nature, '企业性质')
               this.industryName = this._dictTranslate(this.formModel.industry, '企业行业')
+              this.provincesName = this._dictTranslate(this.formModel.region, '省份')
             }
           })
+      },
+      onLogoutClick() {
+        this.axios.get(logoutURL, {}).then(response => {
+          Cache.clear()
+          this.$router.push({name: '/'})
+        })
       },
       optionClick() {
         this.$emit('optionClick', this.formModel)
@@ -84,36 +96,37 @@
     top 0
     left 0
     width 100%
-    height 80px
+    height 100px
     background-color #58443d
     .wrapper
       display flex
-      align-items: center;
-      justify-content: center;
-      height: 100%;
+      align-items center
+      justify-content center
+      height 100%
+      padding 0 15px
+      box-sizing border-box
       .title
         color #ffffff
-        text-align center
+        text-align left
         flex 1
         .maintitle
           position relative
-          font-size 20px
+          font-size 22px
           display inline-block
-          .area
-            position absolute
-            font-size 10px
-            bottom 0
-            left 100%
-            white-space nowrap
-            padding-left 12px
+        .area
+          position absolute
+          font-size 10px
+          bottom 0
+          left 100%
+          white-space nowrap
+          padding-left 12px
         .subtitle
           font-size 10px
-          margin-top 10px
+          margin-top 8px
     .btn-option
-      position absolute
-      top 50%
-      right 9px
-      transform translate3d(0, -50%, 0)
       color #fff
       padding 6px
+      margin-right -6px
+      & + .btn-option
+        margin-top 16px
 </style>

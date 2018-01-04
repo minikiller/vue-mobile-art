@@ -1,5 +1,5 @@
 <template lang="pug">
-  kalix-qrcode(title="企业信息登记表" v-bind:resUrl="url")
+  kalix-qrcode(title="就业智能推荐系统" v-bind:resUrl="url")
 </template>
 <script type="text/ecmascript-6">
   import {QrcodeMixin} from './qrcodeMixin'

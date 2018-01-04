@@ -49,7 +49,7 @@
             this.axios.get(DictURL, {
               params: data
             }).then(response => {
-              console.log('response', response)
+              // console.log('response', response)
               if (response.data) {
                 Cache.save(DictKey, JSON.stringify(response.data.data))
                 this.initItems(response.data.data)
@@ -72,7 +72,7 @@
         this.items = data_.filter(item => {
           return item.type === this.dictType
         })
-        console.log('items', this.items)
+        // console.log('items', this.items)
       }
     },
     watch: {

@@ -16,11 +16,18 @@
         v-bind:beforeScroll="true"
         v-on:beforeScroll="listScroll")
           div.wrapper
-            el-form(ref="dialogForm" v-bind:model="formModel")
-              el-form-item.s-flex_item.kalix-form-table-td(label="职位描述" prop="position" v-bind:label-width="labelWidth")
+            el-form(ref="dialogForm" v-bind:model="formModel" v-bind:rules="rules")
+              el-form-item.s-flex_item.kalix-form-table-td(label="岗位名称" prop="position" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.position")
+              el-form-item.s-flex_item.kalix-form-table-td(label="工作省份" prop="region" v-bind:label-width="labelWidth")
+                art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
+              el-form-item.s-flex_item.kalix-form-table-td(label="工作城市" prop="city" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.city")
               el-form-item.s-flex_item.kalix-form-table-td(label="岗位要求" prop="positionRequires" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.positionRequires")
+                el-input(v-model="positionRequires" type="textarea"
+                v-bind:rows="4")
+              el-form-item.s-flex_item.kalix-form-table-td(label="岗位所需软件" prop="positionRequires" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.requireSofts")
               el-form-item.s-flex_item.kalix-form-table-td(label="岗位个数" prop="jobNumbers" v-bind:label-width="labelWidth")
                 el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="float:right")
               el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
@@ -58,10 +65,12 @@
         formModel: Object.assign({}, FormModel),
         rules: {
           companyCode: [{required: true, message: '请输入企业组织机构代码', trigger: 'blur'}],
-          companyName: [{required: true, message: '请输入企业名称', trigger: 'blur'}]
+          companyName: [{required: true, message: '请输入企业名称', trigger: 'blur'}],
+          position: [{required: true, message: '请输入岗位名称', trigger: 'blur'}]
         },
         targetURL: RecruitURL,
-        labelWidth: '100px'
+        labelWidth: '100px',
+        positionRequires: ''
       }
     },
     mounted() {
@@ -83,8 +92,12 @@
         this.initSwiper()
         if (item) {
           this.formModel = item
+          this.isEdit = true
+          this.positionRequires = this.formModel.positionRequires.replace(/<br \/>/g, '\n')
         } else {
           this.formModel = Object.assign({}, FormModel)
+          this.isEdit = false
+          this.positionRequires = ''
           // console.log('FormModel', FormModel)
         }
         this.getCompany()
@@ -113,9 +126,8 @@
         this.formModel.companyAddress = rec.address
       },
       onSubmitClick() {
+        this.formModel.positionRequires = this.positionRequires.replace(/[\r\n]/g, '<br />')
         this.$refs.dialogForm.validate((valid) => {
-          console.log('onSubmitClick')
-          console.log('this.formModel', this.formModel)
           if (valid) {
             this.axios.request({
               method: this.isEdit ? 'PUT' : 'POST',

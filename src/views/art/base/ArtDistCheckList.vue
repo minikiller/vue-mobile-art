@@ -89,7 +89,7 @@
         this.items = data_.filter(item => {
           return item.type === this.dictType
         })
-        console.log('items', this.items)
+        // console.log('items', this.items)
       }
     },
     watch: {

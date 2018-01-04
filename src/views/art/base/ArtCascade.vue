@@ -44,10 +44,11 @@
     },
     methods: {
       selected(item) {
-        this.$emit('input', item.code)
-        this.currentValue = item.code
+        this.$emit('input', item.id)
+        this.currentValue = item.id
         this.currentText = item.name
         this.visible = false
+        // console.log('item.code', item.code)
       },
       close() {
         this.visible = false
@@ -60,18 +61,24 @@
         })
       },
       getData() {
-        this.options = JSON.parse(Cache.get('FUNCTION-CATEGROY'))
+        let cacheData = JSON.parse(Cache.get('FUNCTION-CATEGROY'))
+        this.options = cacheData[0].children
         this.setCurrentText()
       },
       setCurrentText() {
+        console.log('this.currentValue', this.currentValue)
+        console.log('this.options', this.options)
+        if (!this.currentValue) {
+          return false
+        }
         this.options.forEach((e) => {
-          let itemA = (e.code === this.currentValue.toString()) ? e : null
+          let itemA = (e.id === this.currentValue) ? e : null
           if (itemA) {
             this.currentText = itemA.name
             return false
           }
           e.children.forEach(e2 => {
-            if (e2.code === this.currentValue.toString()) {
+            if (e2.id === this.currentValue) {
               this.currentText = e2.name
               return false
             }

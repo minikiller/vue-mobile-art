@@ -16,7 +16,8 @@
           el-form-item(label="" prop="email")
             el-input(v-model="formModel.email" placeholder="邮箱")
           el-form-item(label="" prop="phone")
-            el-input(v-model="formModel.phone" placeholder="固定电话")
+            div.el-input
+              input.el-input__inner(type="tel" v-model="formModel.phone" placeholder="固定电话")
           el-form-item(label="" prop="loginName")
             el-input(v-model="formModel.loginName" placeholder="请输入登录名")
           el-form-item(label="" prop="password")
@@ -24,7 +25,8 @@
           el-form-item(label="" prop="confirmPassword")
             el-input(type="password" v-model="formModel.confirmPassword" placeholder="确认密码" auto-complete="off")
           el-form-item(label="")
-            el-button.btn-submit(v-on:click="onSubmit" size="large") 注册
+            div.btn-submit(v-on:click="onSubmit" size="large")
+              span 注册
           el-form-item(label="")
             div.link-btn(v-on:click="goLogin") 返回登录
     result(ref="result" v-on:close="resultClose")
@@ -41,6 +43,9 @@
 
   export default {
     data() {
+      // let validateSpace = (rule, value, callback) => {
+      //   str.replace(/^\s+|\s+$/g, '')
+      // }
       let validatePassword = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入密码'))
@@ -64,8 +69,12 @@
         name: 'Login Form',
         formModel: Object.assign({}, FormModel),
         rules: {
-          code: [{required: true, message: '请输入企业组织机构代码', trigger: 'blur'}],
-          name: [{required: true, message: '请输入名称', trigger: 'blur'}],
+          code: [
+            {required: true, message: '请输入企业组织机构代码', trigger: 'blur'}
+          ],
+          name: [
+            {required: true, message: '请输入名称', trigger: 'blur'}
+          ],
           loginName: [
             {required: true, message: '请输入登录名', trigger: 'blur'},
             {min: 3, max: 8, message: '用户名长度在 3 到 8 个字符', trigger: 'blur'}
@@ -77,7 +86,7 @@
             {required: true, validator: validateConfirmPassword, trigger: 'blur'}
           ],
           email: [
-            {required: true, message: '请输入邮箱地址', trigger: 'blur'},
+            {required: true, message: '请输入正确的邮箱地址', trigger: 'blur'},
             {type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change'}
           ],
           phone: [{required: true, message: '请输入固定电话', trigger: 'blur'}]
@@ -91,9 +100,16 @@
       // }, 500)
     },
     methods: {
+      onChange(val) {
+        console.log('onChange:', arguments)
+      },
       focus() {
       },
       onSubmit() {
+        for (let i in this.formModel) {
+          console.log('onSubmit i:', i)
+          console.log('onSubmit:', this.formModel[i])
+        }
         this.$refs.loginForm.validate((valid) => {
           // this.$refs.result.open({
           //   state: 0,
@@ -104,6 +120,8 @@
           //     this.autoLoginOut()
           //   }
           // })
+          // 阻止继续执行
+          // valid = false
           if (valid) {
             this.formModel.userType = 3 // 招聘公司
             if (!this.loginState) {
@@ -177,6 +195,19 @@
     }
   }
 </script>
+<style lang="stylus" type="text/stylus">
+  .el-input__inner
+    height initial
+    line-height initial
+    padding 10px 15px
+
+  div, a, img
+    -webkit-tap-highlight-color transparent
+    -webkit-touch-callout none
+    -webkit-user-select none
+    user-select none
+
+</style>
 <style scoped lang="stylus" type="text/stylus">
   .scroll-form
     height: 100%
@@ -201,16 +232,30 @@
         letter-spacing 10px
         font-size 20px
       .btn-submit
-        display block
-        width 100%
-        margin-top 30px
+        position relative
+        width: 100%
         background url("./button-bg.png") 50% 50% no-repeat
         background-size cover
         color #5c4611
-        border none
-      .link-btn
-        font-size 14px
-        text-align center
-        text-decoration underline
-        color #cdb886
+        border-radius 4px
+        overflow height
+        span
+          position absolute
+          display block
+          text-align center
+          width 100%
+          font-size 16px
+          top 50%
+          transform translate3d(0, -50%, 0)
+        &:after
+          display block
+          content ''
+          padding-top 50px
+          width 100%
+
+  .link-btn
+    font-size 14px
+    text-align center
+    text-decoration underline
+    color #cdb886
 </style>

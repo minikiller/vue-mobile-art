@@ -383,7 +383,7 @@
   .list-wrapper
     position: fixed;
     width: 100%;
-    top: 114px;
+    top: 134px;
     bottom: 50px;
     left: 0;
     overflow: hidden;

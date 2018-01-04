@@ -25,8 +25,12 @@
                 el-input(v-model="formModel.email" readonly)
               el-form-item.s-flex_item.kalix-form-table-td(label="固定电话" prop="phone" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.phone" readonly)
-              el-form-item.kalix-form-table-td(label="手机" prop="mobile" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.mobile" readonly)
+              el-form-item.s-flex_item.kalix-form-table-td(label="地区" prop="region" v-bind:label-width="labelWidth")
+                art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
+              el-form-item.s-flex_item.kalix-form-table-td(label="城市" prop="city" v-bind:label-width="labelWidth")
+                el-input(v-model="formModel.city")
+              <!--el-form-item.kalix-form-table-td(label="手机" prop="mobile" v-bind:label-width="labelWidth")-->
+                <!--el-input(v-model="formModel.mobile" readonly)-->
               el-form-item.s-flex_item.kalix-form-table-td(label="企业详细地址" prop="address" v-bind:rules="rules.address" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.address")
               el-form-item.s-flex_item.kalix-form-table-td(label="企业性质" prop="companyNature" v-bind:label-width="labelWidth")
@@ -37,10 +41,6 @@
                 art-dist-select(v-model="formModel.industry" appName="art" dictType="企业行业" style="width:100%")
               el-form-item.s-flex_item.kalix-form-table-td(label="企业年限" prop="companyLife" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.life")
-              el-form-item.s-flex_item.kalix-form-table-td(label="地区" prop="region" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.region")
-              el-form-item.s-flex_item.kalix-form-table-td(label="城市" prop="city" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.city")
       div.ft
         div.btns
           el-button.btn-item(type="primary" v-on:click="onSubmitClick") 保 存

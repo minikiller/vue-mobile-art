@@ -21,7 +21,7 @@ const SignUp = _import('art/login/signup')
 const recuitTest = _import('art/recruit/recuitTest')
 
 const router = new Router({
-  // mode: 'history',
+  mode: 'history',
   routes: [
     {
       path: '/',
