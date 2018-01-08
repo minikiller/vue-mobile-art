@@ -43,9 +43,14 @@
 
   export default {
     data() {
-      // let validateSpace = (rule, value, callback) => {
-      //   str.replace(/^\s+|\s+$/g, '')
-      // }
+      let validateSpace = (rule, value, callback) => {
+        var reg = new RegExp('\\s')
+        var r = value.substr(1).match(reg)
+        if (r != null) {
+          callback(new Error('登录名不能包含空格'))
+        }
+        callback()
+      }
       let validatePassword = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入密码'))
@@ -77,7 +82,8 @@
           ],
           loginName: [
             {required: true, message: '请输入登录名', trigger: 'blur'},
-            {min: 3, max: 8, message: '用户名长度在 3 到 8 个字符', trigger: 'blur'}
+            {min: 3, max: 8, message: '用户名长度在 3 到 8 个字符', trigger: 'blur'},
+            {required: true, validator: validateSpace, trigger: 'blur'}
           ],
           password: [
             {required: true, validator: validatePassword, trigger: 'blur'}

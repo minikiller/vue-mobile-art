@@ -25,6 +25,15 @@
   const usersURL = '/camel/rest/users'
   const FunctionCategroyURL = '/camel/rest/functioncategorys'
   export default {
+    activated() {
+      console.log('login activated')
+      Cache.clear()
+      this.loginForm.name = ''
+      this.loginForm.pass = ''
+    },
+    deactivated() {
+      console.log('login deactivated')
+    },
     data() {
       return {
         name: 'Login Form',
@@ -44,7 +53,6 @@
       }
     },
     mounted() {
-      Cache.clear()
     },
     methods: {
       onSubmit(formName) {

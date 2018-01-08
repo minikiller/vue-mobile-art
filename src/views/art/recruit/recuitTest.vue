@@ -165,18 +165,20 @@
           this.$http.get(RecruitURL, {
             params: _data
           }).then(response => {
-            console.log('response', response)
-            let resData = response.data.data.map((item, index) => {
-              item.rowNumber = index + this.rowNo
-              item.isChecked = false
-              return item
-            })
-            if (this.pager.currentPage === 1) {
-              // 刷新
-              this.tempArr = resData
-            } else {
-              // 追加
-              this.tempArr = this.tempArr.concat(resData)
+            // console.log('response', response)
+            if (response.data.data) {
+              let resData = response.data.data.map((item, index) => {
+                item.rowNumber = index + this.rowNo
+                item.isChecked = false
+                return item
+              })
+              if (this.pager.currentPage === 1) {
+                // 刷新
+                this.tempArr = resData
+              } else {
+                // 追加
+                this.tempArr = this.tempArr.concat(resData)
+              }
             }
             this.tableData = this.tempArr
 
