@@ -6,9 +6,10 @@ import axios from '@/config/axios'
 import VueAxios from 'vue-axios'
 import router from './router'
 import KalixBase from 'kalix-base'
+import MyConsole from './common/MyConsole'
+import './element-ui'
 // import ElementUI from 'element-ui'
 // import 'element-ui/lib/theme-chalk/index.css'
-import './element-ui'
 // import FastClick from 'fastclick'
 
 // var VConsole = require('vconsole/dist/vconsole.min')
@@ -25,6 +26,7 @@ Vue.use(router)
 
 // Vue.use(ElementUI)
 
+Vue.use(MyConsole)
 window.Vue = Vue
 /* eslint-disable no-new */
 new window.Vue({

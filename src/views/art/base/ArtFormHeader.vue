@@ -5,11 +5,23 @@
         div.maintitle {{formModel.name}}
         div.subtitle {{provincesName}}·{{formModel.city}}
         div.subtitle {{natureName}}　{{industryName}}　{{formModel.scale}}　{{formModel.life}}
-      div
-        div.btn-option(v-on:click="onLogoutClick")
-          i.art-iconfont.icon-tuichu
-        div.btn-option(v-on:click="optionClick")
+      div.btn-wrapper
+        div.btn-option(v-on:click="onShowMenu")
           i.art-iconfont.icon-chilun
+    div.menu(ref="menu" v-if="isShowMenu" v-on:click.self="onCloseMenu")
+      div.menu-wrapper
+        div.item(v-on:click="optionClick")
+          div.btn-option
+            i.art-iconfont.icon-chilun
+          | 设置
+        div.item(v-on:click="onUpdatePasswordClick")
+          div.btn-option
+            i.art-iconfont.icon-unie604
+          | 修改密码
+        div.item(v-on:click="onLogoutClick")
+          div.btn-option
+            i.art-iconfont.icon-tuichu
+          | 退出
 </template>
 <script type="text/ecmascript-6">
   import {Cache, EventBus} from 'kalix-base'
@@ -26,7 +38,8 @@
         formModel: Object.assign({}, FormModel),
         natureName: '',
         industryName: '',
-        provincesName: ''
+        provincesName: '',
+        isShowMenu: false
       }
     },
     mounted() {
@@ -36,6 +49,21 @@
       EventBus.$emit('ON_COMPANY_INFO_REFIESH', this.getUser())
     },
     methods: {
+      onCloseMenu(callBack) {
+        this.isShowMenu = false
+        if (typeof callBack === 'function') {
+          this.$nextTick(() => {
+            callBack()
+          })
+        }
+      },
+      onShowMenu() {
+        this.isShowMenu = true
+        console.log(this.parent)
+        setTimeout(() => {
+          document.body.appendChild(this.$refs.menu)
+        }, 20)
+      },
       getUser() {
         this._axiosRequest(usersURL, {jsonStr: '{id: ' + Cache.get('id') + '}'})
           .then(res => {
@@ -63,13 +91,29 @@
           })
       },
       onLogoutClick() {
-        this.axios.get(logoutURL, {}).then(response => {
-          Cache.clear()
-          this.$router.push({name: '/'})
+        this.onCloseMenu()
+        // 退出
+        this.$confirm('此操作将退出系统, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.axios.get(logoutURL, {}).then(response => {
+            Cache.clear()
+            this.$router.push({name: '/'})
+          })
+        }).catch(() => {
+        })
+      },
+      onUpdatePasswordClick() {
+        this.onCloseMenu(() => {
+          this.$router.push({path: '/user/updatePassword'})
         })
       },
       optionClick() {
-        this.$emit('optionClick', this.formModel)
+        this.onCloseMenu(() => {
+          this.$router.push({path: '/art/result/companyInfo'})
+        })
       },
       _axiosRequest(reqUrl, reqParams) {
         return this.axios.request({
@@ -91,6 +135,7 @@
   }
 </script>
 <style scoped lang="stylus" type="text/stylus">
+  @import "../../../assets/stylus/border.styl"
   .art-header
     position relative
     top 0
@@ -123,10 +168,60 @@
         .subtitle
           font-size 10px
           margin-top 8px
+      .btn-wrapper
+        height 100%
+        padding 15px 0
+        box-sizing border-box
     .btn-option
       color #fff
       padding 6px
-      margin-right -6px
+      margin -6px
       & + .btn-option
         margin-top 16px
+
+  .menu
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background-color rgba(0, 0, 0, .1)
+    .menu-wrapper
+      background-color #ffffff
+      position fixed
+      top 39px
+      right 8px
+      font-size 14px
+      border-radius 4px
+      width 130px
+      box-shadow 4px 4px 6px rgba(0, 0, 0, 0.45)
+      &:after
+        content ''
+        display block
+        width 9px
+        height 9px
+        background-color #ffffff
+        position absolute
+        top -4px
+        right 10px
+        transform rotate(45deg)
+        pointer-events none
+      .item
+        position relative
+        padding 10px 15px
+        line-height 22px
+        &:before
+          setTopLine()
+        &:first-child
+          &:before
+            overflow hidden
+        .btn-option
+          display inline-block
+          color #888888
+          padding: 0;
+          margin: 0;
+          margin-right 12px
+          float left
+          .art-iconfont
+            font-size 20px
 </style>

@@ -38,13 +38,10 @@
             div.text 还没有应聘信息
               br
               | 点击
-              span.here(v-on:click="openFormInfo") [这里]
+              router-link.here(tag="span" v-bind:to="{path:'/art/result/formInfo'}") [这里]
               | 新建应聘信息
       div.footer
-        router-link.btn(tag="div" v-if="false" v-bind:to="{path:'/art/recruitforminfo'}") 新建招聘信息
-        div.btn(v-on:click="openFormInfo") 新建招聘信息
-    recruit-company-info(ref="companyInfo")
-    recruit-form-info(ref="formInfo" v-bind:isVisible.sync="isContinueAdd")
+        router-link.btn(tag="div" v-bind:to="{path:'/art/result/formInfo'}") 新建招聘信息
 </template>
 <script type="text/ecmascript-6">
   import ArtFormHeader from '../base/ArtFormHeader'
@@ -80,10 +77,17 @@
         }
       }
     },
+    activated() {
+      console.log(' ===== activated ===== ')
+      this.pager.currentPage = 1
+      this.getData()
+    },
     created() {
-      this.chkContinue()
+      console.log(' ===== created ===== ')
     },
     mounted() {
+      console.log(' ===== mounted ===== ')
+      this.chkContinue()
       this.tempArr = []
       /* eslint-disable */
       document.addEventListener("WeixinJSBridgeReady", function () {
@@ -93,9 +97,6 @@
       window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL)
       })
-    },
-    watch: {
-      '$route': 'chkContinue'
     },
     methods: {
       init() {
@@ -134,20 +135,11 @@
       },
       chkContinue() {
         this.init()
-        this.isContinueAdd = false
-        this.isFinish = false
-        this.pager.currentPage = 1
-        this.isLoading = true
-        console.log('%cthis.$route', '#550000', this.$route)
-        if (this.$route.name === 'recuittest') {
-          if (this.$route.params.key === 'continue-add') {
-            this.isContinueAdd = true
-          }
-        }
+        console.log('%cthis.$route', 'color:#550000', this.$route)
         this.getData()
       },
       optionClick(company) {
-        this.$refs.companyInfo.open(company)
+        // this.$refs.companyInfo.open(company)
       },
       openFormInfo() {
         // 添加招聘信息
@@ -193,7 +185,8 @@
         }
       },
       onItemEdit(item) {
-        this.$refs.formInfo.open(item)
+        Cache.save('CurrentRecruit', JSON.stringify(item))
+        this.$router.push({path: '/art/result/formInfo'})
       },
       onItemDelete(item) {
         this.$confirm('确定要删除吗?', '提示', {

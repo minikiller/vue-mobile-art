@@ -17,8 +17,16 @@ const recruitFormInfo = _import('art/recruit/recruitFormInfo')
 const Login = _import('art/login/login')
 const StudentLogin = _import('art/login/studentLogin')
 const SignUp = _import('art/login/signup')
+const RecruitCompanyInfo = _import('art/recruit/recruitCompanyInfo')
+const UpdatePassword = _import('admin/user/updatePassword')
+const ArtCompanyIndex = _import('art/recruit/index')
 /* 测试用 */
 const recuitTest = _import('art/recruit/recuitTest')
+
+Router.prototype.goBack = function () {
+  this.isBack = true
+  window.history.go(-1)
+}
 
 const router = new Router({
   mode: 'history',
@@ -49,31 +57,9 @@ const router = new Router({
       component: recruitForm
     },
     {
-      path: '/art/recuittest',
-      name: 'recuittest',
-      component: recuitTest,
-      children: [
-        {
-          path: ':key',
-          component: recuitTest,
-          name: 'recuittestkey'
-        }
-      ]
-    },
-    {
-      path: '/art/recruitforminfo',
-      name: 'recruitforminfo',
-      component: recruitFormInfo
-    },
-    {
       path: '/art/candidateform',
       name: 'candidateform',
       component: candidateForm
-    },
-    {
-      path: '/art/result/:key/:status',
-      name: 'recruitResult',
-      component: recruitResult
     },
     {
       path: '/qrcode/comqrcode',
@@ -85,11 +71,38 @@ const router = new Router({
       name: 'stuqrcode',
       component: StuQrcode
     },
-    // {
-    //   path: '/qrcode/login/:key',
-    //   name: 'qrcodelogin',
-    //   component: QrcodeLogin
-    // },
+    {
+      path: '/artcompany',
+      name: 'artCompanyIndex',
+      component: ArtCompanyIndex,
+      children: [
+        {
+          path: '',
+          name: 'recuitTest',
+          component: recuitTest
+        },
+        {
+          path: '/art/result/formInfo',
+          name: 'recruitFormInfo',
+          component: recruitFormInfo
+        },
+        {
+          path: '/art/result/companyInfo',
+          name: 'companyInfo',
+          component: RecruitCompanyInfo
+        },
+        {
+          path: '/art/result/:key/:status',
+          name: 'recruitResult',
+          component: recruitResult
+        },
+        {
+          path: '/user/updatePassword',
+          name: 'updatePassword',
+          component: UpdatePassword
+        }
+      ]
+    },
     {
       path: '/',
       name: 'HelloWorld',

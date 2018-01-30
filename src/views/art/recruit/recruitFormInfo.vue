@@ -2,49 +2,42 @@
   招聘信息
 -->
 <template lang="pug">
-  transition(name="show")
-    div.art-company-info(v-if="isVisible" data-art="data-art")
-      div.hd
+  div.art-company-info(data-art="data-art")
+    art-header(title="招聘信息")
+    div.bd
+      scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm"
+      v-bind:beforeScroll="true"
+      v-on:beforeScroll="listScroll")
         div.wrapper
-          div.item
-            div(v-on:click="onClose") 返回
-          div.title 招聘信息
-          div.item
-            div(v-on:click="onClose") 关闭
-      div.bd
-        scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm"
-        v-bind:beforeScroll="true"
-        v-on:beforeScroll="listScroll")
-          div.wrapper
-            el-form(ref="dialogForm" v-bind:model="formModel" v-bind:rules="rules")
-              el-form-item.s-flex_item.kalix-form-table-td(label="岗位名称" prop="position" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.position")
-              el-form-item.s-flex_item.kalix-form-table-td(label="工作省份" prop="region" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
-              el-form-item.s-flex_item.kalix-form-table-td(label="工作城市" prop="city" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.city")
-              el-form-item.s-flex_item.kalix-form-table-td(label="岗位要求" prop="positionRequires" v-bind:label-width="labelWidth")
-                el-input(v-model="positionRequires" type="textarea"
-                v-bind:rows="4")
-              el-form-item.s-flex_item.kalix-form-table-td(label="岗位所需软件" prop="positionRequires" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.requireSofts")
-              el-form-item.s-flex_item.kalix-form-table-td(label="岗位个数" prop="jobNumbers" v-bind:label-width="labelWidth")
-                el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="float:right")
-              el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.education")
-              el-form-item.s-flex_item.kalix-form-table-td(label="职能类别" prop="functionCategoryId" v-bind:label-width="labelWidth")
-                art-cascade(v-model="formModel.functionCategoryId")
-              el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
-                el-input-number(v-model="formModel.salary" v-bind:step="500"  style="float:right")
-              el-form-item.s-flex_item.kalix-form-table-td(label="应用技术名称" prop="appliedTechnology" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.appliedTechnology")
-              el-form-item.s-flex_item.kalix-form-table-td(label="个人要求" prop="personRequires" v-bind:label-width="labelWidth")
-                art-dist-check-list(v-model="formModel.personRequires" appName="art" dictType="个人要求" style="width:100%")
-              el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
-      div.ft
-        div.btns
-          el-button.btn-item(type="primary" v-on:click="onSubmitClick") 保 存
+          el-form(ref="dialogForm" v-bind:model="formModel" v-bind:rules="rules")
+            el-form-item.s-flex_item.kalix-form-table-td(label="岗位名称" prop="position" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.position")
+            el-form-item.s-flex_item.kalix-form-table-td(label="工作省份" prop="region" v-bind:label-width="labelWidth")
+              art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
+            el-form-item.s-flex_item.kalix-form-table-td(label="工作城市" prop="city" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.city")
+            el-form-item.s-flex_item.kalix-form-table-td(label="岗位要求" prop="positionRequires" v-bind:label-width="labelWidth")
+              el-input(v-model="positionRequires" type="textarea"
+              v-bind:rows="4")
+            el-form-item.s-flex_item.kalix-form-table-td(label="岗位所需软件" prop="requireSofts" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.requireSofts")
+            el-form-item.s-flex_item.kalix-form-table-td(label="岗位个数" prop="jobNumbers" v-bind:label-width="labelWidth")
+              el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="float:right")
+            el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.education")
+            el-form-item.s-flex_item.kalix-form-table-td(label="职能类别" prop="functionCategoryId" v-bind:label-width="labelWidth")
+              art-cascade(v-model="formModel.functionCategoryId")
+            el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
+              el-input-number(v-model="formModel.salary" v-bind:step="500"  style="float:right")
+            el-form-item.s-flex_item.kalix-form-table-td(label="应用技术名称" prop="appliedTechnology" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.appliedTechnology")
+            el-form-item.s-flex_item.kalix-form-table-td(label="个人要求" prop="personRequires" v-bind:label-width="labelWidth")
+              art-dist-check-list(v-model="formModel.personRequires" appName="art" dictType="个人要求" style="width:100%")
+            el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
+              art-dist-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
+    div.ft
+      div.btns
+        el-button.btn-item(type="primary" v-on:click="onSubmitClick") 保 存
 </template>
 
 <script type="text/ecmascript-6">
@@ -54,11 +47,20 @@
   import ArtDistSelect from '../base/ArtDistSelect'
   import ArtDistCheckList from '../base/ArtDistCheckList'
   import Scroll from '../base/scroll'
+  import ArtHeader from '../../comp/header'
   import ArtCascade from '../base/ArtCascade'
 
   export default {
     props: {
       isVisible: false
+    },
+    activated() {
+      this.open()
+    },
+    deactivated() {
+      this.$refs.dialogForm.resetFields()
+      this.positionRequires = ''
+      sessionStorage.removeItem('CurrentRecruit')
     },
     data() {
       return {
@@ -72,6 +74,8 @@
         labelWidth: '100px',
         positionRequires: ''
       }
+    },
+    created() {
     },
     mounted() {
     },
@@ -87,8 +91,8 @@
           this.$refs.scrollForm.refresh()
         }, 20)
       },
-      open(item) {
-        this.$emit('update:isVisible', true)
+      open() {
+        let item = JSON.parse(Cache.get('CurrentRecruit'))
         this.initSwiper()
         if (item) {
           this.formModel = item
@@ -124,6 +128,7 @@
         this.formModel.companyRegion = rec.region
         this.formModel.companyCity = rec.city
         this.formModel.companyAddress = rec.address
+        this.$myConsoleLog('rec', rec, '#551A8B')
       },
       onSubmitClick() {
         this.formModel.positionRequires = this.positionRequires.replace(/[\r\n]/g, '<br />')
@@ -139,13 +144,13 @@
 //                Message.success(response.data.msg)
                 this.visible = false
                 this.$refs.dialogForm.resetFields()
+                this.positionRequires = ''
                 this.resultRedirect('success')
               } else {
                 this.resultRedirect('error')
               }
               // 刷新列表
               console.log('[kalix] dialog submit button clicked !')
-              this.visible = false
             })
           } else {
             Message.error('请检查输入项！')
@@ -169,6 +174,7 @@
       }
     },
     components: {
+      ArtHeader,
       ArtDistSelect,
       ArtDistCheckList,
       ArtCascade,

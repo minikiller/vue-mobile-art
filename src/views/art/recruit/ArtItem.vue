@@ -90,7 +90,7 @@
       functionCategoryeTranslate(value) {
         let datas = JSON.parse(Cache.get('FUNCTION-CATEGROY'))
         let currentText = ''
-        console.log('value', value)
+        // console.log('value', value)
         if (value) {
           datas[0].children.forEach((e) => {
             let itemA = (e.id === value) ? e : null

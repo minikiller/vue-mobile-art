@@ -78,6 +78,9 @@
     watch: {
       currentValue(newValue) {
         this.$emit('input', newValue)
+      },
+      value(newValue) {
+        this.currentValue = newValue
       }
     }
   }

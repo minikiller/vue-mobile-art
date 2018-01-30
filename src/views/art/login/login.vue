@@ -13,7 +13,7 @@
           el-form-item(label="")
             div.btn-submit(v-on:click="onSubmit('loginForm')" size="large")
               span 登录
-          el-form-item(label="")
+          el-form-item(label="" style="text-align:center;")
             router-link.link-btn(tag="div" v-bind:to="{name:'signup'}") 注册
 </template>
 
@@ -43,8 +43,7 @@
         },
         rules: {
           name: [
-            {required: true, message: '请输入用户名', trigger: 'blur'},
-            {min: 3, max: 8, message: '用户名长度在 3 到 8 个字符', trigger: 'blur'}
+            {required: true, message: '请输入用户名', trigger: 'blur'}
           ],
           pass: [
             {required: true, message: '请输入密码', trigger: 'blur'}
@@ -73,7 +72,8 @@
                 this.getDict(() => {
                   this._getFunctionCategroy(() => {
                     this._getCurrentUser(data.user.id, () => {
-                      this.$router.push({name: 'recuittest'})
+                      // this.$router.push({name: 'artCompanyIndex'})
+                      this.$router.push({path: '/artcompany'})
                     })
                   })
                 })

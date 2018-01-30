@@ -53,10 +53,10 @@
         this.$router.push({name: '/'})
       },
       goHome() {
-        this.$router.push({name: 'recuittest'})
+        this.$router.push({name: 'recuitTest'})
       },
       continueAdd() {
-        this.$router.push({name: 'recuittest', params: {key: 'continue-add'}})
+        this.$router.push({name: 'recruitFormInfo'})
       }
     }
   }

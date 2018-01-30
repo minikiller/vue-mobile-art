@@ -27,7 +27,7 @@
           el-form-item(label="")
             div.btn-submit(v-on:click="onSubmit" size="large")
               span 注册
-          el-form-item(label="")
+          el-form-item(label="" style="text-align: center;")
             div.link-btn(v-on:click="goLogin") 返回登录
     result(ref="result" v-on:close="resultClose")
 </template>
@@ -264,4 +264,6 @@
     text-align center
     text-decoration underline
     color #cdb886
+    display inline-block
+    padding 0 10px
 </style>

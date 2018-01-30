@@ -4,48 +4,40 @@
 开发日期：2017年12月7日
 -->
 <template lang="pug">
-  transition(name="show")
-    div.art-company-info(v-if="isVisible" data-art="data-art")
-      div.hd
+  div.art-company-info(data-art="data-art")
+    art-header(title="企业信息")
+    div.bd
+      scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm")
         div.wrapper
-          div.item
-            div(v-if="isEnable" v-on:click="onClose") 返回
-          div.title 企业信息
-          div.item
-            div(v-if="isEnable" v-on:click="onClose") 关闭
-      div.bd
-        scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm")
-          div.wrapper
-            el-form(ref="dialogForm" v-bind:model="formModel")
-              el-form-item.s-flex_item.kalix-form-table-td(label="企业组织机构代码" prop="code" v-bind:label-width="labelWidth")
-                el-input.s-flex_item(v-model="formModel.code" readonly)
-              el-form-item.s-flex_item.kalix-form-table-td(label="企业名称" prop="name" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.name" readonly)
-              el-form-item.s-flex_item.kalix-form-table-td(label="邮箱" prop="email" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.email" readonly)
-              el-form-item.s-flex_item.kalix-form-table-td(label="固定电话" prop="phone" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.phone" readonly)
-              el-form-item.s-flex_item.kalix-form-table-td(label="地区" prop="region" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
-              el-form-item.s-flex_item.kalix-form-table-td(label="城市" prop="city" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.city")
-              <!--el-form-item.kalix-form-table-td(label="手机" prop="mobile" v-bind:label-width="labelWidth")-->
-                <!--el-input(v-model="formModel.mobile" readonly)-->
-              el-form-item.s-flex_item.kalix-form-table-td(label="企业详细地址" prop="address" v-bind:rules="rules.address" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.address")
-              el-form-item.s-flex_item.kalix-form-table-td(label="企业性质" prop="companyNature" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.nature" appName="art" dictType="企业性质")
-              el-form-item.s-flex_item.kalix-form-table-td(label="企业规模" prop="companyScale" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.scale")
-              el-form-item.s-flex_item.kalix-form-table-td(label="企业行业" prop="companyIndustry" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.industry" appName="art" dictType="企业行业" style="width:100%")
-              el-form-item.s-flex_item.kalix-form-table-td(label="企业年限" prop="companyLife" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.life")
-      div.ft
-        div.btns
-          el-button.btn-item(type="primary" v-on:click="onSubmitClick") 保 存
+          el-form(ref="dialogForm" v-bind:model="formModel")
+            el-form-item.s-flex_item.kalix-form-table-td(label="企业组织机构代码" prop="code" v-bind:label-width="labelWidth")
+              el-input.s-flex_item(v-model="formModel.code" readonly)
+            el-form-item.s-flex_item.kalix-form-table-td(label="企业名称" prop="name" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.name" readonly)
+            el-form-item.s-flex_item.kalix-form-table-td(label="邮箱" prop="email" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.email" readonly)
+            el-form-item.s-flex_item.kalix-form-table-td(label="固定电话" prop="phone" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.phone" readonly)
+            el-form-item.s-flex_item.kalix-form-table-td(label="地区" prop="region" v-bind:label-width="labelWidth")
+              art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
+            el-form-item.s-flex_item.kalix-form-table-td(label="城市" prop="city" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.city")
+            el-form-item.s-flex_item.kalix-form-table-td(label="企业详细地址" prop="address" v-bind:rules="rules.address" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.address")
+            el-form-item.s-flex_item.kalix-form-table-td(label="企业性质" prop="companyNature" v-bind:label-width="labelWidth")
+              art-dist-select(v-model="formModel.nature" appName="art" dictType="企业性质")
+            el-form-item.s-flex_item.kalix-form-table-td(label="企业规模" prop="companyScale" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.scale")
+            el-form-item.s-flex_item.kalix-form-table-td(label="企业行业" prop="companyIndustry" v-bind:label-width="labelWidth")
+              art-dist-select(v-model="formModel.industry" appName="art" dictType="企业行业" style="width:100%")
+            el-form-item.s-flex_item.kalix-form-table-td(label="企业年限" prop="companyLife" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.life")
+    div.ft
+      div.btns
+        el-button.btn-item(type="primary" v-on:click="onSubmitClick") 保 存
 </template>
 <script type="text/ecmascript-6">
+  import ArtHeader from '../../comp/header'
   import FormModel from './companyModel'
   import {Message, EventBus} from 'kalix-base'
   import ArtDistSelect from '../base/ArtDistSelect'
@@ -68,6 +60,9 @@
     mounted() {
     },
     methods: {
+      goback() {
+        this.$router.goBack()
+      },
       initSwiper() {
         setTimeout(() => {
           this.$refs.scrollForm.refresh()
@@ -137,6 +132,7 @@
       }
     },
     components: {
+      ArtHeader,
       ArtDistSelect,
       Scroll
     }

@@ -1,6 +1,5 @@
 <template lang="pug">
-  keep-alive
-    router-view
+  router-view
 </template>
 
 <script>
@@ -16,4 +15,5 @@
   @import "/assets/stylus/comm.styl"
   #app
     height 100%
+
 </style>

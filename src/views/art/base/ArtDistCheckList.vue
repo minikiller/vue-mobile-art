@@ -1,12 +1,13 @@
 <template lang="pug">
   div.kalix-check-list
-    label.kalix-check-cell(v-for="(item,index) in items" v-bind:for="bindLabelFor(index)" v-bind:key="item.value")
-      div.s-flex
-        div
-          input.kalix-check-input(type="checkbox" v-bind:id="bindLabelFor(index)" v-model="currentValue" v-bind:value="item.value")
-          i.icon-1.art-iconfont.icon-xuanze1
-          i.icon-2.art-iconfont.icon-xuanze
-        div.s-flex_item {{item.label}}
+    div
+      label.kalix-check-cell(v-for="(item,index) in items" v-bind:for="bindLabelFor(index)" v-bind:key="item.value")
+        div.s-flex
+          div
+            input.kalix-check-input(type="checkbox" v-bind:id="bindLabelFor(index)" v-model="currentValue" v-bind:value="item.value")
+            i.icon-1.art-iconfont.icon-xuanze1
+            i.icon-2.art-iconfont.icon-xuanze
+          div.s-flex_item {{item.label}}
 </template>
 <script type="text/ecmascript-6">
   import {Cache} from 'kalix-base'
