@@ -24,12 +24,14 @@
           | 退出
 </template>
 <script type="text/ecmascript-6">
-  import {Cache, EventBus} from 'kalix-base'
+  import {Cache} from 'kalix-base'
   import FormModel from '../recruit/companyModel'
   import {logoutURL} from '@/config/global.toml'
 
-  const usersURL = '/camel/rest/users'
-  const companysURL = 'camel/rest/companys'
+  // const usersURL = '/camel/rest/users'
+  // const companysURL = 'camel/rest/companys'
+  const USER_TYPE_STU = 1 // 学生登录
+  const USER_TYPE_COM = 3 // 企业登录
 
   export default {
     data() {
@@ -46,7 +48,7 @@
       this.getUser()
     },
     activated() {
-      EventBus.$emit('ON_COMPANY_INFO_REFIESH', this.getUser())
+      // EventBus.$emit('ON_COMPANY_INFO_REFIESH', this.getUser())
     },
     methods: {
       onCloseMenu(callBack) {
@@ -65,30 +67,36 @@
         }, 20)
       },
       getUser() {
-        this._axiosRequest(usersURL, {jsonStr: '{id: ' + Cache.get('id') + '}'})
-          .then(res => {
-            if (res.data && res.data.totalCount) {
-              let org = res.data.data[0]
-              this.getCompany(org.code)
-            }
-          })
+        let currentUser = JSON.parse(Cache.get('CurrentUser'))
+        this.optionLink = currentUser.userType
+        switch (currentUser.userType) {
+          case USER_TYPE_STU:
+            this._getStudent()
+            this.optionLink = '/art/candidate_info'
+            break
+          case USER_TYPE_COM:
+            this._getCompany()
+            this.optionLink = '/art/result/companyInfo'
+            break
+        }
       },
-      getCompany(code) {
-        this._axiosRequest(companysURL,
-          {
-            jsonStr: '{"%code%": "' + code + '"}',
-            page: 1,
-            start: 0,
-            limit: 10
-          })
-          .then(res => {
-            if (res.data && res.data.totalCount) {
-              this.formModel = res.data.data[0]
-              this.natureName = this._dictTranslate(this.formModel.nature, '企业性质')
-              this.industryName = this._dictTranslate(this.formModel.industry, '企业行业')
-              this.provincesName = this._dictTranslate(this.formModel.region, '省份')
-            }
-          })
+      _getStudent() {
+        // 获取学生信息
+        let currentStudent = JSON.parse(Cache.get('CurrentStudent'))
+        this.$myConsoleLog(' currentStudent ', currentStudent, '#8B1C62')
+        if (currentStudent) {
+          this.formModel = currentStudent
+        }
+      },
+      _getCompany() {
+        // 获取企业信息
+        let currentCompany = JSON.parse(Cache.get('CurrentCompany'))
+        if (currentCompany) {
+          this.formModel = currentCompany
+          this.natureName = this._dictTranslate(this.formModel.nature, '企业性质')
+          this.industryName = this._dictTranslate(this.formModel.industry, '企业行业')
+          this.provincesName = this._dictTranslate(this.formModel.region, '省份')
+        }
       },
       onLogoutClick() {
         this.onCloseMenu()
@@ -112,7 +120,7 @@
       },
       optionClick() {
         this.onCloseMenu(() => {
-          this.$router.push({path: '/art/result/companyInfo'})
+          this.$router.push({path: this.optionLink})
         })
       },
       _axiosRequest(reqUrl, reqParams) {

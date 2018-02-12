@@ -1,47 +1,48 @@
 <template lang="pug">
-  div.art-form(data-artform)
-    div
-      art-form-header(v-on:optionClick="optionClick")
-      div.list-title
-        div.title 我的招聘信息
-        div.operation(v-if="tableData.length")
-          span.btn-item(v-if="false")
-            i.art-iconfont.icon-sousuo
-            | 搜索
-          span.btn-item(v-if="true" v-on:click="checkAll")
-            i.art-iconfont.icon-xuanze.icon-1(v-if="isCheckAll")
-            i.art-iconfont.icon-xuanze1.icon-2(v-else)
-            | 全选
-          span.btn-item(v-if="true" v-on:click="deleteChecked")
-            i.art-iconfont.icon-shanchu
-            | 删除选中
-      div.list-wrapper
-        transition(name="loading")
-          div.loading(v-if="isLoading") 加载中……
-        scroll.shortcut(v-if="tableData.length" v-bind:refreshDelay="120" ref="shortcut" v-bind:data="tableData"
-        v-bind:pullup="true"
-        v-bind:pulldown="true"
-        v-on:scrollToEnd="scrollToEnd"
-        v-on:pulldown="pulldown"
-        )
-          div
-            split
-            template(v-for="item in tableData")
-              art-item(v-bind:itemData="item" v-on:itemCheckedClick="onItemChecked" v-on:itemEditClick="onItemEdit" v-on:itemDeletetClick="onItemDelete")
+  keep-alive
+    div.art-form(data-artform)
+      div
+        art-form-header(v-on:optionClick="optionClick")
+        div.list-title
+          div.title 我的招聘信息
+          div.operation(v-if="tableData.length")
+            span.btn-item(v-if="false")
+              i.art-iconfont.icon-sousuo
+              | 搜索
+            span.btn-item(v-if="true" v-on:click="checkAll")
+              i.art-iconfont.icon-xuanze.icon-1(v-if="isCheckAll")
+              i.art-iconfont.icon-xuanze1.icon-2(v-else)
+              | 全选
+            span.btn-item(v-if="true" v-on:click="deleteChecked")
+              i.art-iconfont.icon-shanchu
+              | 删除选中
+        div.list-wrapper
+          transition(name="loading")
+            div.loading(v-if="isLoading") 加载中……
+          scroll.shortcut(v-if="tableData.length" v-bind:refreshDelay="120" ref="shortcut" v-bind:data="tableData"
+          v-bind:pullup="true"
+          v-bind:pulldown="true"
+          v-on:scrollToEnd="scrollToEnd"
+          v-on:pulldown="pulldown"
+          )
+            div
               split
-            div.load-more
-              div(v-if="!isFinish") 加载更多
-              div(v-else) 没有更多记录
-        div.no-list(v-if="!tableData.length")
-          div.cnt
-            i.art-iconfont.icon-meiyouchaxunjieguo.icon
-            div.text 还没有应聘信息
-              br
-              | 点击
-              router-link.here(tag="span" v-bind:to="{path:'/art/result/formInfo'}") [这里]
-              | 新建应聘信息
-      div.footer
-        router-link.btn(tag="div" v-bind:to="{path:'/art/result/formInfo'}") 新建招聘信息
+              template(v-for="item in tableData")
+                art-item(v-bind:itemData="item" v-on:itemCheckedClick="onItemChecked" v-on:itemEditClick="onItemEdit" v-on:itemDeletetClick="onItemDelete")
+                split
+              div.load-more
+                div(v-if="!isFinish") 加载更多
+                div(v-else) 没有更多记录
+          div.no-list(v-if="!tableData.length")
+            div.cnt
+              i.art-iconfont.icon-meiyouchaxunjieguo.icon
+              div.text 还没有应聘信息
+                br
+                | 点击
+                router-link.here(tag="span" v-bind:to="{path:'/art/result/formInfo'}") [这里]
+                | 新建应聘信息
+        div.footer
+          router-link.btn(tag="div" v-bind:to="{path:'/art/result/formInfo'}") 新建招聘信息
 </template>
 <script type="text/ecmascript-6">
   import ArtFormHeader from '../base/ArtFormHeader'
@@ -55,8 +56,7 @@
   import Scroll from '../base/scroll'
   import Split from '../base/split'
   import FormModel from './model'
-
-  const companysURL = '/camel/rest/companys'
+  import Util from '@/common/Util'
 
   export default {
     data() {
@@ -108,29 +108,36 @@
       getCompanyCode() {
         if (!Cache.get('CurrentCompany')) {
           console.log('this.currentUser.code', this.currentUser.code)
-          this.$http.get(companysURL, {
-            params: {
-              jsonStr: '{"%code%": "' + this.currentUser.code + '"}',
-              page: 1,
-              start: 0,
-              limit: 10
-            }
-          }).then(res => {
-            if (res.data.totalCount) {
-              console.log('=== res', res)
-              let company = res.data.data[0]
-              console.log('=== company', company)
-              this.companyCode = this.currentUser.code
-              /* 新注册用户-完善企业信息 */
-              if (!company.address) {
-                // this.$emit('update:isVisible', true)
-                this.optionClick(company)
-              }
-              Cache.save('CurrentCompany', JSON.stringify(company))
-            }
+          Util.setCurrentCompany(this.currentUser.code, () => {
+            this._chkCompanyInfo()
           })
+          // this.$http.get(companysURL, {
+          //   params: {
+          //     jsonStr: '{"%code%": "' + this.currentUser.code + '"}',
+          //     page: 1,
+          //     start: 0,
+          //     limit: 10
+          //   }
+          // }).then(res => {
+          //   if (res.data.totalCount) {
+          //     console.log('=== res', res)
+          //     let company = res.data.data[0]
+          //     this.companyCode = this.currentUser.code
+          //     Cache.save('CurrentCompany', JSON.stringify(company))
+          //     this._chkCompanyInfo()
+          //   }
+          // })
         } else {
           this.companyCode = this.currentUser.code
+          this._chkCompanyInfo()
+        }
+      },
+      _chkCompanyInfo() {
+        let currentCompany = JSON.parse(Cache.get('CurrentCompany'))
+        /* 新注册用户-完善企业信息 */
+        this.$myConsoleLog('=== company ', currentCompany, '#27408B')
+        if (!currentCompany.address) {
+          this.$router.push({name: 'companyInfo'})
         }
       },
       chkContinue() {

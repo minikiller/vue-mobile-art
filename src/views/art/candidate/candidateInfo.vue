@@ -1,46 +1,68 @@
 <!--
-  描述：企业信息
+  描述：学生信息
   开发人：juezhan
-  开发日期：2017年12月7日
+  开发日期：2018年2月12日09:43:03
 -->
 <template lang="pug">
-  div.art-company-info(data-art="data-art")
-    art-header(title="企业信息" v-bind:isVisibleLeft="isEnable" v-bind:isVisibleRight="isEnable")
+  div.candidate-info
+    art-header(title="个人基本信息" v-bind:isVisibleLeft="isEnable" v-bind:isVisibleRight="isEnable")
     div.bd
       scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm")
         div.wrapper
           el-form(ref="dialogForm" v-bind:model="formModel")
-            el-form-item.s-flex_item.kalix-form-table-td(label="企业组织机构代码" prop="code" v-bind:label-width="labelWidth")
-              el-input.s-flex_item(v-model="formModel.code" readonly)
-            el-form-item.s-flex_item.kalix-form-table-td(label="企业名称" prop="name" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.name" readonly)
+            div.table-title 基本信息
+            el-form-item.s-flex_item.kalix-form-table-td(label="学号" prop="code" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.code" disabled)
+            el-form-item.s-flex_item.kalix-form-table-td(label="姓名" prop="name" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.name" disabled)
+            el-form-item.s-flex_item.kalix-form-table-td(label="性别" prop="sex" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.sex" disabled)
             el-form-item.s-flex_item.kalix-form-table-td(label="邮箱" prop="email" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.email" readonly)
+              el-input(v-model="formModel.email" disabled)
             el-form-item.s-flex_item.kalix-form-table-td(label="固定电话" prop="phone" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.phone" readonly)
-            el-form-item.s-flex_item.kalix-form-table-td(label="地区" prop="region" v-bind:label-width="labelWidth")
-              art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
-            el-form-item.s-flex_item.kalix-form-table-td(label="城市" prop="city" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.city")
-            el-form-item.s-flex_item.kalix-form-table-td(label="企业详细地址" prop="address" v-bind:rules="rules.address" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.phone" disabled)
+            el-form-item.s-flex_item.kalix-form-table-td(label="手机" prop="mobile" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.mobile" disabled)
+            div.table-title 详细信息
+            el-form-item.s-flex_item.kalix-form-table-td(label="专业" prop="majorId" v-bind:rules="rules.majorId" v-bind:label-width="labelWidth")
+              art-major(v-model="formModel.majorId" v-bind:treeDataURL="orgURL" v-bind:parentNodeId="orgId")
+            el-form-item.s-flex_item.kalix-form-table-td(label="辅导员" prop="instructor" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.instructor")
+            el-form-item.s-flex_item.kalix-form-table-td(label="出生日期" prop="birthday" v-bind:label-width="labelWidth")
+              input.el-input__inner(type="date")
+            el-form-item.s-flex_item.kalix-form-table-td(label="民族" prop="nation" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.nation")
+            el-form-item.s-flex_item.kalix-form-table-td(label="籍贯" prop="placeOfOrigin" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.placeOfOrigin")
+            el-form-item.s-flex_item.kalix-form-table-td(label="现联系地址" prop="address" v-bind:label-width="labelWidth")
               el-input(v-model="formModel.address")
-            el-form-item.s-flex_item.kalix-form-table-td(label="企业性质" prop="companyNature" v-bind:label-width="labelWidth")
-              art-dist-select(v-model="formModel.nature" appName="art" dictType="企业性质")
-            el-form-item.s-flex_item.kalix-form-table-td(label="企业规模" prop="companyScale" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.scale")
-            el-form-item.s-flex_item.kalix-form-table-td(label="企业行业" prop="companyIndustry" v-bind:label-width="labelWidth")
-              art-dist-select(v-model="formModel.industry" appName="art" dictType="企业行业" style="width:100%")
-            el-form-item.s-flex_item.kalix-form-table-td(label="企业年限" prop="companyLife" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.life")
+            el-form-item.s-flex_item.kalix-form-table-td(label="政治面貌" prop="politicalStatus" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.politicalStatus")
+            el-form-item.s-flex_item.kalix-form-table-td(label="入党(团)时间" prop="joinPartyDate" v-bind:label-width="labelWidth")
+              input.el-input__inner(type="date")
+            el-form-item.s-flex_item.kalix-form-table-td(label="邮政编码" prop="postalcode" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.postalcode")
+            el-form-item.s-flex_item.kalix-form-table-td(label="家庭联系电话" prop="homePhone" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.homePhone")
+            el-form-item.s-flex_item.kalix-form-table-td(label="生源省份" prop="province" v-bind:label-width="labelWidth")
+              art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
+            el-form-item.s-flex_item.kalix-form-table-td(label="入学年份" prop="entranceYear" v-bind:label-width="labelWidth")
+              art-year-select(v-model="formModel.entranceYear")
+            el-form-item.s-flex_item.kalix-form-table-td(label="学生培养层次" prop="trainingLevel" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.trainingLevel")
+            el-form-item.s-flex_item.kalix-form-table-td(label="学习年限" prop="period" v-bind:label-width="labelWidth")
+              el-input(v-model="formModel.period")
     div.ft
       div.btns
         el-button.btn-item(type="primary" v-on:click="onSubmitClick") 保 存
 </template>
 <script type="text/ecmascript-6">
   import ArtHeader from '../../comp/header'
-  import FormModel from './companyModel'
+  import FormModel from './model'
   import {Message, EventBus, Cache} from 'kalix-base'
   import ArtDistSelect from '../base/ArtDistSelect'
+  import ArtYearSelect from '../base/ArtYearSelect'
+  import ArtMajor from '../base/ArtMajor'
   import Scroll from '../base/scroll'
   import Util from '@/common/Util'
 
@@ -55,7 +77,9 @@
           address: [{required: true, message: '请输入企业详细地址', trigger: 'blur'}]
         },
         labelWidth: '140px',
-        isEnable: true
+        isEnable: true,
+        orgURL: '/camel/rest/orgs',
+        orgId: 22601
       }
     },
     activated() {
@@ -73,16 +97,16 @@
         }, 20)
       },
       open() {
-        let row = JSON.parse(Cache.get('CurrentCompany'))
-        this.$myConsoleLog(' open ', row, '#8B1C62')
+        let row = JSON.parse(Cache.get('CurrentStudent'))
+        this.$myConsoleLog(' CurrentStudent open ', row, '#8B1C62')
         this.isVisible = true
         this.formModel = row
-        this.initSwiper()
-        if (!row.address) {
-          this.isEnable = false
-        } else {
-          this.isEnable = true
-        }
+        // this.initSwiper()
+        // if (!row.address) {
+        //   this.isEnable = false
+        // } else {
+        //   this.isEnable = true
+        // }
       },
       close() {
         this.isVisible = false
@@ -141,6 +165,8 @@
     components: {
       ArtHeader,
       ArtDistSelect,
+      ArtYearSelect,
+      ArtMajor,
       Scroll
     }
   }
@@ -150,7 +176,7 @@
     height: 100%
     overflow: hidden
 
-  .art-company-info[data-art]
+  .candidate-info
     position fixed
     width 100%
     height 100%

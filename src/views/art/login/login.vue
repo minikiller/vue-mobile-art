@@ -14,16 +14,19 @@
             div.btn-submit(v-on:click="onSubmit('loginForm')" size="large")
               span 登录
           el-form-item(label="" style="text-align:center;")
-            router-link.link-btn(tag="div" v-bind:to="{name:'signup'}") 注册
+            router-link.link-btn(tag="div" v-bind:to="{name:'signUp'}") 注册
 </template>
 
 <script type="text/ecmascript-6">
   import './login.styl'
   import {Message, Cache} from 'kalix-base'
   import Login from '@/api/login'
+  import Util from '@/common/Util'
 
   const usersURL = '/camel/rest/users'
   const FunctionCategroyURL = '/camel/rest/functioncategorys'
+  const USER_TYPE_STU = 1 // 学生登录
+  const USER_TYPE_COM = 3 // 企业登录
   export default {
     activated() {
       console.log('login activated')
@@ -63,7 +66,6 @@
             }).then(data => {
               console.log('data', data)
               if (data.success) {
-                console.log('[onSubmit] data.success', data)
                 Cache.save('id', data.user.id)
                 Cache.save('access_token', data.access_token)
                 Cache.save('user_token', data.user.token)
@@ -72,8 +74,24 @@
                 this.getDict(() => {
                   this._getFunctionCategroy(() => {
                     this._getCurrentUser(data.user.id, () => {
-                      // this.$router.push({name: 'artCompanyIndex'})
-                      this.$router.push({path: '/artcompany'})
+                      let currentUser = JSON.parse(Cache.get('CurrentUser'))
+                      this.$myConsoleLog(' currentUser ', currentUser, '#8B795E')
+                      switch (currentUser.userType) {
+                        case USER_TYPE_STU:
+                          this.$myConsoleLog('LOGIN USER_TYPE_STU：', USER_TYPE_STU, '#838B83')
+                          Util.setCurrentStudent(currentUser.code, () => {
+                            this.$myConsoleLog('LOGIN USER_TYPE_STU 2：', USER_TYPE_STU, '#838B83')
+                            this.$router.push({path: '/art_candidate'})
+                          })
+                          break
+                        case USER_TYPE_COM:
+                          this.$myConsoleLog('LOGIN USER_TYPE_COM：', USER_TYPE_COM, '#473C8B')
+                          Util.setCurrentCompany(currentUser.code, () => {
+                            this.$myConsoleLog('LOGIN USER_TYPE_COM 2：', USER_TYPE_STU, '#838B83')
+                            this.$router.push({path: '/art_company'})
+                          })
+                          break
+                      }
                     })
                   })
                 })
@@ -109,7 +127,6 @@
           }).then(res => {
             if (res.data.totalCount) {
               Cache.save('CurrentUser', JSON.stringify(res.data.data[0]))
-              // console.log('GetCurrentUser Complet!')
               callBack()
             }
           })

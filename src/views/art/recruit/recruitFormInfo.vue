@@ -194,28 +194,6 @@
     top 0
     left 0
     background-color #ffffff
-    .hd
-      position fixed
-      top 0
-      left 0
-      width 100%
-      height 48px
-      line-height 48px
-      background-color #58443d
-      color #ffffff
-      .wrapper
-        display flex
-        padding 0 15px
-        .item
-          flex 1
-          font-size 12px
-          &:first-child
-            text-align left
-          &:last-child
-            text-align right
-        .title
-          font-size 16px
-
     .bd
       position fixed
       left 0

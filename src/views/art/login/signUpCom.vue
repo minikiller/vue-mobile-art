@@ -1,16 +1,35 @@
 <!--
-  描述：艺术中心-注册选择
+  描述：艺术中心-企业注册
   开发人：桑杨
-  开发日期：2018年2月9日09:06:26
+  开发日期：2018年2月9日08:30:02
 -->
 <template lang="pug">
-  div.sign-up
-    div.container
-      div.logo
-      router-link.btn.com(tag="div" v-bind:to="{name:'signUpCom'}")
-        div.text 招聘企业
-      router-link.btn.stu(tag="div" v-bind:to="{name:'signUpStu'}")
-        div.text 就业学生
+  div.signup
+    scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm")
+      div.from-warpper
+        div.title 企业信息注册
+        el-form.loginForm(v-bind:model="formModel" v-bind:rules="rules" ref="loginForm")
+          el-form-item(label="" prop="code")
+            el-input(v-model="formModel.code" v-on:focus="focus" placeholder="企业组织机构代码")
+          el-form-item(label="" prop="name")
+            el-input(v-model="formModel.name" placeholder="公司名称")
+          el-form-item(label="" prop="email")
+            el-input(v-model="formModel.email" placeholder="邮箱")
+          el-form-item(label="" prop="phone")
+            div.el-input
+              input.el-input__inner(type="tel" v-model="formModel.phone" placeholder="固定电话")
+          el-form-item(label="" prop="loginName")
+            el-input(v-model="formModel.loginName" placeholder="请输入登录名")
+          el-form-item(label="" prop="password")
+            el-input(type="password" v-model="formModel.password" placeholder="请输入密码" auto-complete="off")
+          el-form-item(label="" prop="confirmPassword")
+            el-input(type="password" v-model="formModel.confirmPassword" placeholder="确认密码" auto-complete="off")
+          el-form-item(label="")
+            div.btn-submit(v-on:click="onSubmit" size="large")
+              span 注册
+          el-form-item(label="" style="text-align: center;")
+            div.link-btn(v-on:click="goLogin") 返回登录
+    result(ref="result" v-on:close="resultClose")
 </template>
 <script type="text/ecmascript-6">
   import FormModel from './model'
@@ -182,59 +201,69 @@
     }
   }
 </script>
+<style lang="stylus" type="text/stylus">
+  .el-input__inner
+    height initial
+    line-height initial
+    padding 10px 15px
+
+  div, a, img
+    -webkit-tap-highlight-color transparent
+    -webkit-touch-callout none
+    -webkit-user-select none
+    user-select none
+
+</style>
 <style scoped lang="stylus" type="text/stylus">
-  .sign-up
-    position fixed
+  .scroll-form
+    height: 100%
+    overflow: hidden
+
+  .signup
+    position absolute
+    top 0
+    left 0
     width 100%
     height 100%
-    background 50% 50% url("./login_bg.png") no-repeat
+    background 50% 0% url("./login_bg.png") no-repeat
     background-size cover
-    .container
-      width 100%
-      top 15%
-      left 0
-      position fixed
-      .logo
-        width 100%
-        margin-bottom 50px
-        background url("./login_oa_top.png") no-repeat center center
-        background-size contain
-        &:after
-          padding-top 20%
-          display block
-          content ''
-      .btn
+    overflow hidden
+    .from-warpper
+      padding 0 15px
+      .title
+        text-align center
+        padding 40px 0 35px
+        color #58443d
+        font-weight bold
+        letter-spacing 10px
+        font-size 20px
+      .btn-submit
         position relative
-        margin 0 50px
-        border-radius 5px
-        & + .btn
-          margin-top 50px
-        &:before
-          content ''
+        width: 100%
+        background url("./button-bg.png") 50% 50% no-repeat
+        background-size cover
+        color #5c4611
+        border-radius 4px
+        overflow height
+        span
+          position absolute
           display block
-          padding-top 20%
-        &:after
-          position absolute
-          content ''
-          width 200%
-          height 200%
-          top 0
-          left 0
-          border 1px solid rgba(0, 0, 0, 0.2)
-          box-sizing border-box
-          border-radius 10px
-          transform scale(0.5)
-          transform-origin 0 0
-        .text
-          position absolute
+          text-align center
           width 100%
-          left 0
+          font-size 16px
           top 50%
           transform translate3d(0, -50%, 0)
-          text-align center
-          color #ffffff
-        &.com
-          background-color #ae935c
-        &.stu
-          background-color #402e27
+        &:after
+          display block
+          content ''
+          padding-top 50px
+          width 100%
+
+  .link-btn
+    font-size 14px
+    text-align center
+    text-decoration underline
+    color #cdb886
+    display inline-block
+    padding 0 10px
 </style>

@@ -10,18 +10,24 @@ Vue.use(Router)
 
 const _import = require('@/api/_import_' + process.env.NODE_ENV)
 
-const candidateForm = _import('art/candidate/candidateForm')
 const recruitForm = _import('art/recruit/recruitForm')
 const recruitResult = _import('art/recruit/recruitResult')
 const recruitFormInfo = _import('art/recruit/recruitFormInfo')
 const Login = _import('art/login/login')
 const StudentLogin = _import('art/login/studentLogin')
-const SignUp = _import('art/login/signup')
+const signUp = _import('art/login/signup')
+const signUpCom = _import('art/login/signUpCom')
+const signUpStu = _import('art/login/signUpStu')
 const RecruitCompanyInfo = _import('art/recruit/recruitCompanyInfo')
 const UpdatePassword = _import('admin/user/updatePassword')
+/* 企业招聘 */
 const ArtCompanyIndex = _import('art/recruit/index')
-/* 测试用 */
 const recuitTest = _import('art/recruit/recuitTest')
+/* 学生应聘 */
+// const ArtCandidateIndex = _import('art/candidate/index')
+const candidate = _import('art/candidate/candidate')
+const candidateForm = _import('art/candidate/candidateForm')
+const candidateInfo = _import('art/candidate/candidateInfo')
 
 Router.prototype.goBack = function () {
   this.isBack = true
@@ -47,9 +53,19 @@ const router = new Router({
       component: StudentLogin
     },
     {
-      path: '/signup',
-      name: 'signup',
-      component: SignUp
+      path: '/sign-up',  // 新用户注册
+      name: 'signUp',
+      component: signUp
+    },
+    {
+      path: '/sign-up-com',  // 新用户注册
+      name: 'signUpCom',
+      component: signUpCom
+    },
+    {
+      path: '/sign-up-stu',  // 新用户注册
+      name: 'signUpStu',
+      component: signUpStu
     },
     {
       path: '/art/recruitform',
@@ -57,23 +73,38 @@ const router = new Router({
       component: recruitForm
     },
     {
-      path: '/art/candidateform',
-      name: 'candidateform',
-      component: candidateForm
+      path: '/art_candidate',  // 艺术中心 企业招聘
+      component: ArtCompanyIndex,
+      children: [
+        {
+          path: '',
+          name: 'candidate',
+          component: candidate
+        },
+        {
+          path: '/art/candidate_form',
+          name: 'candidateForm',
+          component: candidateForm
+        },
+        {
+          path: '/art/candidate_info',
+          name: 'candidateInfo',
+          component: candidateInfo
+        }
+      ]
     },
     {
-      path: '/qrcode/comqrcode',
+      path: '/qrcode/comqrcode',  // 企业信息登记 二维码
       name: 'comqrcode',
       component: ComQrcode
     },
     {
-      path: '/qrcode/stuqrcode',
+      path: '/qrcode/stuqrcode',  // 学生信息登记 二维码
       name: 'stuqrcode',
       component: StuQrcode
     },
     {
-      path: '/artcompany',
-      name: 'artCompanyIndex',
+      path: '/art_company',  //  艺术中心 招聘公司
       component: ArtCompanyIndex,
       children: [
         {
@@ -117,7 +148,7 @@ router.beforeEach((to, from, next) => {
     next()
     return
   }
-  if (to.name === 'signup') {
+  if (to.name === 'signUp') {
     // 进入注册
     next()
     return

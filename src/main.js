@@ -27,9 +27,11 @@ Vue.use(router)
 // Vue.use(ElementUI)
 
 Vue.use(MyConsole)
+
 window.Vue = Vue
+
 /* eslint-disable no-new */
-new window.Vue({
+new Vue({
   el: '#app',
   router,
   template: '<App/>',

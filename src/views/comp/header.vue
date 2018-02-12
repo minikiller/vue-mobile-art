@@ -1,11 +1,16 @@
+<!--
+  描述：通用头部
+  开发人：桑杨
+  开发日期：2018年2月9日16:11:05
+-->
 <template lang="pug">
   div.header
     div.wrapper
       div.item
-        div(v-on:click="goBack") 返回
+        div(v-if="isVisibleLeft" v-on:click="goBack") 返回
       div.title {{title}}
       div.item
-        div(v-on:click="goBack") 关闭
+        div(v-if="isVisibleRight" v-on:click="goBack") 关闭
 </template>
 <script type="text/ecmascript-6">
   export default {
@@ -13,11 +18,19 @@
       title: {
         type: String,
         default: ''
+      },
+      isVisibleLeft: {
+        type: Boolean,
+        default: true
+      },
+      isVisibleRight: {
+        type: Boolean,
+        default: true
       }
     },
     methods: {
       goBack() {
-        this.$router.push({name: 'recuitTest'})
+        // this.$router.push({name: 'recuitTest'})
       }
     }
   }
