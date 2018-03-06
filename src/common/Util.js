@@ -3,6 +3,7 @@ import {Cache} from 'kalix-base'
 const companysURL = '/camel/rest/companys'
 const studentURL = '/camel/rest/students'
 
+// 保存当前企业信息到 Cache
 const setCurrentCompany = function (code, callBack) {
   window.Vue.axios.get(companysURL, {
     params: {
@@ -22,6 +23,7 @@ const setCurrentCompany = function (code, callBack) {
     }
   })
 }
+// 保存当前学生息到 Cache
 const setCurrentStudent = function (code, callBack) {
   window.Vue.axios.get(studentURL, {
     params: {

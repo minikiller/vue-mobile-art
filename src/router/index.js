@@ -72,8 +72,21 @@ const router = new Router({
       name: 'recruitform',
       component: recruitForm
     },
+    // 企业信息登记 二维码
     {
-      path: '/art_candidate',  // 艺术中心 企业招聘
+      path: '/qrcode/comqrcode',  // 企业信息登记 二维码
+      name: 'comqrcode',
+      component: ComQrcode
+    },
+    // 学生信息登记 二维码
+    {
+      path: '/qrcode/stuqrcode',  // 学生信息登记 二维码
+      name: 'stuqrcode',
+      component: StuQrcode
+    },
+    // 艺术中心 学生
+    {
+      path: '/art_candidate',
       component: ArtCompanyIndex,
       children: [
         {
@@ -81,30 +94,34 @@ const router = new Router({
           name: 'candidate',
           component: candidate
         },
+        // 学生简历
         {
-          path: '/art/candidate_form',
+          path: '/art_candidate/form',
           name: 'candidateForm',
           component: candidateForm
         },
+        // 学生基本信息
         {
-          path: '/art/candidate_info',
+          path: '/art_candidate/info',
           name: 'candidateInfo',
           component: candidateInfo
+        },
+        // 提交信息反馈结果
+        {
+          path: '/art_candidate/result/:key',
+          name: 'recruitResult',
+          component: recruitResult
+        },
+        {
+          path: '/art_candidate/result/:key/:status',
+          name: 'recruitResult',
+          component: recruitResult
         }
       ]
     },
+    //  艺术中心 公司招聘
     {
-      path: '/qrcode/comqrcode',  // 企业信息登记 二维码
-      name: 'comqrcode',
-      component: ComQrcode
-    },
-    {
-      path: '/qrcode/stuqrcode',  // 学生信息登记 二维码
-      name: 'stuqrcode',
-      component: StuQrcode
-    },
-    {
-      path: '/art_company',  //  艺术中心 招聘公司
+      path: '/art_company',
       component: ArtCompanyIndex,
       children: [
         {
@@ -112,25 +129,33 @@ const router = new Router({
           name: 'recuitTest',
           component: recuitTest
         },
+        // 企业信息
         {
-          path: '/art/result/formInfo',
-          name: 'recruitFormInfo',
-          component: recruitFormInfo
-        },
-        {
-          path: '/art/result/companyInfo',
+          path: '/art_company/companyInfo',
           name: 'companyInfo',
           component: RecruitCompanyInfo
         },
+        // 招聘信息
         {
-          path: '/art/result/:key/:status',
-          name: 'recruitResult',
-          component: recruitResult
+          path: '/art_company/formInfo',
+          name: 'recruitFormInfo',
+          component: recruitFormInfo
         },
+        // 修改密码
         {
           path: '/user/updatePassword',
           name: 'updatePassword',
           component: UpdatePassword
+        },
+        // 提交信息反馈结果
+        {
+          path: '/art/result',
+          name: 'recruitResult',
+          component: recruitResult,
+          children: [
+            {path: '/:key', name: 'header', component: recruitResult},
+            {path: '/:key/:status', name: 'navigater', component: recruitResult}
+          ]
         }
       ]
     },
@@ -138,7 +163,9 @@ const router = new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
-    }
+    },
+    {path: '/404', name: '404', component: require('@/views/errorPage/404')},
+    {path: '*', redirect: '/404', hidden: true}
   ]
 })
 

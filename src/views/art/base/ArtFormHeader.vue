@@ -45,10 +45,9 @@
       }
     },
     mounted() {
-      this.getUser()
     },
     activated() {
-      // EventBus.$emit('ON_COMPANY_INFO_REFIESH', this.getUser())
+      this.getUser()
     },
     methods: {
       onCloseMenu(callBack) {
@@ -72,11 +71,11 @@
         switch (currentUser.userType) {
           case USER_TYPE_STU:
             this._getStudent()
-            this.optionLink = '/art/candidate_info'
+            this.optionLink = 'candidateInfo'
             break
           case USER_TYPE_COM:
             this._getCompany()
-            this.optionLink = '/art/result/companyInfo'
+            this.optionLink = 'companyInfo'
             break
         }
       },
@@ -91,6 +90,7 @@
       _getCompany() {
         // 获取企业信息
         let currentCompany = JSON.parse(Cache.get('CurrentCompany'))
+        // this.$myConsoleLog(' currentCompany ', currentCompany, '#8B1C62')
         if (currentCompany) {
           this.formModel = currentCompany
           this.natureName = this._dictTranslate(this.formModel.nature, '企业性质')
@@ -106,10 +106,11 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.axios.get(logoutURL, {}).then(response => {
-            Cache.clear()
-            this.$router.push({name: '/'})
-          })
+          this.axios.get(logoutURL, {})
+            .then(response => {
+              Cache.clear()
+              this.$router.push({name: '/'})
+            })
         }).catch(() => {
         })
       },
@@ -120,7 +121,7 @@
       },
       optionClick() {
         this.onCloseMenu(() => {
-          this.$router.push({path: this.optionLink})
+          this.$router.push({name: this.optionLink})
         })
       },
       _axiosRequest(reqUrl, reqParams) {
@@ -222,7 +223,7 @@
           setTopLine()
         &:first-child
           &:before
-            overflow hidden
+            visibility hidden
         .btn-option
           display inline-block
           color #888888

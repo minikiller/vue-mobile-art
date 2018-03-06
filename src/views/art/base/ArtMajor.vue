@@ -199,7 +199,7 @@
 
   .options-bd
     position absolute
-    overflow auto
+    overflow hidden
     bottom 0
     right 0
     left 0

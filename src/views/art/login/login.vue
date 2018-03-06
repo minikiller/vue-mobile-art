@@ -75,7 +75,7 @@
                   this._getFunctionCategroy(() => {
                     this._getCurrentUser(data.user.id, () => {
                       let currentUser = JSON.parse(Cache.get('CurrentUser'))
-                      this.$myConsoleLog(' currentUser ', currentUser, '#8B795E')
+                      this.$myConsoleLog(' 当前用户 ', currentUser, '#8B795E')
                       switch (currentUser.userType) {
                         case USER_TYPE_STU:
                           this.$myConsoleLog('LOGIN USER_TYPE_STU：', USER_TYPE_STU, '#838B83')
@@ -121,19 +121,14 @@
         }
       },
       _getCurrentUser(_id, callBack) {
-        if (!Cache.get('CurrentUser')) {
-          this.$http.get(usersURL, {
-            params: {jsonStr: '{id: ' + _id + '}'}
-          }).then(res => {
-            if (res.data.totalCount) {
-              Cache.save('CurrentUser', JSON.stringify(res.data.data[0]))
-              callBack()
-            }
-          })
-        } else {
-          // console.log('GetCurrentUser Complet!')
-          callBack()
-        }
+        this.$http.get(usersURL, {
+          params: {jsonStr: '{id: ' + _id + '}'}
+        }).then(res => {
+          if (res.data.totalCount) {
+            Cache.save('CurrentUser', JSON.stringify(res.data.data[0]))
+            callBack()
+          }
+        })
       },
       getDict(callBack) {
         /* 初始化数据字典 */

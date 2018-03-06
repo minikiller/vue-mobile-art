@@ -15,9 +15,10 @@
       this.$myConsoleLog('Route isBack', isBack, '#228B22')
       this.$myConsoleLog('Route to', to, '#B22222')
       this.$myConsoleLog('Route from', from, '#00008B')
-      if (to.name === 'recuitTest') {
+      if (to.name === 'recuitTest' || to.name === 'candidate') {
         isBack = true
       }
+      this.$myConsoleLog('Route isBack', isBack, '#8B3A3A')
       if (isBack) {
         this.transitionName = 'slide-right'
       } else {

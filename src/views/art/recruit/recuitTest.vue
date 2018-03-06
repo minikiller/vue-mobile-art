@@ -1,48 +1,46 @@
 <template lang="pug">
-  keep-alive
-    div.art-form(data-artform)
-      div
-        art-form-header(v-on:optionClick="optionClick")
-        div.list-title
-          div.title 我的招聘信息
-          div.operation(v-if="tableData.length")
-            span.btn-item(v-if="false")
-              i.art-iconfont.icon-sousuo
-              | 搜索
-            span.btn-item(v-if="true" v-on:click="checkAll")
-              i.art-iconfont.icon-xuanze.icon-1(v-if="isCheckAll")
-              i.art-iconfont.icon-xuanze1.icon-2(v-else)
-              | 全选
-            span.btn-item(v-if="true" v-on:click="deleteChecked")
-              i.art-iconfont.icon-shanchu
-              | 删除选中
-        div.list-wrapper
-          transition(name="loading")
-            div.loading(v-if="isLoading") 加载中……
-          scroll.shortcut(v-if="tableData.length" v-bind:refreshDelay="120" ref="shortcut" v-bind:data="tableData"
-          v-bind:pullup="true"
-          v-bind:pulldown="true"
-          v-on:scrollToEnd="scrollToEnd"
-          v-on:pulldown="pulldown"
-          )
-            div
-              split
-              template(v-for="item in tableData")
-                art-item(v-bind:itemData="item" v-on:itemCheckedClick="onItemChecked" v-on:itemEditClick="onItemEdit" v-on:itemDeletetClick="onItemDelete")
-                split
-              div.load-more
-                div(v-if="!isFinish") 加载更多
-                div(v-else) 没有更多记录
-          div.no-list(v-if="!tableData.length")
-            div.cnt
-              i.art-iconfont.icon-meiyouchaxunjieguo.icon
-              div.text 还没有应聘信息
-                br
-                | 点击
-                router-link.here(tag="span" v-bind:to="{path:'/art/result/formInfo'}") [这里]
-                | 新建应聘信息
-        div.footer
-          router-link.btn(tag="div" v-bind:to="{path:'/art/result/formInfo'}") 新建招聘信息
+  div.art-form(data-artform)
+    art-form-header(v-on:optionClick="optionClick")
+    div.list-title
+      div.title 我的招聘信息
+      div.operation(v-if="tableData.length")
+        span.btn-item(v-if="false")
+          i.art-iconfont.icon-sousuo
+          | 搜索
+        span.btn-item(v-if="true" v-on:click="checkAll")
+          i.art-iconfont.icon-xuanze.icon-1(v-if="isCheckAll")
+          i.art-iconfont.icon-xuanze1.icon-2(v-else)
+          | 全选
+        span.btn-item(v-if="true" v-on:click="deleteChecked")
+          i.art-iconfont.icon-shanchu
+          | 删除选中
+    div.list-wrapper
+      transition(name="loading")
+        div.loading(v-if="isLoading") 加载中……
+      scroll.shortcut(v-if="tableData.length" v-bind:refreshDelay="120" ref="shortcut" v-bind:data="tableData"
+      v-bind:pullup="true"
+      v-bind:pulldown="true"
+      v-on:scrollToEnd="scrollToEnd"
+      v-on:pulldown="pulldown"
+      )
+        div
+          split
+          template(v-for="item in tableData")
+            art-item(v-bind:itemData="item" v-on:itemCheckedClick="onItemChecked" v-on:itemEditClick="onItemEdit" v-on:itemDeletetClick="onItemDelete")
+            split
+          div.load-more
+            div(v-if="!isFinish") 加载更多
+            div(v-else) 没有更多记录
+      div.no-list(v-if="!tableData.length")
+        div.cnt
+          i.art-iconfont.icon-meiyouchaxunjieguo.icon
+          div.text 还没有应聘信息
+            br
+            | 点击
+            router-link.here(tag="span" v-bind:to="{name:'recruitFormInfo'}") [这里]
+            | 新建应聘信息
+    div.footer
+      router-link.btn(tag="div" v-bind:to="{name:'recruitFormInfo'}") 新建招聘信息
 </template>
 <script type="text/ecmascript-6">
   import ArtFormHeader from '../base/ArtFormHeader'
@@ -80,6 +78,7 @@
     activated() {
       console.log(' ===== activated ===== ')
       this.pager.currentPage = 1
+      this.isFinish = false
       this.getData()
     },
     created() {
@@ -87,7 +86,7 @@
     },
     mounted() {
       console.log(' ===== mounted ===== ')
-      this.chkContinue()
+      this.init()
       this.tempArr = []
       /* eslint-disable */
       document.addEventListener("WeixinJSBridgeReady", function () {
@@ -135,14 +134,14 @@
       _chkCompanyInfo() {
         let currentCompany = JSON.parse(Cache.get('CurrentCompany'))
         /* 新注册用户-完善企业信息 */
-        this.$myConsoleLog('=== company ', currentCompany, '#27408B')
+        // this.$myConsoleLog('=== company ', currentCompany, '#27408B')
         if (!currentCompany.address) {
           this.$router.push({name: 'companyInfo'})
         }
       },
       chkContinue() {
+        this.$myConsoleLog('chkContinue', this.$route, '#ee8765')
         this.init()
-        console.log('%cthis.$route', 'color:#550000', this.$route)
         this.getData()
       },
       optionClick(company) {
@@ -153,6 +152,7 @@
         this.$refs.formInfo.open()
       },
       getData() {
+        this.$myConsoleLog('[getData this.isFinish]', this.isFinish, '#191970')
         if (!this.isFinish) {
           let _data = {
             jsonStr: '{"%companyCode%": "' + this.currentUser.code + '"}',
@@ -165,6 +165,7 @@
             params: _data
           }).then(response => {
             // console.log('response', response)
+            this.$myConsoleLog('[response]', response, '#550000')
             if (response.data.data) {
               let resData = response.data.data.map((item, index) => {
                 item.rowNumber = index + this.rowNo
@@ -193,7 +194,7 @@
       },
       onItemEdit(item) {
         Cache.save('CurrentRecruit', JSON.stringify(item))
-        this.$router.push({path: '/art/result/formInfo'})
+        this.$router.push({name: 'recruitFormInfo'})
       },
       onItemDelete(item) {
         this.$confirm('确定要删除吗?', '提示', {

@@ -39,7 +39,7 @@
 <script type="text/ecmascript-6">
   import ArtHeader from '../../comp/header'
   import FormModel from './companyModel'
-  import {Message, EventBus, Cache} from 'kalix-base'
+  import {Message, Cache} from 'kalix-base'
   import ArtDistSelect from '../base/ArtDistSelect'
   import Scroll from '../base/scroll'
   import Util from '@/common/Util'
@@ -103,16 +103,19 @@
               data: this.formModel,
               params: {}
             }).then(response => {
+              Util.setCurrentCompany(this.formModel.code)
               if (response.data.success) {
                 this.isVisible = false
                 this.$refs.dialogForm.resetFields()
-                EventBus.$emit('ON_COMPANY_INFO_REFIESH')
+
+                // // 更新 Cache
+                // EventBus.$emit('ON_COMPANY_INFO_REFIESH')
+
                 this.resultRedirect('success')
                 // this.$router.push({path: '/art/recuit/success/company'})
               } else {
                 this.resultRedirect('error')
               }
-              Util.setCurrentCompany(this.formModel.code)
               // 刷新列表
               console.log('[kalix] dialog submit button clicked !')
               this.isVisible = false

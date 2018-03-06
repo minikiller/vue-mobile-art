@@ -50,7 +50,7 @@
       },
       initValue() {
         this.currentValue = []
-        if (this.value.length > 0) {
+        if (this.value && this.value.length > 0) {
           this.currentValue = this.value.split(',')
         }
       },

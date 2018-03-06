@@ -1,3 +1,8 @@
+<!--
+  描述：提交信息反馈结果
+  开发人：juezhan
+  开发日期：2018年3月5日09:59:17
+-->
 <template lang="pug">
   div.art-result(v-bind:class="result.type")
     div.wrapper
@@ -19,13 +24,13 @@
         isList: true
       }
     },
-    mounted() {
+    activated() {
       this.result = Object.assign({}, RESULT)
       history.pushState(null, null, document.URL)
       window.addEventListener('popstate', function () {
         history.pushState(null, null, document.URL)
       })
-      // console.log('this.$route', this.$route)
+      this.$myConsoleLog('this.$route', this.$route, '#009ACD')
       let params = {
         success: {
           type: 'success',
