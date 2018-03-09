@@ -10,25 +10,27 @@
           i.art-iconfont.icon-bianji
     div.center
       div.s-flex
-        label 薪资：
-        | {{itemData.salary}}
-      div.s-flex
-        label 工作省份：
-        | {{itemData.regionName}}
+        div.s-flex_item
+          label 薪资：
+          | {{itemData.salary}}
+        div.s-flex_item
+          label 学历：
+          | {{itemData.education}}
       div.s-flex
         div.s-flex_item
-          label 期望行业：
-          | {{itemData.expectingIndustryName}}
+          label 工作省份：
+          | {{itemData.regionName}}
         div.s-flex_item
           label 工作类型：
           | {{itemData.jobType}}
       div.s-flex
         div.s-flex_item
+          label 期望行业：
+          | {{itemData.expectingIndustryName}}
+      div.s-flex
+        div.s-flex_item
           label 所学软件：
           | {{itemData.learningSofts}}
-        div.s-flex_item
-          label 学历：
-          | {{itemData.education}}
       div.s-flex
         div.s-flex_item
           label 发布时间：

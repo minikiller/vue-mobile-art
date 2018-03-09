@@ -28,6 +28,7 @@
   import Scroll from '../base/scroll'
   import Split from '../base/split'
 
+  import {Cache} from 'kalix-base'
   import {CandidateURL} from '../config.toml'
 
   export default {
@@ -50,17 +51,27 @@
             targetField: 'expectingIndustryName',
             sourceField: 'expectingIndustry'
           }
-        ]
+        ],
+        currentUser: null
       }
+    },
+    mounted() {
+      this.init()
     },
     methods: {
       onItemChecked() {
       },
       init() {
-        if (!this.currentUser) {
-          this.currentUser = JSON.parse(Cache.get('CurrentUser'))
+        this._chkStudentInfo()
+      },
+      getCompanyCode() {
+      },
+      // 检查是否有“专业”信息
+      _chkStudentInfo() {
+        let currentStudent = JSON.parse(Cache.get('CurrentStudent'))
+        if (!currentStudent.majorId) {
+          this.$router.push({name: 'candidateInfo'})
         }
-        this.getCompanyCode()
       }
     },
     components: {
