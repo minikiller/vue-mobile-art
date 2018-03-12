@@ -10,6 +10,7 @@ Vue.use(Router)
 
 const _import = require('@/api/_import_' + process.env.NODE_ENV)
 
+// const recruit = _import('art/recruit/recruit')
 const recruitForm = _import('art/recruit/recruitForm')
 const recruitResult = _import('art/recruit/recruitResult')
 const recruitFormInfo = _import('art/recruit/recruitFormInfo')
