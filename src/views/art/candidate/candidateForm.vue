@@ -21,7 +21,7 @@
               el-form-item.s-flex_item.kalix-form-table-td(label="工作城市" prop="city" v-bind:rules="rules.city" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.city")
               el-form-item.s-flex_item.kalix-form-table-td(label="期望行业" prop="expectingIndustry" v-bind:rules="rules.expectingIndustry" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.industry" appName="art" dictType="企业行业" style="width:100%")
+                art-dist-select(v-model="formModel.expectingIndustry" appName="art" dictType="企业行业" style="width:100%")
               el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
                 art-dist-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
               el-form-item.s-flex_item.kalix-form-table-td(label="所学软件" prop="learningSofts" v-bind:rules="rules.learningSofts" v-bind:label-width="labelWidth")
@@ -75,16 +75,17 @@
     },
     methods: {
       open() {
-        let item = JSON.parse(Cache.get('CurrentRecruit'))
+        let item = this.$route.params.item
+        this.$myConsoleLog(' this.$route.params.item ', this.$route.params.item, '#884888')
         this.initSwiper()
         if (item) {
           this.formModel = item
           this.isEdit = true
-          this.positionRequires = this.formModel.positionRequires.replace(/<br \/>/g, '\n')
+          // this.positionRequires = this.formModel.positionRequires.replace(/<br \/>/g, '\n')
         } else {
           this.formModel = Object.assign({}, FormModel)
           this.isEdit = false
-          this.positionRequires = ''
+          // this.positionRequires = ''
           // console.log('FormModel', FormModel)
         }
         this.getStudent()
@@ -100,14 +101,8 @@
           this.$refs.scrollForm.refresh()
         }, 20)
       },
-      onCodeFocus() {
-        this.initData()
-      },
       initData() {
-        let currentUser = JSON.parse(Cache.get('CurrentUser'))
-        // this.$myConsoleLog('[CurrentUser]', currentUser, '#550000')
         // this.$set(this.formModel, 'name', '')
-        this.formModel.code = currentUser.code
         this.formModel.name = ''
         this.formModel.sex = ''
         this.formModel.email = ''
@@ -132,49 +127,51 @@
       },
       getStudent() {
         this.initData()
-        let studentNo = this.formModel.code
-        // let sort = '[{\'property\': \'updateDate\', \'direction\': \'DESC\'}]'
-        if (studentNo) {
-          let params = {
-            params: {
-              'jsonStr': {'code': studentNo},
-              'page': 1,
-              'limit': 1,
-              'sort': null
+        let currentUser = JSON.parse(Cache.get('CurrentUser'))
+        if (currentUser) {
+          let studentNo = currentUser.code
+          // let sort = '[{\'property\': \'updateDate\', \'direction\': \'DESC\'}]'
+          if (studentNo) {
+            let params = {
+              params: {
+                'jsonStr': {'code': studentNo},
+                'page': 1,
+                'limit': 1,
+                'sort': null
+              }
             }
-          }
-          Vue.axios.get(StudentURL, params).then((response) => {
-            if (response.data.data && response.data.data.length > 0) {
-              let rec = response.data.data[0]
-              /* this.$nextTick(() => {
-               this.formModel = Object.assign({}, rec)
-               }) */
-              // this.$set(this.formModel, 'majorId', rec.majorId)
-              this.formModel.name = rec.name
-              this.formModel.sex = rec.sex
-              this.formModel.email = rec.email
-              this.formModel.phone = rec.phone
-              this.formModel.mobile = rec.mobile
-              this.formModel.majorId = rec.majorId
-              this.formModel.majorName = rec.majorName
-              this.formModel.instructor = rec.instructor
+            Vue.axios.get(StudentURL, params).then((response) => {
+              if (response.data.data && response.data.data.length > 0) {
+                let rec = response.data.data[0]
+                /* this.$nextTick(() => {
+                 this.formModel = Object.assign({}, rec)
+                 }) */
+                // this.$set(this.formModel, 'majorId', rec.majorId)
+                this.formModel.name = rec.name
+                this.formModel.sex = rec.sex
+                this.formModel.email = rec.email
+                this.formModel.phone = rec.phone
+                this.formModel.mobile = rec.mobile
+                this.formModel.majorId = rec.majorId
+                this.formModel.majorName = rec.majorName
+                this.formModel.instructor = rec.instructor
 //              this.formModel.identificationCard = rec.identificationCard
-              this.formModel.birthday = rec.birthday
-              this.formModel.nation = rec.nation
-              this.formModel.placeOfOrigin = rec.placeOfOrigin
-              this.formModel.politicalStatus = rec.politicalStatus
-              this.formModel.joinPartyDate = rec.joinPartyDate
-              this.formModel.address = rec.address
-              this.formModel.postalcode = rec.postalcode
-              this.formModel.homePhone = rec.homePhone
-              this.formModel.province = rec.province
-              this.formModel.entranceYear = rec.entranceYear
-              this.formModel.trainingLevel = rec.trainingLevel
-              this.formModel.period = rec.period
-            }
-          })
-        } else {
-          alert('请输入学号')
+                this.formModel.birthday = rec.birthday
+                this.formModel.nation = rec.nation
+                this.formModel.placeOfOrigin = rec.placeOfOrigin
+                this.formModel.politicalStatus = rec.politicalStatus
+                this.formModel.joinPartyDate = rec.joinPartyDate
+                this.formModel.address = rec.address
+                this.formModel.postalcode = rec.postalcode
+                this.formModel.homePhone = rec.homePhone
+                this.formModel.province = rec.province
+                this.formModel.entranceYear = rec.entranceYear
+                this.formModel.trainingLevel = rec.trainingLevel
+                this.formModel.period = rec.period
+                this.formModel.code = rec.code
+              }
+            })
+          }
         }
       },
       onCancelClick() {
@@ -204,11 +201,10 @@
 //                Message.success(response.data.msg)
                 this.visible = false
                 this.$refs.dialogForm.resetFields()
-                // this.resultRedirect('success')
-                this.$router.push({path: '/art/result/success'})
+                this._resultRedirect('success')
                 // window.open(window.location.origin + '/art/result/' + target)
               } else {
-                this.resultRedirect('error')
+                this._resultRedirect('error')
               }
               // 刷新列表
               console.log('[kalix] dialog submit button clicked !')
@@ -220,8 +216,8 @@
           }
         })
       },
-      resultRedirect(target) {
-        this.$router.push({path: '/art/result/' + target})
+      _resultRedirect(target) {
+        this.$router.push({name: 'recruitResult', params: {key: target, status: 'candidate'}})
         // window.open(window.location.origin + '/art/result/' + target)
       }
     },

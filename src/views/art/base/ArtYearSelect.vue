@@ -33,13 +33,11 @@
         selectedOptions: []
       }
     },
-    mounted() {
+    created() {
       this.getDict()
     },
     methods: {
       getDict() {
-        this.$myConsoleLog('this.yearStart', this.yearStart, '#104E8B')
-        this.$myConsoleLog('this.yearEnd', this.yearEnd, '#551A8B')
         for (let i = this.yearStart; i <= this.yearEnd; i++) {
           this.items.push(i)
         }
@@ -49,8 +47,8 @@
       currentValue(newValue) {
         this.$emit('input', newValue)
       },
-      value(newValue) {
-        this.currentValue = newValue
+      value(newValue, oldValue) {
+        this.currentValue = newValue + ''
       }
     }
   }

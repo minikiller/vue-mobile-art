@@ -49,7 +49,8 @@
         currentText: '',
         currentValue: this.value,
         visible: false,
-        options: [] // 表格数据
+        options: [], // 表格数据
+        cValue: null
       }
     },
     created() {
@@ -77,23 +78,25 @@
         }).then(res => {
           if (res.data.children) {
             this.options = res.data.children
+            this.$myConsoleLog(' this.cValue ', this.cValue, '#005555')
+            let ct = null
+            for (let i = 0; i < this.options.length; i++) {
+              if (this.options[i].id === this.cValue) {
+                ct = this.options[i]
+                break
+              } else {
+                for (let j = 0; j < this.options[i].children.length; j++) {
+                  if (this.options[i].children[j].id === this.cValue) {
+                    ct = this.options[i].children[j]
+                    break
+                  }
+                }
+              }
+            }
+            // this.$myConsoleLog('CT:', ct, '#445555')
+            ct && (this.currentText = ct.name)
           }
-          // 处理子节点children标签为空的数据,移除children标签
-          // this.dealWithNullChildren(this.treeData)
-          this.$myConsoleLog(' ==== === ', this.options, '#8B2500')
         })
-
-        // 获取指定机构id的父节点路径
-        if (this.value) {
-          let treeParentPathURL = this.treeDataURL + '/' + this.value + '/parentpath'
-          this.axios.request({
-            method: 'GET',
-            url: treeParentPathURL,
-            params: {}
-          }).then(res => {
-            this.selectedOptions = JSON.parse('[' + res.data + ']')
-          })
-        }
       },
       close() {
         this.visible = false
@@ -115,6 +118,21 @@
     components: {
       Split,
       Scroll
+    },
+    watch: {
+      currentValue(newValue) {
+        // this.$emit('input', newValue)
+      },
+      value(newValue, oldValue) {
+        setTimeout(() => {
+          window.ops = this.options
+          // this.options.find(e => {
+          //   return e.id === newValue
+          // })
+        }, 20)
+        // this.currentValue = newValue + ''
+        this.cValue = newValue
+      }
     }
   }
 </script>

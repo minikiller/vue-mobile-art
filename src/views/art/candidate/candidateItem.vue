@@ -51,6 +51,7 @@
     },
     methods: {
       onEdit() {
+        this.$router.push({name: 'candidateForm', params: {item: this.itemData}})
       },
       onDelete() {
       },

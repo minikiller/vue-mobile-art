@@ -16,12 +16,18 @@
 
 </template>
 <script type="text/ecmascript-6">
+  import {Cache} from 'kalix-base'
+
   const RESULT = {title: '', cls: '', type: ''}
+  const USER_TYPE_STU = 1 // 学生登录
+  const USER_TYPE_COM = 3 // 企业登录
   export default {
     data() {
       return {
         result: Object.assign({}, RESULT),
-        isList: true
+        isList: true,
+        goHomeName: '',
+        continueAddName: ''
       }
     },
     activated() {
@@ -52,16 +58,27 @@
         this.isList = !(this.$route.params.status === 'company')
         this.result = params[this.$route.params.key]
       }
+      let currentUser = JSON.parse(Cache.get('CurrentUser'))
+      switch (currentUser.userType) {
+        case USER_TYPE_STU:
+          this.goHomeName = 'candidate'
+          this.continueAddName = 'candidateForm'
+          break
+        case USER_TYPE_COM:
+          this.goHomeName = 'recuitTest'
+          this.continueAddName = 'recruitFormInfo'
+          break
+      }
     },
     methods: {
       goLogin() {
         this.$router.push({name: '/'})
       },
       goHome() {
-        this.$router.push({name: 'recuitTest'})
+        this.$router.push({name: this.goHomeName})
       },
       continueAdd() {
-        this.$router.push({name: 'recruitFormInfo'})
+        this.$router.push({name: this.continueAddName})
       }
     }
   }

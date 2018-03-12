@@ -76,13 +76,20 @@
         }
       }
     },
-    created() {
+    mounted() {
+      this.$myConsoleLog('mounted', 'mounted', '#FF5555')
+      this.init()
+    },
+    activated() {
+      this.$myConsoleLog('activated', 'activated', '#FF5555')
       this.init()
     },
     methods: {
       init() {
         this.tempArr = []
         this._getCurrentUser()
+        this.listLoadMoreIsFinish = false
+        this.pager.currentPage = 1
         this._getData()
       },
       onCheckAll(flag) {
@@ -139,10 +146,10 @@
       },
       _getCurrentUser() {
         this.currentUser = JSON.parse(Cache.get('CurrentUser'))
-        this.$myConsoleLog('[this.currentUser]', this.currentUser, '#005555')
+        // this.$myConsoleLog('[this.currentUser]', this.currentUser, '#005555')
       },
       _getData() {
-        this.$myConsoleLog('getData this.isFinish', this.listLoadMoreIsFinish, '#191970')
+        // this.$myConsoleLog('getData this.isFinish', this.listLoadMoreIsFinish, '#191970')
         if (!this.listLoadMoreIsFinish) {
           let _data = {
             jsonStr: '{"%code%": "' + this.currentUser.code + '"}',

@@ -30,7 +30,7 @@
       el-form-item.s-flex_item.kalix-form-table-td(label="辅导员" prop="instructor" v-bind:label-width="labelWidth")
         el-input(v-model="formModel.instructor")
       el-form-item.s-flex_item.kalix-form-table-td(label="出生日期" prop="birthday" v-bind:label-width="labelWidth")
-        input.el-input__inner(type="date")
+        input.el-input__inner(type="date" v-model="formModel.birthday")
       el-form-item.s-flex_item.kalix-form-table-td(label="民族" prop="nation" v-bind:label-width="labelWidth")
         el-input(v-model="formModel.nation")
       el-form-item.s-flex_item.kalix-form-table-td(label="籍贯" prop="placeOfOrigin" v-bind:label-width="labelWidth")
@@ -40,13 +40,13 @@
       el-form-item.s-flex_item.kalix-form-table-td(label="政治面貌" prop="politicalStatus" v-bind:label-width="labelWidth")
         el-input(v-model="formModel.politicalStatus")
       el-form-item.s-flex_item.kalix-form-table-td(label="入党(团)时间" prop="joinPartyDate" v-bind:label-width="labelWidth")
-        input.el-input__inner(type="date")
+        input.el-input__inner(type="date" v-model="formModel.joinPartyDate")
       el-form-item.s-flex_item.kalix-form-table-td(label="邮政编码" prop="postalcode" v-bind:label-width="labelWidth")
         el-input(v-model="formModel.postalcode")
       el-form-item.s-flex_item.kalix-form-table-td(label="家庭联系电话" prop="homePhone" v-bind:label-width="labelWidth")
         el-input(v-model="formModel.homePhone")
       el-form-item.s-flex_item.kalix-form-table-td(label="生源省份" prop="province" v-bind:label-width="labelWidth")
-        art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
+        art-dist-select(v-model="formModel.province" appName="art" dictType="省份")
       el-form-item.s-flex_item.kalix-form-table-td(label="入学年份" prop="entranceYear" v-bind:label-width="labelWidth")
         art-year-select(v-model="formModel.entranceYear")
       el-form-item.s-flex_item.kalix-form-table-td(label="学生培养层次" prop="trainingLevel" v-bind:label-width="labelWidth")
@@ -60,7 +60,6 @@
   import ArtDistSelect from '../base/ArtDistSelect'
   import ArtYearSelect from '../base/ArtYearSelect'
   import ArtMajor from '../base/ArtMajor'
-  import Scroll from '../base/scroll'
   import {StudentURL} from '../config.toml'
 
   export default {
@@ -87,8 +86,7 @@
       ArtBaseForm,
       ArtDistSelect,
       ArtYearSelect,
-      ArtMajor,
-      Scroll
+      ArtMajor
     }
   }
 </script>

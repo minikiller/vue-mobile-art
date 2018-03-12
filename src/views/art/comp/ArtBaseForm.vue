@@ -13,6 +13,8 @@
 <script type="text/ecmascript-6">
   import ArtHeader from './ArtHeader'
   import Scroll from '../base/scroll'
+  import {Message, Cache} from 'kalix-base'
+  import Util from '@/common/Util'
 
   export default {
     props: {
@@ -23,15 +25,61 @@
       formModel: { // dialog中的form的数据模型，由父组件传递
         type: Object,
         required: true
+      },
+      targetURL: {  // 业务数据提交的url,包括add，delete，update
+        type: String
       }
     },
     data() {
       return {
-        isEnable: true
+        isEnable: true,
+        tempFormModel: JSON.stringify(Object.assign({}, this.formModel))
       }
+    },
+    activated() {
+      this.open()
     },
     methods: {
       onSubmitClick() {
+        this.$refs.dialogForm.validate((valid) => {
+          if (valid) {
+            this.$delete(this.formModel, 'version')
+            this.$delete(this.formModel, 'version_')
+            this.axios.request({
+              method: this.isEdit ? 'PUT' : 'POST',
+              url: this.isEdit ? `${this.targetURL}/${this.formModel.id}` : this.targetURL,
+              data: this.formModel,
+              params: {}
+            }).then(response => {
+              if (response.data.success) {
+                this.$refs.dialogForm.resetFields()
+                // Util.setCurrentCompany(this.formModel.code)
+                Util.setCurrentStudent(this.formModel.code)
+                this.resultRedirect('success')
+              } else {
+                this.resultRedirect('error')
+              }
+            })
+          } else {
+            Message.error('请检查输入项！')
+            return false
+          }
+        })
+      },
+      open() {
+        let row = JSON.parse(Cache.get('CurrentStudent'))
+        this.$myConsoleLog(' CurrentStudent open ', row, '#8B1C62')
+        this.isVisible = true
+        if (row) {
+          this.isEdit = true
+          this.$emit('update:formModel', row)  // 设置sync才有效
+        } else {
+          this.isEdit = false
+          this.$emit('update:formModel', JSON.parse(this.tempFormModel))
+        }
+      },
+      resultRedirect(target) {
+        this.$router.push({name: 'recruitResult', params: {key: target, status: 'candidate'}})
       }
     },
     components: {
