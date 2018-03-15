@@ -29,7 +29,7 @@
               el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:rules="rules.education" v-bind:label-width="labelWidth")
                 el-input(v-model="formModel.education")
               el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
-                el-input-number(v-model="formModel.salary" v-bind:step="500" style="width:100%")
+                el-input-number(v-model="formModel.salary" v-bind:step="500" style="float:right")
               el-form-item.kalix-form-table-td(label="个人特点" prop="skills" v-bind:rules="rules.skills" v-bind:label-width="labelWidth")
                 art-dist-check-list(v-model="formModel.skills" appName="art" dictType="个人要求" multiple placeholder="请选择,可多选")
       div.ft
@@ -59,7 +59,7 @@
           name: [{required: true, message: '请输入名称', trigger: 'blur'}]
         },
         targetURL: CandidateURL,
-        labelWidth: '110px',
+        labelWidth: '70px',
         orgURL: '/camel/rest/orgs',
         orgId: 22601
       }
@@ -98,7 +98,8 @@
       },
       initSwiper() {
         setTimeout(() => {
-          this.$refs.scrollForm.refresh()
+          // this.$refs.scrollForm.refresh()
+          this.$refs.scrollForm.scrollTo(0, 0, 100)
         }, 20)
       },
       initData() {
@@ -231,6 +232,32 @@
     }
   }
 </script>
+
+<style lang="stylus" type="text/stylus">
+  .el-input__inner
+    border-radius 0
+    border-width 0 0 1px 0 !important
+
+  .el-input-number__decrease,
+  .el-input-number__increase
+    border-radius 50%
+    border 0
+    background-color transparent
+    color #fff
+    &:after
+      position absolute
+      display block
+      content ''
+      width 20px
+      height 20px
+      background-color #ffa200
+      top 50%
+      left 50%
+      transform translate3d(-50%, -50%, 0)
+      border-radius 50%
+      z-index -1
+
+</style>
 
 <style lang="stylus" type="text/stylus">
   .scroll-form

@@ -107,6 +107,12 @@ const router = new Router({
           name: 'candidateInfo',
           component: candidateInfo
         },
+        // 修改密码
+        {
+          path: '/user/updatePassword',
+          name: 'updatePassword',
+          component: UpdatePassword
+        },
         // 提交信息反馈结果
         {
           path: '/art_candidate/result/:key',

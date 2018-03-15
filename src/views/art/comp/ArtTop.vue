@@ -3,8 +3,12 @@
     div.wrapper
       div.title
         div.maintitle {{formModel.name}}
-        div.subtitle {{provincesName}}·{{formModel.city}}
-        div.subtitle {{natureName}}　{{industryName}}　{{formModel.scale}}　{{formModel.life}}
+        template(v-if="userType === 1")
+          div.subtitle {{formModel.entranceYear}}届　{{formModel.majorName}}　{{formModel.trainingLevel}}　{{formModel.period}}
+          div.subtitle {{formModel.nation}}　{{formModel.placeOfOrigin}}
+        template(v-if="userType === 3")
+          div.subtitle {{provincesName}}·{{formModel.city}}
+          div.subtitle {{natureName}}　{{industryName}}　{{formModel.scale}}　{{formModel.life}}
       div.btn-wrapper
         div.btn-option(v-on:click="onShowMenu")
           i.art-iconfont.icon-chilun
@@ -41,7 +45,8 @@
         natureName: '',
         industryName: '',
         provincesName: '',
-        isShowMenu: false
+        isShowMenu: false,
+        userType: -100
       }
     },
     mounted() {
@@ -72,10 +77,12 @@
           case USER_TYPE_STU:
             this._getStudent()
             this.optionLink = 'candidateInfo'
+            this.userType = USER_TYPE_STU
             break
           case USER_TYPE_COM:
             this._getCompany()
             this.optionLink = 'companyInfo'
+            this.userType = USER_TYPE_COM
             break
         }
       },

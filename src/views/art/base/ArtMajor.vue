@@ -1,3 +1,8 @@
+<!--
+  描述：学习专业 组件
+  开发人：桑杨
+  开发日期：2018年3月14日15:00:32
+-->
 <template lang="pug">
   div.major
     div.major-ipt_wrapper
@@ -158,6 +163,8 @@
       border 0
       width 100%
       height 40px
+      color #606266
+      padding 0 15px
 
   .options-wrapper
     position fixed

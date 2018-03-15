@@ -7,7 +7,7 @@
   div.header
     div.wrapper
       div.item
-        div(v-if="isVisibleLeft" v-on:click="goBack") 返回
+        div(v-if="isVisibleLeft" v-on:click="goBack") 返回首页
       div.title {{title}}
       div.item
         div(v-if="isVisibleRight" v-on:click="goBack") 关闭

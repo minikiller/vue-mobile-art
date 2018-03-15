@@ -68,8 +68,9 @@
       },
       open() {
         let row = JSON.parse(Cache.get('CurrentStudent'))
-        this.$myConsoleLog(' CurrentStudent open ', row, '#8B1C62')
+        this.$myConsoleLog('Base From - CurrentStudent open ', row, '#8B1C62')
         this.isVisible = true
+        this.initSwiper()
         if (row) {
           this.isEdit = true
           this.$emit('update:formModel', row)  // 设置sync才有效
@@ -77,6 +78,13 @@
           this.isEdit = false
           this.$emit('update:formModel', JSON.parse(this.tempFormModel))
         }
+      },
+      initSwiper() {
+        setTimeout(() => {
+          this.$refs.scrollForm.scrollTo(0, 0, 100)
+          // this.$refs.scrollForm.refresh()
+          // this.$myConsoleLog('initSwiper', 'initSwiper', '#005555')
+        }, 200)
       },
       resultRedirect(target) {
         this.$router.push({name: 'recruitResult', params: {key: target, status: 'candidate'}})
@@ -104,8 +112,6 @@
       .scroll-form
         height: 100%
         overflow: hidden
-      .wrapper
-        padding 15px
     .ft
       width 100%
       padding 15px

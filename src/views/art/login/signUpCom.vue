@@ -9,22 +9,22 @@
       div.from-warpper
         div.title 企业信息注册
         el-form.loginForm(v-bind:model="formModel" v-bind:rules="rules" ref="loginForm")
-          el-form-item(label="" prop="code")
+          el-form-item(label=" " prop="code" label-width="20px")
             el-input(v-model="formModel.code" v-on:focus="focus" placeholder="企业组织机构代码")
-          el-form-item(label="" prop="name")
+          el-form-item(label=" " prop="name" label-width="20px")
             el-input(v-model="formModel.name" placeholder="公司名称")
-          el-form-item(label="" prop="email")
+          el-form-item(label=" " prop="email" label-width="20px")
             el-input(v-model="formModel.email" placeholder="邮箱")
-          el-form-item(label="" prop="phone")
+          el-form-item(label=" " prop="phone" label-width="20px")
             div.el-input
               input.el-input__inner(type="tel" v-model="formModel.phone" placeholder="固定电话")
-          el-form-item(label="" prop="loginName")
+          el-form-item(label=" " prop="loginName" label-width="20px")
             el-input(v-model="formModel.loginName" placeholder="请输入登录名")
-          el-form-item(label="" prop="password")
+          el-form-item(label=" " prop="password" label-width="20px")
             el-input(type="password" v-model="formModel.password" placeholder="请输入密码" auto-complete="off")
-          el-form-item(label="" prop="confirmPassword")
+          el-form-item(label=" " prop="confirmPassword" label-width="20px")
             el-input(type="password" v-model="formModel.confirmPassword" placeholder="确认密码" auto-complete="off")
-          el-form-item(label="")
+          el-form-item(label="" label-width="20px")
             div.btn-submit(v-on:click="onSubmit" size="large")
               span 注册
           el-form-item(label="" style="text-align: center;")
@@ -47,7 +47,7 @@
         let reg = new RegExp('\\s')
         let r = value.substr(1).match(reg)
         if (r != null) {
-          callback(new Error('登录名不能包含空格'))
+          callback(new Error('不能包含空格'))
         }
         callback()
       }
@@ -70,15 +70,23 @@
           callback()
         }
       }
+      let validateTel = (rule, value, callback) => {
+        if (!(/^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/.test(value))) {
+          callback(new Error('请输入正确的电话号码'))
+        }
+        callback()
+      }
       return {
         name: 'Login Form',
         formModel: Object.assign({}, FormModel),
         rules: {
           code: [
-            {required: true, message: '请输入企业组织机构代码', trigger: 'blur'}
+            {required: true, message: '请输入企业组织机构代码', trigger: 'blur'},
+            {required: true, validator: validateSpace, trigger: 'blur'}
           ],
           name: [
-            {required: true, message: '请输入名称', trigger: 'blur'}
+            {required: true, message: '请输入名称', trigger: 'blur'},
+            {required: true, validator: validateSpace, trigger: 'blur'}
           ],
           loginName: [
             {required: true, message: '请输入登录名', trigger: 'blur'},
@@ -86,6 +94,7 @@
             {required: true, validator: validateSpace, trigger: 'blur'}
           ],
           password: [
+            {min: 6, max: 16, message: '6 ~ 16 个字符，区分大小写', trigger: 'blur'},
             {required: true, validator: validatePassword, trigger: 'blur'}
           ],
           confirmPassword: [
@@ -95,7 +104,10 @@
             {required: true, message: '请输入正确的邮箱地址', trigger: 'blur'},
             {type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change'}
           ],
-          phone: [{required: true, message: '请输入固定电话', trigger: 'blur'}]
+          phone: [
+            {required: true, message: '请输入固定电话', trigger: 'blur'},
+            {required: true, validator: validateTel, trigger: 'blur'}
+          ]
         }
       }
     },

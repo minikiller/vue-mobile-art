@@ -113,6 +113,14 @@
           this._getData()
         }, 1000)
       },
+      initSwiper() {
+        if (this.tableData.length) {
+          setTimeout(() => {
+            // this.$myConsoleLog('shortcut', this.$refs, '#005555')
+            this.$refs.shortcut.refresh()
+          }, 20)
+        }
+      },
       _oneByOneDelete() {
         // 逐个删除
         let ids = []
@@ -191,6 +199,7 @@
               this.$refs.shortcut.refresh()
             }
           })
+          this.initSwiper()
         }
       },
       setDictDefine(_data) { // 处理数据字典
