@@ -13,7 +13,7 @@
 <script type="text/ecmascript-6">
   import ArtHeader from './ArtHeader'
   import Scroll from '../base/scroll'
-  import {Message, Cache} from 'kalix-base'
+  import {Message} from 'kalix-base'
   import Util from '@/common/Util'
 
   export default {
@@ -37,7 +37,7 @@
       }
     },
     activated() {
-      this.open()
+      // this.open()
     },
     methods: {
       onSubmitClick() {
@@ -66,8 +66,7 @@
           }
         })
       },
-      open() {
-        let row = JSON.parse(Cache.get('CurrentStudent'))
+      open(row) {
         this.$myConsoleLog('Base From - CurrentStudent open ', row, '#8B1C62')
         this.isVisible = true
         this.initSwiper()

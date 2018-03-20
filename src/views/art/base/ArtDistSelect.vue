@@ -1,6 +1,7 @@
 <template lang="pug">
   div.art-select
     select.select(v-model='currentValue')
+      option(value="-1") 请选择
       option(v-for="item in items" v-bind:value="item.value") {{item.label}}
 </template>
 <script type="text/ecmascript-6">

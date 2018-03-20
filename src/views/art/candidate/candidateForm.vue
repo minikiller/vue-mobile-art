@@ -5,39 +5,35 @@
 -->
 
 <template lang="pug">
-  div.art-company-info(data-art="data-art")
-    art-header(title="我的简历")
-    div.bd
-      scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm"
-      v-bind:beforeScroll="true"
-      v-on:beforeScroll="listScroll")
-        div.wrapper
-          keep-alive
-            el-form(ref="dialogForm" v-bind:model="formModel")
-              el-form-item.s-flex_item.kalix-form-table-td(label="期望岗位" prop="position" v-bind:rules="rules.position" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.position" type="textarea")
-              el-form-item.s-flex_item.kalix-form-table-td(label="工作省份" prop="region" v-bind:rules="rules.region" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
-              el-form-item.s-flex_item.kalix-form-table-td(label="工作城市" prop="city" v-bind:rules="rules.city" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.city")
-              el-form-item.s-flex_item.kalix-form-table-td(label="期望行业" prop="expectingIndustry" v-bind:rules="rules.expectingIndustry" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.expectingIndustry" appName="art" dictType="企业行业" style="width:100%")
-              el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
-                art-dist-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
-              el-form-item.s-flex_item.kalix-form-table-td(label="所学软件" prop="learningSofts" v-bind:rules="rules.learningSofts" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.learningSofts" type="textarea")
-              el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:rules="rules.education" v-bind:label-width="labelWidth")
-                el-input(v-model="formModel.education")
-              el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
-                el-input-number(v-model="formModel.salary" v-bind:step="500" style="float:right")
-              el-form-item.kalix-form-table-td(label="个人特点" prop="skills" v-bind:rules="rules.skills" v-bind:label-width="labelWidth")
-                art-dist-check-list(v-model="formModel.skills" appName="art" dictType="个人要求" multiple placeholder="请选择,可多选")
-      div.ft
-        div.btns
-          el-button.btn-item(type="primary" v-on:click="onSubmitClick") 保 存
+  art-base-form(
+  title="我的简历"
+  bizKey="role"
+  ref="candidateForm"
+  v-bind:formModel.sync="formModel"
+  v-bind:targetURL="targetURL")
+    div.form-wrapper(slot="slotForm")
+      el-form-item.s-flex_item.kalix-form-table-td(label="期望岗位" prop="position" v-bind:rules="rules.position" v-bind:label-width="labelWidth")
+        el-input(v-model="formModel.position" type="textarea")
+      el-form-item.s-flex_item.kalix-form-table-td(label="工作省份" prop="region" v-bind:rules="rules.region" v-bind:label-width="labelWidth")
+        art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
+      el-form-item.s-flex_item.kalix-form-table-td(label="工作城市" prop="city" v-bind:rules="rules.city" v-bind:label-width="labelWidth")
+        el-input(v-model="formModel.city")
+      el-form-item.s-flex_item.kalix-form-table-td(label="期望行业" prop="expectingIndustry" v-bind:rules="rules.expectingIndustry" v-bind:label-width="labelWidth")
+        art-dist-select(v-model="formModel.expectingIndustry" appName="art" dictType="企业行业" style="width:100%")
+      el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
+        art-dist-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
+      el-form-item.s-flex_item.kalix-form-table-td(label="所学软件" prop="learningSofts" v-bind:rules="rules.learningSofts" v-bind:label-width="labelWidth")
+        el-input(v-model="formModel.learningSofts" type="textarea")
+      el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:rules="rules.education" v-bind:label-width="labelWidth")
+        el-input(v-model="formModel.education")
+      el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
+        el-input-number(v-model="formModel.salary" v-bind:step="500" style="float:right")
+      el-form-item.kalix-form-table-td(label="个人特点" prop="skills" v-bind:rules="rules.skills" v-bind:label-width="labelWidth")
+        art-dist-check-list(v-model="formModel.skills" appName="art" dictType="个人要求" multiple placeholder="请选择,可多选")
 </template>
 
 <script type="text/ecmascript-6">
+  import ArtBaseForm from '../comp/ArtBaseForm'
   import FormModel from './model'
   import {CandidateURL, StudentURL} from '../config.toml'
   import Vue from 'vue'
@@ -66,6 +62,7 @@
     },
     activated() {
       this.open()
+      this.$myConsoleLog(' candidateForm ', 'activated', '#005555')
     },
     mounted() {
       history.pushState(null, null, document.URL)
@@ -77,7 +74,7 @@
       open() {
         let item = this.$route.params.item
         this.$myConsoleLog(' this.$route.params.item ', this.$route.params.item, '#884888')
-        this.initSwiper()
+        // this.initSwiper()
         if (item) {
           this.formModel = item
           this.isEdit = true
@@ -89,6 +86,7 @@
           // console.log('FormModel', FormModel)
         }
         this.getStudent()
+        this.$refs.candidateForm.open(item)
       },
       listScroll() {
         let inputs = document.getElementsByTagName('input')
@@ -223,6 +221,7 @@
       }
     },
     components: {
+      ArtBaseForm,
       ArtHeader,
       Scroll,
       ArtDistSelect,
@@ -259,100 +258,7 @@
 
 </style>
 
-<style lang="stylus" type="text/stylus">
-  .scroll-form
-    height: 100%
-    overflow: hidden
-
-  .art-form
-    position fixed
-    top 0px
-    left 0px
-    overflow hidden
-    width 100%
-    height 100%
-    background-color #ffffff
-    .wrapper
-      padding 0 12px
-    .s-flex
-      display block
-    .kalix-form-table
-      .kalix-form-table-td
-        border-right none
-        border-bottom 1px solid #000
-        &:last-child
-          border-bottom 0
-    .ipt-date
-      width: 100%;
-      height 40px
-      border: 0;
-      outline: 0;
-      box-sizing border-box
-      -webkit-appearance: none;
-      background-color: transparent;
-      font-size: inherit;
-      color: inherit;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-    .form-container
-      position: fixed;
-      top 12px
-      left 0px
-      bottom 64px
-      width 100%
-      overflow: hidden;
-    .footer-toolbar
-      position fixed
-      left 0
-      bottom 0
-      width 100%
-      padding 12px
-      text-align center
-      box-sizing border-box
-      background-color #ffffff
-      .btns
-        display flex
-        margin 0 -6px
-        .btn-item
-          flex 1
-          margin 0 6px
-
-    .swiper-container
-      width 100%
-      height 100%
-    .el-select
-      width 100% !important
-
-  .bd
-    position fixed
-    left 0
-    top 48px
-    bottom 70px
-    width 100%
-    overflow hidden
-    .wrapper
-      padding 15px
-
-  .ft
-    position fixed
-    bottom 0
-    left 0
-    width 100%
+<style scoped lang="stylus" type="text/stylus">
+  .form-wrapper
     padding 15px
-    text-align center
-    box-sizing border-box
-    background-color #ffffff
-    .btns
-      display flex
-      .btn-item
-        flex 1
-        background-color #ae935c
-        color #ffffff
-
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button
-    -webkit-appearance: none !important
-
-  input::-webkit-calendar-picker-indicator
-    display none
 </style>

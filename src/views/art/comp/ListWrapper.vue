@@ -77,8 +77,8 @@
       }
     },
     mounted() {
-      this.$myConsoleLog('mounted', 'mounted', '#FF5555')
-      this.init()
+      // this.$myConsoleLog('mounted', 'mounted', '#FF5555')
+      // this.init()
     },
     activated() {
       this.$myConsoleLog('activated', 'activated', '#FF5555')

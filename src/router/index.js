@@ -156,13 +156,14 @@ const router = new Router({
         },
         // 提交信息反馈结果
         {
-          path: '/art/result',
+          path: '/art_company/result/:key',
           name: 'recruitResult',
-          component: recruitResult,
-          children: [
-            {path: '/:key', name: 'header', component: recruitResult},
-            {path: '/:key/:status', name: 'navigater', component: recruitResult}
-          ]
+          component: recruitResult
+        },
+        {
+          path: '/art_company/result/:key/:status',
+          name: 'recruitResult',
+          component: recruitResult
         }
       ]
     },

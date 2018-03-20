@@ -7,7 +7,7 @@
   div.art-company-info(data-art="data-art")
     art-header(title="企业信息" v-bind:isVisibleLeft="isEnable" v-bind:isVisibleRight="isEnable")
     div.bd
-      scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm")
+      scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm" v-bind:data="tableData")
         div.wrapper
           el-form(ref="dialogForm" v-bind:model="formModel")
             el-form-item.s-flex_item.kalix-form-table-td(label="企业组织机构代码" prop="code" v-bind:label-width="labelWidth")
@@ -55,7 +55,8 @@
           address: [{required: true, message: '请输入企业详细地址', trigger: 'blur'}]
         },
         labelWidth: '140px',
-        isEnable: true
+        isEnable: true,
+        tableData: []
       }
     },
     activated() {
@@ -68,9 +69,9 @@
         this.$router.goBack()
       },
       initSwiper() {
-        setTimeout(() => {
-          this.$refs.scrollForm.refresh()
-        }, 20)
+        // setTimeout(() => {
+        //   this.$refs.scrollForm.refresh()
+        // }, 20)
       },
       open() {
         let row = JSON.parse(Cache.get('CurrentCompany'))

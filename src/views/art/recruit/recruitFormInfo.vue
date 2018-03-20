@@ -1,5 +1,7 @@
 <!--
-  招聘信息
+  描述：艺术中心-企业-招聘信息
+  开发人：桑杨
+  开发日期：2018年3月15日09:09:22
 -->
 <template lang="pug">
   div.art-company-info(data-art="data-art")
@@ -17,18 +19,19 @@
             el-form-item.s-flex_item.kalix-form-table-td(label="工作城市" prop="city" v-bind:label-width="labelWidth")
               el-input(v-model="formModel.city")
             el-form-item.s-flex_item.kalix-form-table-td(label="岗位要求" prop="positionRequires" v-bind:label-width="labelWidth")
-              el-input(v-model="positionRequires" type="textarea"
-              v-bind:rows="4")
+              el-input(v-model="positionRequires" type="textarea" v-bind:rows="4")
             el-form-item.s-flex_item.kalix-form-table-td(label="岗位所需软件" prop="requireSofts" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.requireSofts")
+              el-input(v-model="formModel.requireSofts" type="textarea" v-bind:rows="4")
             el-form-item.s-flex_item.kalix-form-table-td(label="岗位个数" prop="jobNumbers" v-bind:label-width="labelWidth")
               el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="float:right")
             el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
               el-input(v-model="formModel.education")
             el-form-item.s-flex_item.kalix-form-table-td(label="职能类别" prop="functionCategoryId" v-bind:label-width="labelWidth")
               art-cascade(v-model="formModel.functionCategoryId")
-            el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
-              el-input-number(v-model="formModel.salary" v-bind:step="500"  style="float:right")
+            el-form-item.s-flex_item.kalix-form-table-td(label="实习薪资" prop="probationSalary" v-bind:label-width="labelWidth")
+              art-dist-select(v-model="formModel.probationSalary" appName="art" dictType="月薪")
+            el-form-item.s-flex_item.kalix-form-table-td(label="转正薪资" prop="salary" v-bind:label-width="labelWidth")
+              art-dist-select(v-model="formModel.salary" appName="art" dictType="月薪")
             el-form-item.s-flex_item.kalix-form-table-td(label="应用技术名称" prop="appliedTechnology" v-bind:label-width="labelWidth")
               el-input(v-model="formModel.appliedTechnology")
             el-form-item.s-flex_item.kalix-form-table-td(label="个人要求" prop="personRequires" v-bind:label-width="labelWidth")
@@ -55,6 +58,7 @@
       isVisible: false
     },
     activated() {
+      this.$myConsoleLog(' recruitFormInfo - activated', '', '#555500')
       this.open()
     },
     deactivated() {
@@ -63,12 +67,23 @@
       sessionStorage.removeItem('CurrentRecruit')
     },
     data() {
+      let validateSpace = (rule, value, callback) => {
+        let reg = new RegExp('\\s')
+        let r = value.substr(0).match(reg)
+        if (r != null) {
+          callback(new Error('不能包含空格'))
+        }
+        callback()
+      }
       return {
         formModel: Object.assign({}, FormModel),
         rules: {
           companyCode: [{required: true, message: '请输入企业组织机构代码', trigger: 'blur'}],
           companyName: [{required: true, message: '请输入企业名称', trigger: 'blur'}],
-          position: [{required: true, message: '请输入岗位名称', trigger: 'blur'}]
+          position: [
+            {required: true, message: '请输入岗位名称', trigger: 'blur'},
+            {validator: validateSpace, trigger: 'blur|change'}
+          ]
         },
         targetURL: RecruitURL,
         labelWidth: '100px',
@@ -78,6 +93,7 @@
     created() {
     },
     mounted() {
+      this.$myConsoleLog(' recruitFormInfo - mounted', '', '#005555')
     },
     methods: {
       listScroll() {
