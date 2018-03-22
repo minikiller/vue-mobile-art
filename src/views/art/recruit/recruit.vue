@@ -9,6 +9,7 @@
     listFooterRedirectName="recruitFormInfo"
     v-bind:targetURL="targetURL"
     v-bind:dictDefine="dictDefine"
+    v-bind:jsonStr="jsonStr"
     )
       div(slot="slotListContent" slot-scope="scope")
         template(v-for="item in scope.data")
@@ -20,6 +21,7 @@
   import ListWrapper from '../comp/ListWrapper'
   import RecruitItem from './recruitItem'
   import Split from '../base/split'
+  import {Cache} from 'kalix-base'
 
   import {RecruitURL} from '../config.toml'
 
@@ -30,8 +32,16 @@
         isLoading: false,
         tableData: [],
         targetURL: RecruitURL,
+        jsonStr: '',
         dictDefine: [
-          { // 定义数据字典的显示
+          {
+            // 定义数据字典的显示
+            cacheKey: 'ART-DICT-KEY',
+            type: '企业性质',
+            targetField: 'companyNatureName',
+            sourceField: 'companyNature'
+          },
+          {
             cacheKey: 'ART-DICT-KEY',
             type: '省份',
             targetField: 'regionName',
@@ -39,12 +49,49 @@
           },
           {
             cacheKey: 'ART-DICT-KEY',
-            type: '企业行业',
-            targetField: 'expectingIndustryName',
-            sourceField: 'expectingIndustry'
+            type: '工作类型',
+            targetField: 'jobTypeName',
+            sourceField: 'jobType'
+          },
+          {
+            cacheKey: 'ART-DICT-KEY',
+            type: '月薪',
+            targetField: 'probationSalaryName',
+            sourceField: 'probationSalary'
+          },
+          {
+            cacheKey: 'ART-DICT-KEY',
+            type: '月薪',
+            targetField: 'salaryName',
+            sourceField: 'salary'
+          },
+          {
+            cacheKey: 'ART-DICT-KEY',
+            type: '学历',
+            targetField: 'educationName',
+            sourceField: 'education'
+          },
+          {
+            cacheKey: 'ART-DICT-KEY',
+            type: '个人要求',
+            targetField: 'personRequiresName',
+            sourceField: 'personRequires',
+            isMultiselect: true
           }
         ],
         currentUser: null
+      }
+    },
+    created() {
+      let currentUser = JSON.parse(Cache.get('CurrentUser'))
+      this.jsonStr = '{"%companyCode%": "' + currentUser.code + '"}'
+      this.$myConsoleLog('jsonStr', this.jsonStr)
+    },
+    mounted() {
+      this.init()
+    },
+    methods: {
+      init() {
       }
     },
     components: {

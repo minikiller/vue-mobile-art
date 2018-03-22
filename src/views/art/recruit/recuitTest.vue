@@ -49,7 +49,6 @@
   import ArtItem from './ArtItem'
   import {PageConfig} from '@/config/global.toml'
   import {RecruitURL} from '../config.toml'
-  import '../base/font/iconfont.css'
   import {Message, Cache} from 'kalix-base'
   import Scroll from '../base/scroll'
   import Split from '../base/split'

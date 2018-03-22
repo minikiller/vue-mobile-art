@@ -14,6 +14,7 @@
     listFooterRedirectName="candidateForm"
     v-bind:targetURL="targetURL"
     v-bind:dictDefine="dictDefine"
+    v-bind:jsonStr="jsonStr"
     )
       div(slot="slotListContent" slot-scope="scope")
         template(v-for="item in scope.data")
@@ -38,6 +39,7 @@
         isLoading: false,
         tableData: [],
         targetURL: CandidateURL,
+        jsonStr: '',
         dictDefine: [
           { // 定义数据字典的显示
             cacheKey: 'ART-DICT-KEY',
@@ -54,6 +56,10 @@
         ],
         currentUser: null
       }
+    },
+    created() {
+      let currentUser = JSON.parse(Cache.get('CurrentUser'))
+      this.jsonStr = '{"%code%": "' + currentUser.code + '"}'
     },
     mounted() {
       this.init()

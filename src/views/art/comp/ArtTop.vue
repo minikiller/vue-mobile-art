@@ -28,6 +28,7 @@
           | 退出
 </template>
 <script type="text/ecmascript-6">
+  import '../base/font/iconfont.css'
   import {Cache} from 'kalix-base'
   import FormModel from '../recruit/companyModel'
   import {logoutURL} from '@/config/global.toml'

@@ -25,9 +25,9 @@
       el-form-item.s-flex_item.kalix-form-table-td(label="所学软件" prop="learningSofts" v-bind:rules="rules.learningSofts" v-bind:label-width="labelWidth")
         el-input(v-model="formModel.learningSofts" type="textarea")
       el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:rules="rules.education" v-bind:label-width="labelWidth")
-        el-input(v-model="formModel.education")
+        art-dist-select(v-model="formModel.education" appName="art" dictType="学历")
       el-form-item.s-flex_item.kalix-form-table-td(label="薪资" prop="salary" v-bind:label-width="labelWidth")
-        el-input-number(v-model="formModel.salary" v-bind:step="500" style="float:right")
+        art-dist-select(v-model="formModel.salary" appName="art" dictType="月薪")
       el-form-item.kalix-form-table-td(label="个人特点" prop="skills" v-bind:rules="rules.skills" v-bind:label-width="labelWidth")
         art-dist-check-list(v-model="formModel.skills" appName="art" dictType="个人要求" multiple placeholder="请选择,可多选")
 </template>
@@ -51,11 +51,20 @@
       return {
         formModel: Object.assign({}, FormModel),
         rules: {
-          studentNo: [{required: true, message: '请输入学号', trigger: 'blur'}],
-          name: [{required: true, message: '请输入名称', trigger: 'blur'}]
+          code: [{required: true, message: '请输入学号', trigger: 'blur'}],
+          name: [{required: true, message: '请通过学号查询学生姓名', trigger: 'blur'}],
+          region: [{required: true, message: '请选择期望工作省份', trigger: 'change'}],
+          city: [{required: true, message: '请输入期望工作城市', trigger: 'blur'}],
+          expectingIndustry: [{required: true, message: '请选择期望工作行业', trigger: 'change'}],
+          jobType: [{required: true, message: '请选择期望工作类型', trigger: 'change'}],
+          position: [{required: true, message: '请输入期望岗位', trigger: 'blur'}],
+          learningSofts: [{required: true, message: '请输入所学软件', trigger: 'blur'}],
+          education: [{required: true, message: '请选择学历', trigger: 'change'}],
+          salary: [{required: true, message: '请选择薪资', trigger: 'change'}],
+          skills: [{required: true, message: '请选择个人特点,可多选', trigger: 'change'}]
         },
         targetURL: CandidateURL,
-        labelWidth: '70px',
+        labelWidth: '80px',
         orgURL: '/camel/rest/orgs',
         orgId: 22601
       }

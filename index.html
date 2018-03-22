@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
   <title>校园信息化管理系统</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="format-detection" content="telephone=no"/>
@@ -10,16 +9,16 @@
   <meta name="apple-touch-fullscreen" content="YES"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 </head>
-<body onload="">
+<body onload="" id="kalix">
 <div id="app"></div>
 <!-- built files will be auto injected -->
-</body>
-<script>
-  // document.addEventListener('touchmove', function (e) {
-  //   e.preventDefault()
-  // }, false)
-  document.body.ontouchmove = function (e) {
+<script language="JavaScript" type="application/javascript">
+  window.addEventListener('touchmove', function (e) {
     e.preventDefault()
-  }
+  }, {passive: false})
+  // document.body.ontouchmove = function (e) {
+  //   e.preventDefault()
+  // }
 </script>
+</body>
 </html>

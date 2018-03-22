@@ -23,7 +23,8 @@ const RecruitCompanyInfo = _import('art/recruit/recruitCompanyInfo')
 const UpdatePassword = _import('admin/user/updatePassword')
 /* 企业招聘 */
 const ArtCompanyIndex = _import('art/recruit/index')
-const recuitTest = _import('art/recruit/recuitTest')
+// const recruit = _import('art/recruit/recuitTest')
+const recruit = _import('art/recruit/recruit')
 /* 学生应聘 */
 // const ArtCandidateIndex = _import('art/candidate/index')
 const candidate = _import('art/candidate/candidate')
@@ -134,7 +135,7 @@ const router = new Router({
         {
           path: '',
           name: 'recuitTest',
-          component: recuitTest
+          component: recruit
         },
         // 企业信息
         {

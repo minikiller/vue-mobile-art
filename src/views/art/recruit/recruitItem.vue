@@ -1,7 +1,6 @@
 <template lang="pug">
   div.list-item
     div.title
-    div.title
       div.item(v-on:click="onChecked")
         i.art-iconfont.icon-xuanze.icon-1(v-if="itemData.isChecked")
         i.art-iconfont.icon-xuanze1.icon-2(v-else)
@@ -20,23 +19,32 @@
       div.s-flex
         div.s-flex_item
           label 学历：
-          | {{itemData.education}}
+          | {{itemData.educationName}}
         div.s-flex_item(style="text-align:right;")
           label 薪资：
           | {{itemData.salary}}
       div.s-flex
         div.s-flex_item
           label 职能类别：
-          | {{functionCategoryeTranslate(itemData.functionCategoryId)}}
+          | {{itemData.functionCategoryId|getDiscName}}
         div.s-flex_item(style="text-align:right;")
           label 工作类型：
-          | {{jobTypeTranslate(itemData.jobType)}}
+          | {{itemData.jobTypeName}}
       div
         label 应用技术名称：
         | {{itemData.appliedTechnology}}
       div
         label 个人要求：
-        | {{personRequiresTranslate(itemData.personRequires)}}
+        | {{itemData.personRequiresName}}
+      div
+        label 工作省份：
+        | {{itemData.regionName}}
+      div
+        label 实习薪资：
+        | {{itemData.probationSalaryName}}
+      div
+        label 转正薪资：
+        | {{itemData.salaryName}}
       div.s-flex
         div.s-flex_item
           label 发布时间：
@@ -46,16 +54,26 @@
           | 删除
 </template>
 <script type="text/ecmascript-6">
+  import {Cache} from 'kalix-base'
+
   export default {
     props: {
       itemData: null
     },
     filters: {
       getDiscName(value) {
-        console.log('%c getDiscName value', 'color:#ff00ff', value)
+        let cacheData = JSON.parse(Cache.get('FUNCTION-CATEGROY-OBJ'))
+        let name = ''
+        if (cacheData[value] && cacheData[value].name) {
+          name = cacheData[value].name
+        }
+        return name
       }
     },
     methods: {
+      getItem(value) {
+        // return
+      },
       onEdit() {
         this.$router.push({name: 'recruitFormInfo', params: {item: this.itemData}})
       },

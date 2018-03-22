@@ -1,3 +1,8 @@
+<!--
+  描述：职能类别 组件
+  开发人：桑杨
+  开发日期：2018年3月22日14:57:44
+-->
 <template lang="pug">
   div.casacde
     div.casacde-ipt_wrapper
@@ -68,6 +73,7 @@
       setCurrentText() {
         console.log('this.currentValue', this.currentValue)
         console.log('this.options', this.options)
+        this.currentText = ''
         if (!this.currentValue) {
           return false
         }
@@ -91,6 +97,10 @@
       Scroll
     },
     watch: {
+      value(newValue, oldValue) {
+        this.currentValue = newValue
+        this.setCurrentText()
+      }
       // options(newValue, oldValue) {
       //   let itemA = newValue.find(e => {
       //     let item = e.code === this.currentValue

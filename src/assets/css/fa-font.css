@@ -4,8 +4,12 @@
  * -------------------------- */
 @font-face {
     font-family: 'FontAwesome';
-    src: url('font-awesome/fonts/fontawesome-webfont.eot?v=4.3.0');
-    src: url('font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('font-awesome/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'), url('font-awesome/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'), url('font-awesome/fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('font-awesome/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+    src: url('./font-awesome/fonts/fontawesome-webfont.eot?v=4.3.0');
+    src: url('./font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'),
+    url('./font-awesome/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'),
+    url('./font-awesome/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'),
+    url('./font-awesome/fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'),
+    url('./font-awesome/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -3723,13 +3727,13 @@ td.x-frame-br {
     right: 3px;
 }
 
-.x-dd-drop-ok .x-dd-drop-icon {    
+.x-dd-drop-ok .x-dd-drop-icon {
 }
 
-.x-dd-drop-ok-add .x-dd-drop-icon {    
+.x-dd-drop-ok-add .x-dd-drop-icon {
 }
 
-.x-dd-drop-nodrop div.x-dd-drop-icon {    
+.x-dd-drop-nodrop div.x-dd-drop-icon {
 }
 
 .x-docked {
@@ -5277,7 +5281,7 @@ the height of a multi-line element */
 }
 
 .x-mask-msg-text {
-    padding: 5px 5px 5px 20px;    
+    padding: 5px 5px 5px 20px;
     background-repeat: no-repeat;
     background-position: 0 center;
 }
@@ -5306,7 +5310,7 @@ the height of a multi-line element */
 }
 
 .x-nlg .x-progress-default .x-progress-bar-default {
-    background: repeat-x;    
+    background: repeat-x;
 }
 
 .x-progress-default .x-progress-text {
@@ -5324,7 +5328,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-progress-bar-default:before {
-    display: none;    
+    display: none;
 }
 
 .x-progressbar-default-cell > .x-grid-cell-inner,
@@ -5356,7 +5360,7 @@ the height of a multi-line element */
     background-image: linear-gradient(top, #fff, #eee);
 }
 
-.x-btn-default-small-mc {    
+.x-btn-default-small-mc {
     background-position: 0 top;
     background-color: #f8f8f8;
 }
@@ -5436,11 +5440,11 @@ the height of a multi-line element */
 .x-btn-default-small-tc,
 .x-btn-default-small-bc,
 .x-btn-default-small-ml,
-.x-btn-default-small-mr {    
+.x-btn-default-small-mr {
 }
 
 .x-btn-default-small-ml,
-.x-btn-default-small-mr {    
+.x-btn-default-small-mr {
 }
 
 .x-btn-default-small-mc {
@@ -5448,7 +5452,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-btn-default-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-btn-default-small {
@@ -5545,36 +5549,36 @@ the height of a multi-line element */
 }
 
 .x-btn-wrap-default-small.x-btn-arrow-right:after {
-    width: 8px;    
+    width: 8px;
     padding-right: 8px;
 }
 
-.x-btn-wrap-default-small.x-rtl.x-btn-arrow-right:after {    
+.x-btn-wrap-default-small.x-rtl.x-btn-arrow-right:after {
 }
 
 .x-btn-wrap-default-small.x-btn-arrow-bottom:after {
-    height: 8px;    
+    height: 8px;
 }
 
 .x-btn-wrap-default-small.x-btn-split-right:after {
-    width: 14px;    
+    width: 14px;
     padding-right: 14px;
 }
 
-.x-btn-wrap-default-small.x-rtl.x-btn-split-right:after {    
+.x-btn-wrap-default-small.x-rtl.x-btn-split-right:after {
 }
 
 .x-btn-wrap-default-small.x-btn-split-bottom:after {
-    height: 14px;    
+    height: 14px;
 }
 
-.x-btn-over > .x-btn-wrap-default-small.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-small.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-small.x-rtl.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-small.x-rtl.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-small.x-btn-split-bottom:after {    
+.x-btn-over > .x-btn-wrap-default-small.x-btn-split-bottom:after {
 }
 
 .x-btn-split-right > .x-btn-icon.x-btn-no-text.x-btn-button-default-small {
@@ -5657,15 +5661,15 @@ the height of a multi-line element */
 .x-btn-focus .x-btn-default-small-tr,
 .x-btn-focus .x-btn-default-small-br,
 .x-btn-focus .x-btn-default-small-tc,
-.x-btn-focus .x-btn-default-small-bc {    
+.x-btn-focus .x-btn-default-small-bc {
 }
 
 .x-btn-focus .x-btn-default-small-ml,
-.x-btn-focus .x-btn-default-small-mr {    
+.x-btn-focus .x-btn-default-small-mr {
 }
 
 .x-btn-focus .x-btn-default-small-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-over .x-btn-default-small-tl,
@@ -5673,15 +5677,15 @@ the height of a multi-line element */
 .x-btn-over .x-btn-default-small-tr,
 .x-btn-over .x-btn-default-small-br,
 .x-btn-over .x-btn-default-small-tc,
-.x-btn-over .x-btn-default-small-bc {    
+.x-btn-over .x-btn-default-small-bc {
 }
 
 .x-btn-over .x-btn-default-small-ml,
-.x-btn-over .x-btn-default-small-mr {    
+.x-btn-over .x-btn-default-small-mr {
 }
 
 .x-btn-over .x-btn-default-small-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-small-tl,
@@ -5689,15 +5693,15 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-over .x-btn-default-small-tr,
 .x-btn-focus.x-btn-over .x-btn-default-small-br,
 .x-btn-focus.x-btn-over .x-btn-default-small-tc,
-.x-btn-focus.x-btn-over .x-btn-default-small-bc {    
+.x-btn-focus.x-btn-over .x-btn-default-small-bc {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-small-ml,
-.x-btn-focus.x-btn-over .x-btn-default-small-mr {    
+.x-btn-focus.x-btn-over .x-btn-default-small-mr {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-small-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-small-tl,
@@ -5711,18 +5715,18 @@ the height of a multi-line element */
 .x-btn.x-btn-pressed .x-btn-default-small-tr,
 .x-btn.x-btn-pressed .x-btn-default-small-br,
 .x-btn.x-btn-pressed .x-btn-default-small-tc,
-.x-btn.x-btn-pressed .x-btn-default-small-bc {    
+.x-btn.x-btn-pressed .x-btn-default-small-bc {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-small-ml,
 .x-btn.x-btn-menu-active .x-btn-default-small-mr,
 .x-btn.x-btn-pressed .x-btn-default-small-ml,
-.x-btn.x-btn-pressed .x-btn-default-small-mr {    
+.x-btn.x-btn-pressed .x-btn-default-small-mr {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-small-mc,
 .x-btn.x-btn-pressed .x-btn-default-small-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-small-tl,
@@ -5736,18 +5740,18 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-pressed .x-btn-default-small-tr,
 .x-btn-focus.x-btn-pressed .x-btn-default-small-br,
 .x-btn-focus.x-btn-pressed .x-btn-default-small-tc,
-.x-btn-focus.x-btn-pressed .x-btn-default-small-bc {    
+.x-btn-focus.x-btn-pressed .x-btn-default-small-bc {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-small-ml,
 .x-btn-focus.x-btn-menu-active .x-btn-default-small-mr,
 .x-btn-focus.x-btn-pressed .x-btn-default-small-ml,
-.x-btn-focus.x-btn-pressed .x-btn-default-small-mr {    
+.x-btn-focus.x-btn-pressed .x-btn-default-small-mr {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-small-mc,
 .x-btn-focus.x-btn-pressed .x-btn-default-small-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn.x-btn-disabled .x-btn-default-small-tl,
@@ -5755,15 +5759,15 @@ the height of a multi-line element */
 .x-btn.x-btn-disabled .x-btn-default-small-tr,
 .x-btn.x-btn-disabled .x-btn-default-small-br,
 .x-btn.x-btn-disabled .x-btn-default-small-tc,
-.x-btn.x-btn-disabled .x-btn-default-small-bc {    
+.x-btn.x-btn-disabled .x-btn-default-small-bc {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-small-ml,
-.x-btn.x-btn-disabled .x-btn-default-small-mr {    
+.x-btn.x-btn-disabled .x-btn-default-small-mr {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-small-mc {
-    background-color: #ececec;    
+    background-color: #ececec;
 }
 
 .x-nbr .x-btn-default-small {
@@ -5856,27 +5860,27 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-default-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-over.x-btn-default-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-over.x-btn-default-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-pressed.x-btn-default-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-pressed.x-btn-default-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-disabled.x-btn-default-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-button-default-small-cell > .x-grid-cell-inner {
@@ -5906,7 +5910,7 @@ the height of a multi-line element */
     background-image: linear-gradient(top, #fff, #eee);
 }
 
-.x-btn-default-medium-mc {    
+.x-btn-default-medium-mc {
     background-position: 0 top;
     background-color: #f8f8f8;
 }
@@ -5986,11 +5990,11 @@ the height of a multi-line element */
 .x-btn-default-medium-tc,
 .x-btn-default-medium-bc,
 .x-btn-default-medium-ml,
-.x-btn-default-medium-mr {    
+.x-btn-default-medium-mr {
 }
 
 .x-btn-default-medium-ml,
-.x-btn-default-medium-mr {    
+.x-btn-default-medium-mr {
 }
 
 .x-btn-default-medium-mc {
@@ -5998,7 +6002,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-btn-default-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-btn-default-medium {
@@ -6095,36 +6099,36 @@ the height of a multi-line element */
 }
 
 .x-btn-wrap-default-medium.x-btn-arrow-right:after {
-    width: 8px;    
+    width: 8px;
     padding-right: 8px;
 }
 
-.x-btn-wrap-default-medium.x-rtl.x-btn-arrow-right:after {    
+.x-btn-wrap-default-medium.x-rtl.x-btn-arrow-right:after {
 }
 
 .x-btn-wrap-default-medium.x-btn-arrow-bottom:after {
-    height: 8px;    
+    height: 8px;
 }
 
 .x-btn-wrap-default-medium.x-btn-split-right:after {
-    width: 14px;    
+    width: 14px;
     padding-right: 14px;
 }
 
-.x-btn-wrap-default-medium.x-rtl.x-btn-split-right:after {    
+.x-btn-wrap-default-medium.x-rtl.x-btn-split-right:after {
 }
 
 .x-btn-wrap-default-medium.x-btn-split-bottom:after {
-    height: 14px;    
+    height: 14px;
 }
 
-.x-btn-over > .x-btn-wrap-default-medium.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-medium.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-medium.x-rtl.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-medium.x-rtl.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-medium.x-btn-split-bottom:after {    
+.x-btn-over > .x-btn-wrap-default-medium.x-btn-split-bottom:after {
 }
 
 .x-btn-split-right > .x-btn-icon.x-btn-no-text.x-btn-button-default-medium {
@@ -6207,15 +6211,15 @@ the height of a multi-line element */
 .x-btn-focus .x-btn-default-medium-tr,
 .x-btn-focus .x-btn-default-medium-br,
 .x-btn-focus .x-btn-default-medium-tc,
-.x-btn-focus .x-btn-default-medium-bc {    
+.x-btn-focus .x-btn-default-medium-bc {
 }
 
 .x-btn-focus .x-btn-default-medium-ml,
-.x-btn-focus .x-btn-default-medium-mr {    
+.x-btn-focus .x-btn-default-medium-mr {
 }
 
 .x-btn-focus .x-btn-default-medium-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-over .x-btn-default-medium-tl,
@@ -6223,15 +6227,15 @@ the height of a multi-line element */
 .x-btn-over .x-btn-default-medium-tr,
 .x-btn-over .x-btn-default-medium-br,
 .x-btn-over .x-btn-default-medium-tc,
-.x-btn-over .x-btn-default-medium-bc {    
+.x-btn-over .x-btn-default-medium-bc {
 }
 
 .x-btn-over .x-btn-default-medium-ml,
-.x-btn-over .x-btn-default-medium-mr {    
+.x-btn-over .x-btn-default-medium-mr {
 }
 
 .x-btn-over .x-btn-default-medium-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-medium-tl,
@@ -6239,15 +6243,15 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-over .x-btn-default-medium-tr,
 .x-btn-focus.x-btn-over .x-btn-default-medium-br,
 .x-btn-focus.x-btn-over .x-btn-default-medium-tc,
-.x-btn-focus.x-btn-over .x-btn-default-medium-bc {    
+.x-btn-focus.x-btn-over .x-btn-default-medium-bc {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-medium-ml,
-.x-btn-focus.x-btn-over .x-btn-default-medium-mr {    
+.x-btn-focus.x-btn-over .x-btn-default-medium-mr {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-medium-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-medium-tl,
@@ -6261,18 +6265,18 @@ the height of a multi-line element */
 .x-btn.x-btn-pressed .x-btn-default-medium-tr,
 .x-btn.x-btn-pressed .x-btn-default-medium-br,
 .x-btn.x-btn-pressed .x-btn-default-medium-tc,
-.x-btn.x-btn-pressed .x-btn-default-medium-bc {    
+.x-btn.x-btn-pressed .x-btn-default-medium-bc {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-medium-ml,
 .x-btn.x-btn-menu-active .x-btn-default-medium-mr,
 .x-btn.x-btn-pressed .x-btn-default-medium-ml,
-.x-btn.x-btn-pressed .x-btn-default-medium-mr {    
+.x-btn.x-btn-pressed .x-btn-default-medium-mr {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-medium-mc,
 .x-btn.x-btn-pressed .x-btn-default-medium-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-medium-tl,
@@ -6286,18 +6290,18 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-pressed .x-btn-default-medium-tr,
 .x-btn-focus.x-btn-pressed .x-btn-default-medium-br,
 .x-btn-focus.x-btn-pressed .x-btn-default-medium-tc,
-.x-btn-focus.x-btn-pressed .x-btn-default-medium-bc {    
+.x-btn-focus.x-btn-pressed .x-btn-default-medium-bc {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-medium-ml,
 .x-btn-focus.x-btn-menu-active .x-btn-default-medium-mr,
 .x-btn-focus.x-btn-pressed .x-btn-default-medium-ml,
-.x-btn-focus.x-btn-pressed .x-btn-default-medium-mr {    
+.x-btn-focus.x-btn-pressed .x-btn-default-medium-mr {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-medium-mc,
 .x-btn-focus.x-btn-pressed .x-btn-default-medium-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn.x-btn-disabled .x-btn-default-medium-tl,
@@ -6305,15 +6309,15 @@ the height of a multi-line element */
 .x-btn.x-btn-disabled .x-btn-default-medium-tr,
 .x-btn.x-btn-disabled .x-btn-default-medium-br,
 .x-btn.x-btn-disabled .x-btn-default-medium-tc,
-.x-btn.x-btn-disabled .x-btn-default-medium-bc {    
+.x-btn.x-btn-disabled .x-btn-default-medium-bc {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-medium-ml,
-.x-btn.x-btn-disabled .x-btn-default-medium-mr {    
+.x-btn.x-btn-disabled .x-btn-default-medium-mr {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-medium-mc {
-    background-color: #ececec;    
+    background-color: #ececec;
 }
 
 .x-nbr .x-btn-default-medium {
@@ -6406,27 +6410,27 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-default-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-over.x-btn-default-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-over.x-btn-default-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-pressed.x-btn-default-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-pressed.x-btn-default-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-disabled.x-btn-default-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-button-default-medium-cell > .x-grid-cell-inner {
@@ -6456,7 +6460,7 @@ the height of a multi-line element */
     background-image: linear-gradient(top, #fff, #eee);
 }
 
-.x-btn-default-large-mc {    
+.x-btn-default-large-mc {
     background-position: 0 top;
     background-color: #f8f8f8;
 }
@@ -6536,11 +6540,11 @@ the height of a multi-line element */
 .x-btn-default-large-tc,
 .x-btn-default-large-bc,
 .x-btn-default-large-ml,
-.x-btn-default-large-mr {    
+.x-btn-default-large-mr {
 }
 
 .x-btn-default-large-ml,
-.x-btn-default-large-mr {    
+.x-btn-default-large-mr {
 }
 
 .x-btn-default-large-mc {
@@ -6548,7 +6552,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-btn-default-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-btn-default-large {
@@ -6645,36 +6649,36 @@ the height of a multi-line element */
 }
 
 .x-btn-wrap-default-large.x-btn-arrow-right:after {
-    width: 8px;    
+    width: 8px;
     padding-right: 8px;
 }
 
-.x-btn-wrap-default-large.x-rtl.x-btn-arrow-right:after {    
+.x-btn-wrap-default-large.x-rtl.x-btn-arrow-right:after {
 }
 
 .x-btn-wrap-default-large.x-btn-arrow-bottom:after {
-    height: 8px;    
+    height: 8px;
 }
 
 .x-btn-wrap-default-large.x-btn-split-right:after {
-    width: 14px;    
+    width: 14px;
     padding-right: 14px;
 }
 
-.x-btn-wrap-default-large.x-rtl.x-btn-split-right:after {    
+.x-btn-wrap-default-large.x-rtl.x-btn-split-right:after {
 }
 
 .x-btn-wrap-default-large.x-btn-split-bottom:after {
-    height: 14px;    
+    height: 14px;
 }
 
-.x-btn-over > .x-btn-wrap-default-large.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-large.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-large.x-rtl.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-large.x-rtl.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-large.x-btn-split-bottom:after {    
+.x-btn-over > .x-btn-wrap-default-large.x-btn-split-bottom:after {
 }
 
 .x-btn-split-right > .x-btn-icon.x-btn-no-text.x-btn-button-default-large {
@@ -6757,15 +6761,15 @@ the height of a multi-line element */
 .x-btn-focus .x-btn-default-large-tr,
 .x-btn-focus .x-btn-default-large-br,
 .x-btn-focus .x-btn-default-large-tc,
-.x-btn-focus .x-btn-default-large-bc {    
+.x-btn-focus .x-btn-default-large-bc {
 }
 
 .x-btn-focus .x-btn-default-large-ml,
-.x-btn-focus .x-btn-default-large-mr {    
+.x-btn-focus .x-btn-default-large-mr {
 }
 
 .x-btn-focus .x-btn-default-large-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-over .x-btn-default-large-tl,
@@ -6773,15 +6777,15 @@ the height of a multi-line element */
 .x-btn-over .x-btn-default-large-tr,
 .x-btn-over .x-btn-default-large-br,
 .x-btn-over .x-btn-default-large-tc,
-.x-btn-over .x-btn-default-large-bc {    
+.x-btn-over .x-btn-default-large-bc {
 }
 
 .x-btn-over .x-btn-default-large-ml,
-.x-btn-over .x-btn-default-large-mr {    
+.x-btn-over .x-btn-default-large-mr {
 }
 
 .x-btn-over .x-btn-default-large-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-large-tl,
@@ -6789,15 +6793,15 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-over .x-btn-default-large-tr,
 .x-btn-focus.x-btn-over .x-btn-default-large-br,
 .x-btn-focus.x-btn-over .x-btn-default-large-tc,
-.x-btn-focus.x-btn-over .x-btn-default-large-bc {    
+.x-btn-focus.x-btn-over .x-btn-default-large-bc {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-large-ml,
-.x-btn-focus.x-btn-over .x-btn-default-large-mr {    
+.x-btn-focus.x-btn-over .x-btn-default-large-mr {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-large-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-large-tl,
@@ -6811,18 +6815,18 @@ the height of a multi-line element */
 .x-btn.x-btn-pressed .x-btn-default-large-tr,
 .x-btn.x-btn-pressed .x-btn-default-large-br,
 .x-btn.x-btn-pressed .x-btn-default-large-tc,
-.x-btn.x-btn-pressed .x-btn-default-large-bc {    
+.x-btn.x-btn-pressed .x-btn-default-large-bc {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-large-ml,
 .x-btn.x-btn-menu-active .x-btn-default-large-mr,
 .x-btn.x-btn-pressed .x-btn-default-large-ml,
-.x-btn.x-btn-pressed .x-btn-default-large-mr {    
+.x-btn.x-btn-pressed .x-btn-default-large-mr {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-large-mc,
 .x-btn.x-btn-pressed .x-btn-default-large-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-large-tl,
@@ -6836,18 +6840,18 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-pressed .x-btn-default-large-tr,
 .x-btn-focus.x-btn-pressed .x-btn-default-large-br,
 .x-btn-focus.x-btn-pressed .x-btn-default-large-tc,
-.x-btn-focus.x-btn-pressed .x-btn-default-large-bc {    
+.x-btn-focus.x-btn-pressed .x-btn-default-large-bc {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-large-ml,
 .x-btn-focus.x-btn-menu-active .x-btn-default-large-mr,
 .x-btn-focus.x-btn-pressed .x-btn-default-large-ml,
-.x-btn-focus.x-btn-pressed .x-btn-default-large-mr {    
+.x-btn-focus.x-btn-pressed .x-btn-default-large-mr {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-large-mc,
 .x-btn-focus.x-btn-pressed .x-btn-default-large-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn.x-btn-disabled .x-btn-default-large-tl,
@@ -6855,15 +6859,15 @@ the height of a multi-line element */
 .x-btn.x-btn-disabled .x-btn-default-large-tr,
 .x-btn.x-btn-disabled .x-btn-default-large-br,
 .x-btn.x-btn-disabled .x-btn-default-large-tc,
-.x-btn.x-btn-disabled .x-btn-default-large-bc {    
+.x-btn.x-btn-disabled .x-btn-default-large-bc {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-large-ml,
-.x-btn.x-btn-disabled .x-btn-default-large-mr {    
+.x-btn.x-btn-disabled .x-btn-default-large-mr {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-large-mc {
-    background-color: #ececec;    
+    background-color: #ececec;
 }
 
 .x-nbr .x-btn-default-large {
@@ -6956,27 +6960,27 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-default-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-over.x-btn-default-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-over.x-btn-default-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-pressed.x-btn-default-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-pressed.x-btn-default-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-disabled.x-btn-default-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-button-default-large-cell > .x-grid-cell-inner {
@@ -7173,36 +7177,36 @@ the height of a multi-line element */
 }
 
 .x-btn-wrap-default-toolbar-small.x-btn-arrow-right:after {
-    width: 8px;    
+    width: 8px;
     padding-right: 8px;
 }
 
-.x-btn-wrap-default-toolbar-small.x-rtl.x-btn-arrow-right:after {    
+.x-btn-wrap-default-toolbar-small.x-rtl.x-btn-arrow-right:after {
 }
 
 .x-btn-wrap-default-toolbar-small.x-btn-arrow-bottom:after {
-    height: 8px;    
+    height: 8px;
 }
 
 .x-btn-wrap-default-toolbar-small.x-btn-split-right:after {
-    width: 14px;    
+    width: 14px;
     padding-right: 14px;
 }
 
-.x-btn-wrap-default-toolbar-small.x-rtl.x-btn-split-right:after {    
+.x-btn-wrap-default-toolbar-small.x-rtl.x-btn-split-right:after {
 }
 
 .x-btn-wrap-default-toolbar-small.x-btn-split-bottom:after {
-    height: 14px;    
+    height: 14px;
 }
 
-.x-btn-over > .x-btn-wrap-default-toolbar-small.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-toolbar-small.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-toolbar-small.x-rtl.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-toolbar-small.x-rtl.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-toolbar-small.x-btn-split-bottom:after {    
+.x-btn-over > .x-btn-wrap-default-toolbar-small.x-btn-split-bottom:after {
 }
 
 .x-btn-split-right > .x-btn-icon.x-btn-no-text.x-btn-button-default-toolbar-small {
@@ -7283,15 +7287,15 @@ the height of a multi-line element */
 .x-btn-focus .x-btn-default-toolbar-small-tr,
 .x-btn-focus .x-btn-default-toolbar-small-br,
 .x-btn-focus .x-btn-default-toolbar-small-tc,
-.x-btn-focus .x-btn-default-toolbar-small-bc {    
+.x-btn-focus .x-btn-default-toolbar-small-bc {
 }
 
 .x-btn-focus .x-btn-default-toolbar-small-ml,
-.x-btn-focus .x-btn-default-toolbar-small-mr {    
+.x-btn-focus .x-btn-default-toolbar-small-mr {
 }
 
 .x-btn-focus .x-btn-default-toolbar-small-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-over .x-btn-default-toolbar-small-tl,
@@ -7299,15 +7303,15 @@ the height of a multi-line element */
 .x-btn-over .x-btn-default-toolbar-small-tr,
 .x-btn-over .x-btn-default-toolbar-small-br,
 .x-btn-over .x-btn-default-toolbar-small-tc,
-.x-btn-over .x-btn-default-toolbar-small-bc {    
+.x-btn-over .x-btn-default-toolbar-small-bc {
 }
 
 .x-btn-over .x-btn-default-toolbar-small-ml,
-.x-btn-over .x-btn-default-toolbar-small-mr {    
+.x-btn-over .x-btn-default-toolbar-small-mr {
 }
 
 .x-btn-over .x-btn-default-toolbar-small-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-small-tl,
@@ -7315,15 +7319,15 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-small-tr,
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-small-br,
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-small-tc,
-.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-bc {    
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-bc {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-small-ml,
-.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-mr {    
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-mr {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-small-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-small-tl,
@@ -7337,18 +7341,18 @@ the height of a multi-line element */
 .x-btn.x-btn-pressed .x-btn-default-toolbar-small-tr,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-small-br,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-small-tc,
-.x-btn.x-btn-pressed .x-btn-default-toolbar-small-bc {    
+.x-btn.x-btn-pressed .x-btn-default-toolbar-small-bc {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-small-ml,
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-small-mr,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-small-ml,
-.x-btn.x-btn-pressed .x-btn-default-toolbar-small-mr {    
+.x-btn.x-btn-pressed .x-btn-default-toolbar-small-mr {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-small-mc,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-small-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-small-tl,
@@ -7362,18 +7366,18 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-small-tr,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-small-br,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-small-tc,
-.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-small-bc {    
+.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-small-bc {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-small-ml,
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-small-mr,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-small-ml,
-.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-small-mr {    
+.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-small-mr {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-small-mc,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-small-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn.x-btn-disabled .x-btn-default-toolbar-small-tl,
@@ -7381,15 +7385,15 @@ the height of a multi-line element */
 .x-btn.x-btn-disabled .x-btn-default-toolbar-small-tr,
 .x-btn.x-btn-disabled .x-btn-default-toolbar-small-br,
 .x-btn.x-btn-disabled .x-btn-default-toolbar-small-tc,
-.x-btn.x-btn-disabled .x-btn-default-toolbar-small-bc {    
+.x-btn.x-btn-disabled .x-btn-default-toolbar-small-bc {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-toolbar-small-ml,
-.x-btn.x-btn-disabled .x-btn-default-toolbar-small-mr {    
+.x-btn.x-btn-disabled .x-btn-default-toolbar-small-mr {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-toolbar-small-mc {
-    background-color: transparent;    
+    background-color: transparent;
 }
 
 .x-nbr .x-btn-default-toolbar-small {
@@ -7481,27 +7485,27 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-default-toolbar-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-over.x-btn-default-toolbar-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-over.x-btn-default-toolbar-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-pressed.x-btn-default-toolbar-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-pressed.x-btn-default-toolbar-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-disabled.x-btn-default-toolbar-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-button-default-toolbar-small-cell > .x-grid-cell-inner {
@@ -7698,36 +7702,36 @@ the height of a multi-line element */
 }
 
 .x-btn-wrap-default-toolbar-medium.x-btn-arrow-right:after {
-    width: 8px;    
+    width: 8px;
     padding-right: 8px;
 }
 
-.x-btn-wrap-default-toolbar-medium.x-rtl.x-btn-arrow-right:after {    
+.x-btn-wrap-default-toolbar-medium.x-rtl.x-btn-arrow-right:after {
 }
 
 .x-btn-wrap-default-toolbar-medium.x-btn-arrow-bottom:after {
-    height: 8px;    
+    height: 8px;
 }
 
 .x-btn-wrap-default-toolbar-medium.x-btn-split-right:after {
-    width: 14px;    
+    width: 14px;
     padding-right: 14px;
 }
 
-.x-btn-wrap-default-toolbar-medium.x-rtl.x-btn-split-right:after {    
+.x-btn-wrap-default-toolbar-medium.x-rtl.x-btn-split-right:after {
 }
 
 .x-btn-wrap-default-toolbar-medium.x-btn-split-bottom:after {
-    height: 14px;    
+    height: 14px;
 }
 
-.x-btn-over > .x-btn-wrap-default-toolbar-medium.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-toolbar-medium.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-toolbar-medium.x-rtl.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-toolbar-medium.x-rtl.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-toolbar-medium.x-btn-split-bottom:after {    
+.x-btn-over > .x-btn-wrap-default-toolbar-medium.x-btn-split-bottom:after {
 }
 
 .x-btn-split-right > .x-btn-icon.x-btn-no-text.x-btn-button-default-toolbar-medium {
@@ -7808,15 +7812,15 @@ the height of a multi-line element */
 .x-btn-focus .x-btn-default-toolbar-medium-tr,
 .x-btn-focus .x-btn-default-toolbar-medium-br,
 .x-btn-focus .x-btn-default-toolbar-medium-tc,
-.x-btn-focus .x-btn-default-toolbar-medium-bc {    
+.x-btn-focus .x-btn-default-toolbar-medium-bc {
 }
 
 .x-btn-focus .x-btn-default-toolbar-medium-ml,
-.x-btn-focus .x-btn-default-toolbar-medium-mr {    
+.x-btn-focus .x-btn-default-toolbar-medium-mr {
 }
 
 .x-btn-focus .x-btn-default-toolbar-medium-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-over .x-btn-default-toolbar-medium-tl,
@@ -7824,15 +7828,15 @@ the height of a multi-line element */
 .x-btn-over .x-btn-default-toolbar-medium-tr,
 .x-btn-over .x-btn-default-toolbar-medium-br,
 .x-btn-over .x-btn-default-toolbar-medium-tc,
-.x-btn-over .x-btn-default-toolbar-medium-bc {    
+.x-btn-over .x-btn-default-toolbar-medium-bc {
 }
 
 .x-btn-over .x-btn-default-toolbar-medium-ml,
-.x-btn-over .x-btn-default-toolbar-medium-mr {    
+.x-btn-over .x-btn-default-toolbar-medium-mr {
 }
 
 .x-btn-over .x-btn-default-toolbar-medium-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-medium-tl,
@@ -7840,15 +7844,15 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-medium-tr,
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-medium-br,
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-medium-tc,
-.x-btn-focus.x-btn-over .x-btn-default-toolbar-medium-bc {    
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-medium-bc {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-medium-ml,
-.x-btn-focus.x-btn-over .x-btn-default-toolbar-medium-mr {    
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-medium-mr {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-medium-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-medium-tl,
@@ -7862,18 +7866,18 @@ the height of a multi-line element */
 .x-btn.x-btn-pressed .x-btn-default-toolbar-medium-tr,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-medium-br,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-medium-tc,
-.x-btn.x-btn-pressed .x-btn-default-toolbar-medium-bc {    
+.x-btn.x-btn-pressed .x-btn-default-toolbar-medium-bc {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-medium-ml,
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-medium-mr,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-medium-ml,
-.x-btn.x-btn-pressed .x-btn-default-toolbar-medium-mr {    
+.x-btn.x-btn-pressed .x-btn-default-toolbar-medium-mr {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-medium-mc,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-medium-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-medium-tl,
@@ -7887,18 +7891,18 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-medium-tr,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-medium-br,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-medium-tc,
-.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-medium-bc {    
+.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-medium-bc {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-medium-ml,
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-medium-mr,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-medium-ml,
-.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-medium-mr {    
+.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-medium-mr {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-medium-mc,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-medium-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn.x-btn-disabled .x-btn-default-toolbar-medium-tl,
@@ -7906,15 +7910,15 @@ the height of a multi-line element */
 .x-btn.x-btn-disabled .x-btn-default-toolbar-medium-tr,
 .x-btn.x-btn-disabled .x-btn-default-toolbar-medium-br,
 .x-btn.x-btn-disabled .x-btn-default-toolbar-medium-tc,
-.x-btn.x-btn-disabled .x-btn-default-toolbar-medium-bc {    
+.x-btn.x-btn-disabled .x-btn-default-toolbar-medium-bc {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-toolbar-medium-ml,
-.x-btn.x-btn-disabled .x-btn-default-toolbar-medium-mr {    
+.x-btn.x-btn-disabled .x-btn-default-toolbar-medium-mr {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-toolbar-medium-mc {
-    background-color: transparent;    
+    background-color: transparent;
 }
 
 .x-nbr .x-btn-default-toolbar-medium {
@@ -8006,27 +8010,27 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-default-toolbar-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-over.x-btn-default-toolbar-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-over.x-btn-default-toolbar-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-pressed.x-btn-default-toolbar-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-pressed.x-btn-default-toolbar-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-disabled.x-btn-default-toolbar-medium:before {
-    display: none;    
+    display: none;
 }
 
 .x-button-default-toolbar-medium-cell > .x-grid-cell-inner {
@@ -8223,36 +8227,36 @@ the height of a multi-line element */
 }
 
 .x-btn-wrap-default-toolbar-large.x-btn-arrow-right:after {
-    width: 8px;    
+    width: 8px;
     padding-right: 8px;
 }
 
-.x-btn-wrap-default-toolbar-large.x-rtl.x-btn-arrow-right:after {    
+.x-btn-wrap-default-toolbar-large.x-rtl.x-btn-arrow-right:after {
 }
 
 .x-btn-wrap-default-toolbar-large.x-btn-arrow-bottom:after {
-    height: 8px;    
+    height: 8px;
 }
 
 .x-btn-wrap-default-toolbar-large.x-btn-split-right:after {
-    width: 14px;    
+    width: 14px;
     padding-right: 14px;
 }
 
-.x-btn-wrap-default-toolbar-large.x-rtl.x-btn-split-right:after {    
+.x-btn-wrap-default-toolbar-large.x-rtl.x-btn-split-right:after {
 }
 
 .x-btn-wrap-default-toolbar-large.x-btn-split-bottom:after {
-    height: 14px;    
+    height: 14px;
 }
 
-.x-btn-over > .x-btn-wrap-default-toolbar-large.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-toolbar-large.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-toolbar-large.x-rtl.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-default-toolbar-large.x-rtl.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-default-toolbar-large.x-btn-split-bottom:after {    
+.x-btn-over > .x-btn-wrap-default-toolbar-large.x-btn-split-bottom:after {
 }
 
 .x-btn-split-right > .x-btn-icon.x-btn-no-text.x-btn-button-default-toolbar-large {
@@ -8333,15 +8337,15 @@ the height of a multi-line element */
 .x-btn-focus .x-btn-default-toolbar-large-tr,
 .x-btn-focus .x-btn-default-toolbar-large-br,
 .x-btn-focus .x-btn-default-toolbar-large-tc,
-.x-btn-focus .x-btn-default-toolbar-large-bc {    
+.x-btn-focus .x-btn-default-toolbar-large-bc {
 }
 
 .x-btn-focus .x-btn-default-toolbar-large-ml,
-.x-btn-focus .x-btn-default-toolbar-large-mr {    
+.x-btn-focus .x-btn-default-toolbar-large-mr {
 }
 
 .x-btn-focus .x-btn-default-toolbar-large-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-over .x-btn-default-toolbar-large-tl,
@@ -8349,15 +8353,15 @@ the height of a multi-line element */
 .x-btn-over .x-btn-default-toolbar-large-tr,
 .x-btn-over .x-btn-default-toolbar-large-br,
 .x-btn-over .x-btn-default-toolbar-large-tc,
-.x-btn-over .x-btn-default-toolbar-large-bc {    
+.x-btn-over .x-btn-default-toolbar-large-bc {
 }
 
 .x-btn-over .x-btn-default-toolbar-large-ml,
-.x-btn-over .x-btn-default-toolbar-large-mr {    
+.x-btn-over .x-btn-default-toolbar-large-mr {
 }
 
 .x-btn-over .x-btn-default-toolbar-large-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-large-tl,
@@ -8365,15 +8369,15 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-large-tr,
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-large-br,
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-large-tc,
-.x-btn-focus.x-btn-over .x-btn-default-toolbar-large-bc {    
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-large-bc {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-large-ml,
-.x-btn-focus.x-btn-over .x-btn-default-toolbar-large-mr {    
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-large-mr {
 }
 
 .x-btn-focus.x-btn-over .x-btn-default-toolbar-large-mc {
-    background-color: #f3f3f3;    
+    background-color: #f3f3f3;
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-large-tl,
@@ -8387,18 +8391,18 @@ the height of a multi-line element */
 .x-btn.x-btn-pressed .x-btn-default-toolbar-large-tr,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-large-br,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-large-tc,
-.x-btn.x-btn-pressed .x-btn-default-toolbar-large-bc {    
+.x-btn.x-btn-pressed .x-btn-default-toolbar-large-bc {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-large-ml,
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-large-mr,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-large-ml,
-.x-btn.x-btn-pressed .x-btn-default-toolbar-large-mr {    
+.x-btn.x-btn-pressed .x-btn-default-toolbar-large-mr {
 }
 
 .x-btn.x-btn-menu-active .x-btn-default-toolbar-large-mc,
 .x-btn.x-btn-pressed .x-btn-default-toolbar-large-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-large-tl,
@@ -8412,18 +8416,18 @@ the height of a multi-line element */
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-large-tr,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-large-br,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-large-tc,
-.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-large-bc {    
+.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-large-bc {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-large-ml,
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-large-mr,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-large-ml,
-.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-large-mr {    
+.x-btn-focus.x-btn-pressed .x-btn-default-toolbar-large-mr {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-default-toolbar-large-mc,
 .x-btn-focus.x-btn-pressed .x-btn-default-toolbar-large-mc {
-    background-color: #d6d6d6;    
+    background-color: #d6d6d6;
 }
 
 .x-btn.x-btn-disabled .x-btn-default-toolbar-large-tl,
@@ -8431,15 +8435,15 @@ the height of a multi-line element */
 .x-btn.x-btn-disabled .x-btn-default-toolbar-large-tr,
 .x-btn.x-btn-disabled .x-btn-default-toolbar-large-br,
 .x-btn.x-btn-disabled .x-btn-default-toolbar-large-tc,
-.x-btn.x-btn-disabled .x-btn-default-toolbar-large-bc {    
+.x-btn.x-btn-disabled .x-btn-default-toolbar-large-bc {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-toolbar-large-ml,
-.x-btn.x-btn-disabled .x-btn-default-toolbar-large-mr {    
+.x-btn.x-btn-disabled .x-btn-default-toolbar-large-mr {
 }
 
 .x-btn.x-btn-disabled .x-btn-default-toolbar-large-mc {
-    background-color: transparent;    
+    background-color: transparent;
 }
 
 .x-nbr .x-btn-default-toolbar-large {
@@ -8531,27 +8535,27 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-default-toolbar-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-over.x-btn-default-toolbar-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-over.x-btn-default-toolbar-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-pressed.x-btn-default-toolbar-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-pressed.x-btn-default-toolbar-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-disabled.x-btn-default-toolbar-large:before {
-    display: none;    
+    display: none;
 }
 
 .x-button-default-toolbar-large-cell > .x-grid-cell-inner {
@@ -8570,7 +8574,7 @@ the height of a multi-line element */
 .x-tool-img {
     overflow: hidden;
     width: 15px;
-    height: 15px;    
+    height: 15px;
     margin: 0;
 }
 
@@ -8895,40 +8899,40 @@ the height of a multi-line element */
     cursor: pointer;
 }
 
-.x-layout-split-left {    
+.x-layout-split-left {
 }
 
-.x-layout-split-right {    
+.x-layout-split-right {
 }
 
-.x-rtl.x-layout-split-left {    
+.x-rtl.x-layout-split-left {
 }
 
-.x-rtl.x-layout-split-right {    
+.x-rtl.x-layout-split-right {
 }
 
-.x-layout-split-top {    
+.x-layout-split-top {
 }
 
-.x-layout-split-bottom {    
+.x-layout-split-bottom {
 }
 
-.x-splitter-collapsed .x-layout-split-left {    
+.x-splitter-collapsed .x-layout-split-left {
 }
 
-.x-splitter-collapsed .x-layout-split-right {    
+.x-splitter-collapsed .x-layout-split-right {
 }
 
-.x-splitter-collapsed .x-rtl.x-layout-split-left {    
+.x-splitter-collapsed .x-rtl.x-layout-split-left {
 }
 
-.x-splitter-collapsed .x-rtl.x-layout-split-right {    
+.x-splitter-collapsed .x-rtl.x-layout-split-right {
 }
 
-.x-splitter-collapsed .x-layout-split-top {    
+.x-splitter-collapsed .x-layout-split-top {
 }
 
-.x-splitter-collapsed .x-layout-split-bottom {    
+.x-splitter-collapsed .x-layout-split-bottom {
 }
 
 .x-splitter-active {
@@ -9037,7 +9041,7 @@ the height of a multi-line element */
     margin: 2px 0;
 }
 
-.x-nlg .x-toolbar-default {    
+.x-nlg .x-toolbar-default {
     background-repeat: repeat-x;
 }
 
@@ -9084,7 +9088,7 @@ the height of a multi-line element */
 .x-box-scroller-toolbar-default.x-box-scroller-left {
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 0;    
+    margin-bottom: 0;
     background-position: -14px 0;
 }
 
@@ -9095,7 +9099,7 @@ the height of a multi-line element */
 .x-box-scroller-toolbar-default.x-box-scroller-right {
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 0;    
+    margin-bottom: 0;
     background-position: 0 0;
 }
 
@@ -9114,7 +9118,7 @@ the height of a multi-line element */
 .x-box-scroller-toolbar-default.x-box-scroller-top {
     margin-top: 5px;
     margin-right: 0;
-    margin-bottom: 5px;    
+    margin-bottom: 5px;
     background-position: 0 -5px;
 }
 
@@ -9125,7 +9129,7 @@ the height of a multi-line element */
 .x-box-scroller-toolbar-default.x-box-scroller-bottom {
     margin-top: 5px;
     margin-right: 0;
-    margin-bottom: 5px;    
+    margin-bottom: 5px;
     background-position: 0 0;
 }
 
@@ -9137,14 +9141,14 @@ the height of a multi-line element */
     background-color: #d8d8d8;
 }
 
-.x-toolbar-more-icon {    
+.x-toolbar-more-icon {
 }
 
-.x-toolbar-more-icon.x-rtl {    
+.x-toolbar-more-icon.x-rtl {
 }
 
 .x-cmd-slicer.x-toolbar-default:before {
-    display: none;    
+    display: none;
 }
 
 .x-toolbar-footer {
@@ -9209,7 +9213,7 @@ the height of a multi-line element */
     margin: 4px 0;
 }
 
-.x-nlg .x-toolbar-footer {    
+.x-nlg .x-toolbar-footer {
     background-repeat: repeat-x;
 }
 
@@ -9256,7 +9260,7 @@ the height of a multi-line element */
 .x-box-scroller-toolbar-footer.x-box-scroller-left {
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 0;    
+    margin-bottom: 0;
     background-position: -14px 0;
 }
 
@@ -9267,7 +9271,7 @@ the height of a multi-line element */
 .x-box-scroller-toolbar-footer.x-box-scroller-right {
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 0;    
+    margin-bottom: 0;
     background-position: 0 0;
 }
 
@@ -9279,14 +9283,14 @@ the height of a multi-line element */
     background-color: transparent;
 }
 
-.x-toolbar-more-icon {    
+.x-toolbar-more-icon {
 }
 
-.x-toolbar-more-icon.x-rtl {    
+.x-toolbar-more-icon.x-rtl {
 }
 
 .x-cmd-slicer.x-toolbar-footer:before {
-    display: none;    
+    display: none;
 }
 
 .x-panel-ghost {
@@ -9462,22 +9466,22 @@ the height of a multi-line element */
     background-image: linear-gradient(left, #f0f0f0, #d7d7d7);
 }
 
-.x-nlg .x-panel-header-default-top {    
+.x-nlg .x-panel-header-default-top {
 }
 
-.x-nlg .x-panel-header-default-bottom {    
+.x-nlg .x-panel-header-default-bottom {
 }
 
-.x-nlg .x-panel-header-default-left {    
+.x-nlg .x-panel-header-default-left {
 }
 
-.x-nlg .x-panel-header-default-right {    
+.x-nlg .x-panel-header-default-right {
 }
 
-.x-nlg .x-rtl.x-panel-header-default-left {    
+.x-nlg .x-rtl.x-panel-header-default-left {
 }
 
-.x-nlg .x-rtl.x-panel-header-default-right {    
+.x-nlg .x-rtl.x-panel-header-default-right {
 }
 
 .x-panel .x-panel-header-default-collapsed-border-top {
@@ -9497,19 +9501,19 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-panel-header-default-top:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-panel-header-default-bottom:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-panel-header-default-left:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-panel-header-default-right:before {
-    display: none;    
+    display: none;
 }
 
 .x-panel-header-default-top {
@@ -9829,11 +9833,11 @@ the height of a multi-line element */
 .x-panel-default-framed-tc,
 .x-panel-default-framed-bc,
 .x-panel-default-framed-ml,
-.x-panel-default-framed-mr {    
+.x-panel-default-framed-mr {
 }
 
 .x-panel-default-framed-ml,
-.x-panel-default-framed-mr {    
+.x-panel-default-framed-mr {
     background-repeat: repeat-y;
 }
 
@@ -9842,7 +9846,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-panel-default-framed:before {
-    display: none;    
+    display: none;
 }
 
 .x-panel-header-default-framed-top {
@@ -9871,7 +9875,7 @@ the height of a multi-line element */
     background-image: linear-gradient(top, #f0f0f0, #d7d7d7);
 }
 
-.x-panel-header-default-framed-top-mc {    
+.x-panel-header-default-framed-top-mc {
     background-position: 0 top;
     background-color: #d7d2d2;
 }
@@ -9951,11 +9955,11 @@ the height of a multi-line element */
 .x-panel-header-default-framed-top-tc,
 .x-panel-header-default-framed-top-bc,
 .x-panel-header-default-framed-top-ml,
-.x-panel-header-default-framed-top-mr {    
+.x-panel-header-default-framed-top-mr {
 }
 
 .x-panel-header-default-framed-top-ml,
-.x-panel-header-default-framed-top-mr {    
+.x-panel-header-default-framed-top-mr {
 }
 
 .x-panel-header-default-framed-top-mc {
@@ -9963,7 +9967,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-panel-header-default-framed-top:before {
-    display: none;    
+    display: none;
 }
 
 .x-panel-header-default-framed-right {
@@ -10003,13 +10007,13 @@ the height of a multi-line element */
     background-image: linear-gradient(left, #f0f0f0, #d7d7d7);
 }
 
-.x-panel-header-default-framed-right-mc {    
+.x-panel-header-default-framed-right-mc {
     background-position: right 0;
     background-repeat: repeat-y;
     background-color: #d7d2d2;
 }
 
-.x-rtl.x-panel-header-default-framed-right-mc {    
+.x-rtl.x-panel-header-default-framed-right-mc {
     background-position: 0 0;
 }
 
@@ -10096,7 +10100,7 @@ the height of a multi-line element */
 .x-panel-header-default-framed-right-tc,
 .x-panel-header-default-framed-right-bc,
 .x-panel-header-default-framed-right-ml,
-.x-panel-header-default-framed-right-mr {    
+.x-panel-header-default-framed-right-mr {
 }
 
 .x-rtl.x-panel-header-default-framed-right-tl,
@@ -10104,16 +10108,16 @@ the height of a multi-line element */
 .x-rtl.x-panel-header-default-framed-right-bl,
 .x-rtl.x-panel-header-default-framed-right-tr,
 .x-rtl.x-panel-header-default-framed-right-mr,
-.x-rtl.x-panel-header-default-framed-right-br {    
+.x-rtl.x-panel-header-default-framed-right-br {
 }
 
 .x-panel-header-default-framed-right-tc,
-.x-panel-header-default-framed-right-bc {    
+.x-panel-header-default-framed-right-bc {
     background-repeat: repeat-x;
 }
 
 .x-rtl.x-panel-header-default-framed-right-tc,
-.x-rtl.x-panel-header-default-framed-right-bc {    
+.x-rtl.x-panel-header-default-framed-right-bc {
 }
 
 .x-panel-header-default-framed-right-mc {
@@ -10121,7 +10125,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-panel-header-default-framed-right:before {
-    display: none;    
+    display: none;
 }
 
 .x-panel-header-default-framed-bottom {
@@ -10150,7 +10154,7 @@ the height of a multi-line element */
     background-image: linear-gradient(top, #f0f0f0, #d7d7d7);
 }
 
-.x-panel-header-default-framed-bottom-mc {    
+.x-panel-header-default-framed-bottom-mc {
     background-position: 0 bottom;
     background-color: #d7d2d2;
 }
@@ -10230,11 +10234,11 @@ the height of a multi-line element */
 .x-panel-header-default-framed-bottom-tc,
 .x-panel-header-default-framed-bottom-bc,
 .x-panel-header-default-framed-bottom-ml,
-.x-panel-header-default-framed-bottom-mr {    
+.x-panel-header-default-framed-bottom-mr {
 }
 
 .x-panel-header-default-framed-bottom-ml,
-.x-panel-header-default-framed-bottom-mr {    
+.x-panel-header-default-framed-bottom-mr {
 }
 
 .x-panel-header-default-framed-bottom-mc {
@@ -10242,7 +10246,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-panel-header-default-framed-bottom:before {
-    display: none;    
+    display: none;
 }
 
 .x-panel-header-default-framed-left {
@@ -10282,13 +10286,13 @@ the height of a multi-line element */
     background-image: linear-gradient(left, #f0f0f0, #d7d7d7);
 }
 
-.x-panel-header-default-framed-left-mc {    
+.x-panel-header-default-framed-left-mc {
     background-position: left 0;
     background-repeat: repeat-y;
     background-color: #d7d2d2;
 }
 
-.x-rtl.x-panel-header-default-framed-left-mc {    
+.x-rtl.x-panel-header-default-framed-left-mc {
     background-position: right 0;
 }
 
@@ -10375,7 +10379,7 @@ the height of a multi-line element */
 .x-panel-header-default-framed-left-tc,
 .x-panel-header-default-framed-left-bc,
 .x-panel-header-default-framed-left-ml,
-.x-panel-header-default-framed-left-mr {    
+.x-panel-header-default-framed-left-mr {
 }
 
 .x-rtl.x-panel-header-default-framed-left-tl,
@@ -10383,16 +10387,16 @@ the height of a multi-line element */
 .x-rtl.x-panel-header-default-framed-left-bl,
 .x-rtl.x-panel-header-default-framed-left-tr,
 .x-rtl.x-panel-header-default-framed-left-mr,
-.x-rtl.x-panel-header-default-framed-left-br {    
+.x-rtl.x-panel-header-default-framed-left-br {
 }
 
 .x-panel-header-default-framed-left-tc,
-.x-panel-header-default-framed-left-bc {    
+.x-panel-header-default-framed-left-bc {
     background-repeat: repeat-x;
 }
 
 .x-rtl.x-panel-header-default-framed-left-tc,
-.x-rtl.x-panel-header-default-framed-left-bc {    
+.x-rtl.x-panel-header-default-framed-left-bc {
 }
 
 .x-panel-header-default-framed-left-mc {
@@ -10400,7 +10404,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-panel-header-default-framed-left:before {
-    display: none;    
+    display: none;
 }
 
 .x-panel-header-default-framed-collapsed-top {
@@ -10429,7 +10433,7 @@ the height of a multi-line element */
     background-image: linear-gradient(top, #f0f0f0, #d7d7d7);
 }
 
-.x-panel-header-default-framed-collapsed-top-mc {    
+.x-panel-header-default-framed-collapsed-top-mc {
     background-position: 0 top;
     background-color: #d7d2d2;
 }
@@ -10509,11 +10513,11 @@ the height of a multi-line element */
 .x-panel-header-default-framed-collapsed-top-tc,
 .x-panel-header-default-framed-collapsed-top-bc,
 .x-panel-header-default-framed-collapsed-top-ml,
-.x-panel-header-default-framed-collapsed-top-mr {    
+.x-panel-header-default-framed-collapsed-top-mr {
 }
 
 .x-panel-header-default-framed-collapsed-top-ml,
-.x-panel-header-default-framed-collapsed-top-mr {    
+.x-panel-header-default-framed-collapsed-top-mr {
 }
 
 .x-panel-header-default-framed-collapsed-top-mc {
@@ -10521,7 +10525,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-panel-header-default-framed-collapsed-top:before {
-    display: none;    
+    display: none;
 }
 
 .x-panel-header-default-framed-collapsed-right {
@@ -10561,13 +10565,13 @@ the height of a multi-line element */
     background-image: linear-gradient(left, #f0f0f0, #d7d7d7);
 }
 
-.x-panel-header-default-framed-collapsed-right-mc {    
+.x-panel-header-default-framed-collapsed-right-mc {
     background-position: right 0;
     background-repeat: repeat-y;
     background-color: #d7d2d2;
 }
 
-.x-rtl.x-panel-header-default-framed-collapsed-right-mc {    
+.x-rtl.x-panel-header-default-framed-collapsed-right-mc {
     background-position: 0 0;
 }
 
@@ -10654,7 +10658,7 @@ the height of a multi-line element */
 .x-panel-header-default-framed-collapsed-right-tc,
 .x-panel-header-default-framed-collapsed-right-bc,
 .x-panel-header-default-framed-collapsed-right-ml,
-.x-panel-header-default-framed-collapsed-right-mr {    
+.x-panel-header-default-framed-collapsed-right-mr {
 }
 
 .x-rtl.x-panel-header-default-framed-collapsed-right-tl,
@@ -10662,16 +10666,16 @@ the height of a multi-line element */
 .x-rtl.x-panel-header-default-framed-collapsed-right-bl,
 .x-rtl.x-panel-header-default-framed-collapsed-right-tr,
 .x-rtl.x-panel-header-default-framed-collapsed-right-mr,
-.x-rtl.x-panel-header-default-framed-collapsed-right-br {    
+.x-rtl.x-panel-header-default-framed-collapsed-right-br {
 }
 
 .x-panel-header-default-framed-collapsed-right-tc,
-.x-panel-header-default-framed-collapsed-right-bc {    
+.x-panel-header-default-framed-collapsed-right-bc {
     background-repeat: repeat-x;
 }
 
 .x-rtl.x-panel-header-default-framed-collapsed-right-tc,
-.x-rtl.x-panel-header-default-framed-collapsed-right-bc {    
+.x-rtl.x-panel-header-default-framed-collapsed-right-bc {
 }
 
 .x-panel-header-default-framed-collapsed-right-mc {
@@ -10679,7 +10683,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-panel-header-default-framed-collapsed-right:before {
-    display: none;    
+    display: none;
 }
 
 .x-panel-header-default-framed-collapsed-bottom {
@@ -10708,7 +10712,7 @@ the height of a multi-line element */
     background-image: linear-gradient(top, #f0f0f0, #d7d7d7);
 }
 
-.x-panel-header-default-framed-collapsed-bottom-mc {    
+.x-panel-header-default-framed-collapsed-bottom-mc {
     background-position: 0 bottom;
     background-color: #d7d2d2;
 }
@@ -10788,11 +10792,11 @@ the height of a multi-line element */
 .x-panel-header-default-framed-collapsed-bottom-tc,
 .x-panel-header-default-framed-collapsed-bottom-bc,
 .x-panel-header-default-framed-collapsed-bottom-ml,
-.x-panel-header-default-framed-collapsed-bottom-mr {    
+.x-panel-header-default-framed-collapsed-bottom-mr {
 }
 
 .x-panel-header-default-framed-collapsed-bottom-ml,
-.x-panel-header-default-framed-collapsed-bottom-mr {    
+.x-panel-header-default-framed-collapsed-bottom-mr {
 }
 
 .x-panel-header-default-framed-collapsed-bottom-mc {
@@ -10800,7 +10804,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-panel-header-default-framed-collapsed-bottom:before {
-    display: none;    
+    display: none;
 }
 
 .x-panel-header-default-framed-collapsed-left {
@@ -10840,13 +10844,13 @@ the height of a multi-line element */
     background-image: linear-gradient(left, #f0f0f0, #d7d7d7);
 }
 
-.x-panel-header-default-framed-collapsed-left-mc {    
+.x-panel-header-default-framed-collapsed-left-mc {
     background-position: left 0;
     background-repeat: repeat-y;
     background-color: #d7d2d2;
 }
 
-.x-rtl.x-panel-header-default-framed-collapsed-left-mc {    
+.x-rtl.x-panel-header-default-framed-collapsed-left-mc {
     background-position: right 0;
 }
 
@@ -10933,7 +10937,7 @@ the height of a multi-line element */
 .x-panel-header-default-framed-collapsed-left-tc,
 .x-panel-header-default-framed-collapsed-left-bc,
 .x-panel-header-default-framed-collapsed-left-ml,
-.x-panel-header-default-framed-collapsed-left-mr {    
+.x-panel-header-default-framed-collapsed-left-mr {
 }
 
 .x-rtl.x-panel-header-default-framed-collapsed-left-tl,
@@ -10941,16 +10945,16 @@ the height of a multi-line element */
 .x-rtl.x-panel-header-default-framed-collapsed-left-bl,
 .x-rtl.x-panel-header-default-framed-collapsed-left-tr,
 .x-rtl.x-panel-header-default-framed-collapsed-left-mr,
-.x-rtl.x-panel-header-default-framed-collapsed-left-br {    
+.x-rtl.x-panel-header-default-framed-collapsed-left-br {
 }
 
 .x-panel-header-default-framed-collapsed-left-tc,
-.x-panel-header-default-framed-collapsed-left-bc {    
+.x-panel-header-default-framed-collapsed-left-bc {
     background-repeat: repeat-x;
 }
 
 .x-rtl.x-panel-header-default-framed-collapsed-left-tc,
-.x-rtl.x-panel-header-default-framed-collapsed-left-bc {    
+.x-rtl.x-panel-header-default-framed-collapsed-left-bc {
 }
 
 .x-panel-header-default-framed-collapsed-left-mc {
@@ -10958,7 +10962,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-panel-header-default-framed-collapsed-left:before {
-    display: none;    
+    display: none;
 }
 
 .x-panel .x-panel-header-default-framed-top {
@@ -11214,11 +11218,11 @@ the height of a multi-line element */
 .x-btn-group-default-framed-tc,
 .x-btn-group-default-framed-bc,
 .x-btn-group-default-framed-ml,
-.x-btn-group-default-framed-mr {    
+.x-btn-group-default-framed-mr {
 }
 
 .x-btn-group-default-framed-ml,
-.x-btn-group-default-framed-mr {    
+.x-btn-group-default-framed-mr {
     background-repeat: repeat-y;
 }
 
@@ -11227,7 +11231,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-btn-group-default-framed:before {
-    display: none;    
+    display: none;
 }
 
 .x-btn-group-default-framed-notitle {
@@ -11319,11 +11323,11 @@ the height of a multi-line element */
 .x-btn-group-default-framed-notitle-tc,
 .x-btn-group-default-framed-notitle-bc,
 .x-btn-group-default-framed-notitle-ml,
-.x-btn-group-default-framed-notitle-mr {    
+.x-btn-group-default-framed-notitle-mr {
 }
 
 .x-btn-group-default-framed-notitle-ml,
-.x-btn-group-default-framed-notitle-mr {    
+.x-btn-group-default-framed-notitle-mr {
     background-repeat: repeat-y;
 }
 
@@ -11332,7 +11336,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-btn-group-default-framed-notitle:before {
-    display: none;    
+    display: none;
 }
 
 .x-btn-group-default-framed {
@@ -11509,11 +11513,11 @@ the height of a multi-line element */
 .x-window-default-tc,
 .x-window-default-bc,
 .x-window-default-ml,
-.x-window-default-mr {    
+.x-window-default-mr {
 }
 
 .x-window-default-ml,
-.x-window-default-mr {    
+.x-window-default-mr {
     background-repeat: repeat-y;
 }
 
@@ -11522,7 +11526,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-window-default:before {
-    display: none;    
+    display: none;
 }
 
 .x-window-body-default {
@@ -11718,11 +11722,11 @@ the height of a multi-line element */
 .x-window-header-default-top-tc,
 .x-window-header-default-top-bc,
 .x-window-header-default-top-ml,
-.x-window-header-default-top-mr {    
+.x-window-header-default-top-mr {
 }
 
 .x-window-header-default-top-ml,
-.x-window-header-default-top-mr {    
+.x-window-header-default-top-mr {
     background-repeat: repeat-y;
 }
 
@@ -11731,7 +11735,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-window-header-default-top:before {
-    display: none;    
+    display: none;
 }
 
 .x-window-header-default-right {
@@ -11831,7 +11835,7 @@ the height of a multi-line element */
 .x-window-header-default-right-tc,
 .x-window-header-default-right-bc,
 .x-window-header-default-right-ml,
-.x-window-header-default-right-mr {    
+.x-window-header-default-right-mr {
 }
 
 .x-rtl.x-window-header-default-right-tl,
@@ -11839,11 +11843,11 @@ the height of a multi-line element */
 .x-rtl.x-window-header-default-right-bl,
 .x-rtl.x-window-header-default-right-tr,
 .x-rtl.x-window-header-default-right-mr,
-.x-rtl.x-window-header-default-right-br {    
+.x-rtl.x-window-header-default-right-br {
 }
 
 .x-window-header-default-right-ml,
-.x-window-header-default-right-mr {    
+.x-window-header-default-right-mr {
     background-repeat: repeat-y;
 }
 
@@ -11852,7 +11856,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-window-header-default-right:before {
-    display: none;    
+    display: none;
 }
 
 .x-window-header-default-bottom {
@@ -11952,11 +11956,11 @@ the height of a multi-line element */
 .x-window-header-default-bottom-tc,
 .x-window-header-default-bottom-bc,
 .x-window-header-default-bottom-ml,
-.x-window-header-default-bottom-mr {    
+.x-window-header-default-bottom-mr {
 }
 
 .x-window-header-default-bottom-ml,
-.x-window-header-default-bottom-mr {    
+.x-window-header-default-bottom-mr {
     background-repeat: repeat-y;
 }
 
@@ -11965,7 +11969,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-window-header-default-bottom:before {
-    display: none;    
+    display: none;
 }
 
 .x-window-header-default-left {
@@ -12065,7 +12069,7 @@ the height of a multi-line element */
 .x-window-header-default-left-tc,
 .x-window-header-default-left-bc,
 .x-window-header-default-left-ml,
-.x-window-header-default-left-mr {    
+.x-window-header-default-left-mr {
 }
 
 .x-rtl.x-window-header-default-left-tl,
@@ -12073,11 +12077,11 @@ the height of a multi-line element */
 .x-rtl.x-window-header-default-left-bl,
 .x-rtl.x-window-header-default-left-tr,
 .x-rtl.x-window-header-default-left-mr,
-.x-rtl.x-window-header-default-left-br {    
+.x-rtl.x-window-header-default-left-br {
 }
 
 .x-window-header-default-left-ml,
-.x-window-header-default-left-mr {    
+.x-window-header-default-left-mr {
     background-repeat: repeat-y;
 }
 
@@ -12086,7 +12090,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-window-header-default-left:before {
-    display: none;    
+    display: none;
 }
 
 .x-window-header-default-collapsed-top {
@@ -12178,11 +12182,11 @@ the height of a multi-line element */
 .x-window-header-default-collapsed-top-tc,
 .x-window-header-default-collapsed-top-bc,
 .x-window-header-default-collapsed-top-ml,
-.x-window-header-default-collapsed-top-mr {    
+.x-window-header-default-collapsed-top-mr {
 }
 
 .x-window-header-default-collapsed-top-ml,
-.x-window-header-default-collapsed-top-mr {    
+.x-window-header-default-collapsed-top-mr {
     background-repeat: repeat-y;
 }
 
@@ -12191,7 +12195,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-window-header-default-collapsed-top:before {
-    display: none;    
+    display: none;
 }
 
 .x-window-header-default-collapsed-right {
@@ -12283,7 +12287,7 @@ the height of a multi-line element */
 .x-window-header-default-collapsed-right-tc,
 .x-window-header-default-collapsed-right-bc,
 .x-window-header-default-collapsed-right-ml,
-.x-window-header-default-collapsed-right-mr {    
+.x-window-header-default-collapsed-right-mr {
 }
 
 .x-rtl.x-window-header-default-collapsed-right-tl,
@@ -12291,11 +12295,11 @@ the height of a multi-line element */
 .x-rtl.x-window-header-default-collapsed-right-bl,
 .x-rtl.x-window-header-default-collapsed-right-tr,
 .x-rtl.x-window-header-default-collapsed-right-mr,
-.x-rtl.x-window-header-default-collapsed-right-br {    
+.x-rtl.x-window-header-default-collapsed-right-br {
 }
 
 .x-window-header-default-collapsed-right-ml,
-.x-window-header-default-collapsed-right-mr {    
+.x-window-header-default-collapsed-right-mr {
     background-repeat: repeat-y;
 }
 
@@ -12304,7 +12308,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-window-header-default-collapsed-right:before {
-    display: none;    
+    display: none;
 }
 
 .x-window-header-default-collapsed-bottom {
@@ -12396,11 +12400,11 @@ the height of a multi-line element */
 .x-window-header-default-collapsed-bottom-tc,
 .x-window-header-default-collapsed-bottom-bc,
 .x-window-header-default-collapsed-bottom-ml,
-.x-window-header-default-collapsed-bottom-mr {    
+.x-window-header-default-collapsed-bottom-mr {
 }
 
 .x-window-header-default-collapsed-bottom-ml,
-.x-window-header-default-collapsed-bottom-mr {    
+.x-window-header-default-collapsed-bottom-mr {
     background-repeat: repeat-y;
 }
 
@@ -12409,7 +12413,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-window-header-default-collapsed-bottom:before {
-    display: none;    
+    display: none;
 }
 
 .x-window-header-default-collapsed-left {
@@ -12501,7 +12505,7 @@ the height of a multi-line element */
 .x-window-header-default-collapsed-left-tc,
 .x-window-header-default-collapsed-left-bc,
 .x-window-header-default-collapsed-left-ml,
-.x-window-header-default-collapsed-left-mr {    
+.x-window-header-default-collapsed-left-mr {
 }
 
 .x-rtl.x-window-header-default-collapsed-left-tl,
@@ -12509,11 +12513,11 @@ the height of a multi-line element */
 .x-rtl.x-window-header-default-collapsed-left-bl,
 .x-rtl.x-window-header-default-collapsed-left-tr,
 .x-rtl.x-window-header-default-collapsed-left-mr,
-.x-rtl.x-window-header-default-collapsed-left-br {    
+.x-rtl.x-window-header-default-collapsed-left-br {
 }
 
 .x-window-header-default-collapsed-left-ml,
-.x-window-header-default-collapsed-left-mr {    
+.x-window-header-default-collapsed-left-mr {
     background-repeat: repeat-y;
 }
 
@@ -12522,7 +12526,7 @@ the height of a multi-line element */
 }
 
 .x-cmd-slicer.x-window-header-default-collapsed-left:before {
-    display: none;    
+    display: none;
 }
 
 .x-window-header-default-top {
@@ -12669,14 +12673,14 @@ the height of a multi-line element */
 .x-form-invalid-icon-default {
     width: 16px;
     height: 16px;
-    margin: 0 1px;    
+    margin: 0 1px;
 }
 
 .x-form-invalid-under-default {
     padding: 2px 2px 2px 20px;
     color: #c0272b;
     font: normal 11px/16px tahoma, arial, verdana, sans-serif;
-    background: no-repeat 0 2px;    
+    background: no-repeat 0 2px;
 }
 
 .x-form-error-wrap-default.x-form-error-wrap-side {
@@ -12720,14 +12724,14 @@ the height of a multi-line element */
 .x-form-invalid-icon-toolbar {
     width: 16px;
     height: 16px;
-    margin: 0 1px;    
+    margin: 0 1px;
 }
 
 .x-form-invalid-under-toolbar {
     padding: 2px 2px 2px 20px;
     color: #c30;
     font: normal 12px/16px tahoma, arial, verdana, sans-serif;
-    background: no-repeat 0 2px;    
+    background: no-repeat 0 2px;
 }
 
 .x-form-error-wrap-toolbar.x-form-error-wrap-side {
@@ -12768,7 +12772,7 @@ the height of a multi-line element */
 .x-form-text-default {
     color: #000;
     padding: 1px 3px 2px;
-    background-color: #fff;    
+    background-color: #fff;
     font: normal 12px/17px tahoma, arial, verdana, sans-serif;
     min-height: 20px;
 }
@@ -12795,19 +12799,19 @@ the height of a multi-line element */
 }
 
 .x-form-invalid-field-default {
-    background-color: #fff;    
+    background-color: #fff;
     background-repeat: repeat-x;
     background-position: bottom;
 }
 
 .x-form-trigger-default {
-    width: 17px;    
+    width: 17px;
     border-width: 0 0 1px;
     border-color: #b5b8c8;
     border-style: solid;
 }
 
-.x-form-trigger-default.x-rtl {    
+.x-form-trigger-default.x-rtl {
 }
 
 .x-form-trigger-default.x-form-trigger-over {
@@ -12855,7 +12859,7 @@ the height of a multi-line element */
 .x-form-text-toolbar {
     color: #000;
     padding: 1px 3px 2px;
-    background-color: #fff;    
+    background-color: #fff;
     font: normal 12px/15px tahoma, arial, verdana, sans-serif;
     min-height: 18px;
 }
@@ -12882,19 +12886,19 @@ the height of a multi-line element */
 }
 
 .x-form-invalid-field-toolbar {
-    background-color: #fff;    
+    background-color: #fff;
     background-repeat: repeat-x;
     background-position: bottom;
 }
 
 .x-form-trigger-toolbar {
-    width: 17px;    
+    width: 17px;
     border-width: 0 0 1px;
     border-color: #b5b8c8;
     border-style: solid;
 }
 
-.x-form-trigger-toolbar.x-rtl {    
+.x-form-trigger-toolbar.x-rtl {
 }
 
 .x-form-trigger-toolbar.x-form-trigger-over {
@@ -12918,16 +12922,16 @@ the height of a multi-line element */
     padding-bottom: 0px;
 }
 
-.x-form-clear-trigger {    
+.x-form-clear-trigger {
 }
 
-.x-form-clear-trigger.x-rtl {    
+.x-form-clear-trigger.x-rtl {
 }
 
-.x-form-search-trigger {    
+.x-form-search-trigger {
 }
 
-.x-form-search-trigger.x-rtl {    
+.x-form-search-trigger.x-rtl {
 }
 
 .x-message-box .x-window-body {
@@ -12956,16 +12960,16 @@ the height of a multi-line element */
     margin-right: 10px;
 }
 
-.x-message-box-info {    
+.x-message-box-info {
 }
 
-.x-message-box-warning {    
+.x-message-box-warning {
 }
 
-.x-message-box-question {    
+.x-message-box-question {
 }
 
-.x-message-box-error {    
+.x-message-box-error {
 }
 
 .x-form-cb-wrap-default {
@@ -12982,14 +12986,14 @@ the height of a multi-line element */
     height: 13px;
 }
 
-.x-form-radio-default {    
+.x-form-radio-default {
 }
 
 .x-form-cb-checked .x-form-radio-default {
     background-position: 0 -13px;
 }
 
-.x-form-checkbox-default {    
+.x-form-checkbox-default {
 }
 
 .x-form-cb-checked .x-form-checkbox-default {
@@ -13054,14 +13058,14 @@ the height of a multi-line element */
     height: 13px;
 }
 
-.x-form-radio-toolbar {    
+.x-form-radio-toolbar {
 }
 
 .x-form-cb-checked .x-form-radio-toolbar {
     background-position: 0 -13px;
 }
 
-.x-form-checkbox-toolbar {    
+.x-form-checkbox-toolbar {
 }
 
 .x-form-cb-checked .x-form-checkbox-toolbar {
@@ -13119,7 +13123,7 @@ the height of a multi-line element */
 .x-form-invalid .x-form-item-body-default.x-form-checkboxgroup-body {
     border-width: 1px;
     border-style: solid;
-    border-color: #c30;    
+    border-color: #c30;
     background-repeat: repeat-x;
     background-position: bottom;
 }
@@ -13213,13 +13217,13 @@ the height of a multi-line element */
     border: 0;
 }
 
-.x-form-spinner-default {    
+.x-form-spinner-default {
     background-color: #fff;
     width: 17px;
     height: 11px;
 }
 
-.x-form-spinner-default.x-rtl {    
+.x-form-spinner-default.x-rtl {
 }
 
 .x-form-spinner-up-default {
@@ -13267,13 +13271,13 @@ the height of a multi-line element */
     border: 0;
 }
 
-.x-form-spinner-toolbar {    
+.x-form-spinner-toolbar {
     background-color: #fff;
     width: 17px;
     height: 10px;
 }
 
-.x-form-spinner-toolbar.x-rtl {    
+.x-form-spinner-toolbar.x-rtl {
 }
 
 .x-form-spinner-up-toolbar {
@@ -13320,58 +13324,58 @@ the height of a multi-line element */
     width: 30px;
 }
 
-.x-btn-icon-el.x-tbar-page-first {    
+.x-btn-icon-el.x-tbar-page-first {
 }
 
-.x-btn-icon-el.x-tbar-page-prev {    
+.x-btn-icon-el.x-tbar-page-prev {
 }
 
-.x-btn-icon-el.x-tbar-page-next {    
+.x-btn-icon-el.x-tbar-page-next {
 }
 
-.x-btn-icon-el.x-tbar-page-last {    
+.x-btn-icon-el.x-tbar-page-last {
 }
 
-.x-btn-icon-el.x-tbar-loading {    
+.x-btn-icon-el.x-tbar-loading {
 }
 
-.x-item-disabled .x-tbar-page-first {    
+.x-item-disabled .x-tbar-page-first {
 }
 
-.x-item-disabled .x-tbar-page-prev {    
+.x-item-disabled .x-tbar-page-prev {
 }
 
-.x-item-disabled .x-tbar-page-next {    
+.x-item-disabled .x-tbar-page-next {
 }
 
-.x-item-disabled .x-tbar-page-last {    
+.x-item-disabled .x-tbar-page-last {
 }
 
-.x-item-disabled .x-tbar-loading {    
+.x-item-disabled .x-tbar-loading {
 }
 
-.x-rtl.x-tbar-page-first {    
+.x-rtl.x-tbar-page-first {
 }
 
-.x-rtl.x-tbar-page-prev {    
+.x-rtl.x-tbar-page-prev {
 }
 
-.x-rtl.x-tbar-page-next {    
+.x-rtl.x-tbar-page-next {
 }
 
-.x-rtl.x-tbar-page-last {    
+.x-rtl.x-tbar-page-last {
 }
 
-.x-item-disabled .x-rtl.x-tbar-page-first {    
+.x-item-disabled .x-rtl.x-tbar-page-first {
 }
 
-.x-item-disabled .x-rtl.x-tbar-page-prev {    
+.x-item-disabled .x-rtl.x-tbar-page-prev {
 }
 
-.x-item-disabled .x-rtl.x-tbar-page-next {    
+.x-item-disabled .x-rtl.x-tbar-page-next {
 }
 
-.x-item-disabled .x-rtl.x-tbar-page-last {    
+.x-item-disabled .x-rtl.x-tbar-page-last {
 }
 
 .x-boundlist {
@@ -13452,11 +13456,11 @@ div.x-datepicker-arrow:hover {
 }
 
 .x-datepicker-next {
-    right: 6px;    
+    right: 6px;
 }
 
 .x-datepicker-prev {
-    left: 6px;    
+    left: 6px;
 }
 
 .x-datepicker-month {
@@ -13482,7 +13486,7 @@ div.x-datepicker-arrow:hover {
 }
 
 .x-datepicker-month .x-btn-split-right:after,
-.x-datepicker-month .x-btn-over .x-btn-split-right:after {    
+.x-datepicker-month .x-btn-over .x-btn-split-right:after {
     padding: 0;
     text-align: right;
     width: 8px;
@@ -13671,14 +13675,14 @@ a.x-monthpicker-item-inner:hover {
     background-color: #fff;
 }
 
-.x-monthpicker-yearnav-next {    
+.x-monthpicker-yearnav-next {
 }
 
 .x-monthpicker-yearnav-next-over {
     background-position: -15px -120px;
 }
 
-.x-monthpicker-yearnav-prev {    
+.x-monthpicker-yearnav-prev {
 }
 
 .x-monthpicker-yearnav-prev-over {
@@ -13701,29 +13705,29 @@ a.x-monthpicker-item-inner:hover {
     margin-top: 3px;
 }
 
-.x-nlg .x-datepicker-header {    
+.x-nlg .x-datepicker-header {
     background-repeat: repeat-x;
     background-position: top left;
 }
 
 .x-nlg .x-datepicker-footer,
-.x-nlg .x-monthpicker-buttons {    
+.x-nlg .x-monthpicker-buttons {
     background-repeat: repeat-x;
     background-position: top left;
 }
 
 .x-cmd-slicer.x-datepicker-header:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-datepicker-footer:before {
-    display: none;    
+    display: none;
 }
 
-.x-form-date-trigger {    
+.x-form-date-trigger {
 }
 
-.x-form-date-trigger.x-rtl {    
+.x-form-date-trigger.x-rtl {
 }
 
 .x-form-display-field-default {
@@ -13879,11 +13883,11 @@ a.x-monthpicker-item-inner:hover {
 .x-tip-default-tc,
 .x-tip-default-bc,
 .x-tip-default-ml,
-.x-tip-default-mr {    
+.x-tip-default-mr {
 }
 
 .x-tip-default-ml,
-.x-tip-default-mr {    
+.x-tip-default-mr {
     background-repeat: repeat-y;
 }
 
@@ -13892,7 +13896,7 @@ a.x-monthpicker-item-inner:hover {
 }
 
 .x-cmd-slicer.x-tip-default:before {
-    display: none;    
+    display: none;
 }
 
 .x-tip-default {
@@ -14030,11 +14034,11 @@ a.x-monthpicker-item-inner:hover {
 .x-tip-form-invalid-tc,
 .x-tip-form-invalid-bc,
 .x-tip-form-invalid-ml,
-.x-tip-form-invalid-mr {    
+.x-tip-form-invalid-mr {
 }
 
 .x-tip-form-invalid-ml,
-.x-tip-form-invalid-mr {    
+.x-tip-form-invalid-mr {
     background-repeat: repeat-y;
 }
 
@@ -14043,7 +14047,7 @@ a.x-monthpicker-item-inner:hover {
 }
 
 .x-cmd-slicer.x-tip-form-invalid:before {
-    display: none;    
+    display: none;
 }
 
 .x-tip-form-invalid {
@@ -14097,7 +14101,7 @@ a.x-monthpicker-item-inner:hover {
 }
 
 .x-tip-body-form-invalid {
-    background: 1px 1px no-repeat;    
+    background: 1px 1px no-repeat;
 }
 
 .x-tip-body-form-invalid li {
@@ -14147,72 +14151,72 @@ a.x-color-picker-item:hover {
 
 .x-html-editor-tb .x-edit-bold,
 .x-menu-item div.x-edit-bold {
-    background-position: 0 0;    
+    background-position: 0 0;
 }
 
 .x-html-editor-tb .x-edit-italic,
 .x-menu-item div.x-edit-italic {
-    background-position: -16px 0;    
+    background-position: -16px 0;
 }
 
 .x-html-editor-tb .x-edit-underline,
 .x-menu-item div.x-edit-underline {
-    background-position: -32px 0;    
+    background-position: -32px 0;
 }
 
 .x-html-editor-tb .x-edit-forecolor,
 .x-menu-item div.x-edit-forecolor {
-    background-position: -160px 0;    
+    background-position: -160px 0;
 }
 
 .x-html-editor-tb .x-edit-backcolor,
 .x-menu-item div.x-edit-backcolor {
-    background-position: -176px 0;    
+    background-position: -176px 0;
 }
 
 .x-html-editor-tb .x-edit-justifyleft,
 .x-menu-item div.x-edit-justifyleft {
-    background-position: -112px 0;    
+    background-position: -112px 0;
 }
 
 .x-html-editor-tb .x-edit-justifycenter,
 .x-menu-item div.x-edit-justifycenter {
-    background-position: -128px 0;    
+    background-position: -128px 0;
 }
 
 .x-html-editor-tb .x-edit-justifyright,
 .x-menu-item div.x-edit-justifyright {
-    background-position: -144px 0;    
+    background-position: -144px 0;
 }
 
 .x-html-editor-tb .x-edit-insertorderedlist,
 .x-menu-item div.x-edit-insertorderedlist {
-    background-position: -80px 0;    
+    background-position: -80px 0;
 }
 
 .x-html-editor-tb .x-edit-insertunorderedlist,
 .x-menu-item div.x-edit-insertunorderedlist {
-    background-position: -96px 0;    
+    background-position: -96px 0;
 }
 
 .x-html-editor-tb .x-edit-increasefontsize,
 .x-menu-item div.x-edit-increasefontsize {
-    background-position: -48px 0;    
+    background-position: -48px 0;
 }
 
 .x-html-editor-tb .x-edit-decreasefontsize,
 .x-menu-item div.x-edit-decreasefontsize {
-    background-position: -64px 0;    
+    background-position: -64px 0;
 }
 
 .x-html-editor-tb .x-edit-sourceedit,
 .x-menu-item div.x-edit-sourceedit {
-    background-position: -192px 0;    
+    background-position: -192px 0;
 }
 
 .x-html-editor-tb .x-edit-createlink,
 .x-menu-item div.x-edit-createlink {
-    background-position: -208px 0;    
+    background-position: -208px 0;
 }
 
 .x-html-editor-tip .x-tip-bd .x-tip-bd-inner {
@@ -14277,7 +14281,7 @@ a.x-color-picker-item:hover {
     width: 11px;
     height: 11px;
     top: 1px;
-    right: 1px;    
+    right: 1px;
 }
 
 .x-form-text-default .x-tagfield-item-close:hover {
@@ -14446,18 +14450,18 @@ a.x-color-picker-item:hover {
 }
 
 .x-nlg .x-grid-cell-special {
-    background-repeat: repeat-y;    
+    background-repeat: repeat-y;
 }
 
-.x-nlg .x-grid-item-selected .x-grid-cell-special {    
+.x-nlg .x-grid-item-selected .x-grid-cell-special {
 }
 
 .x-grid-cell-special .x-cmd-slicer.x-grid-cell-special:before {
-    display: none;    
+    display: none;
 }
 
 .x-grid-cell-special .x-cmd-slicer.x-grid-cell-special-selected:before {
-    display: none;    
+    display: none;
 }
 
 .x-rtl.x-grid-cell-special {
@@ -14465,10 +14469,10 @@ a.x-color-picker-item:hover {
     border-left-width: 1px;
 }
 
-.x-grid-dirty-cell {    
+.x-grid-dirty-cell {
 }
 
-.x-rtl.x-grid-dirty-cell {    
+.x-rtl.x-grid-dirty-cell {
     background-position: right 0;
 }
 
@@ -14514,7 +14518,7 @@ a.x-color-picker-item:hover {
 .x-grid-drop-indicator .x-grid-drop-indicator-left {
     position: absolute;
     top: -8px;
-    left: -12px;    
+    left: -12px;
     height: 16px;
     width: 16px;
 }
@@ -14522,7 +14526,7 @@ a.x-color-picker-item:hover {
 .x-grid-drop-indicator .x-grid-drop-indicator-right {
     position: absolute;
     top: -8px;
-    right: -11px;    
+    right: -11px;
     height: 16px;
     width: 16px;
 }
@@ -14533,10 +14537,10 @@ a.x-color-picker-item:hover {
     height: 9px;
 }
 
-.x-col-move-top {    
+.x-col-move-top {
 }
 
-.x-col-move-bottom {    
+.x-col-move-bottom {
 }
 
 .x-grid-header-ct {
@@ -14566,13 +14570,13 @@ a.x-color-picker-item:hover {
     border-top-color: #c5c5c5;
 }
 
-.x-hmenu-sort-asc {    
+.x-hmenu-sort-asc {
 }
 
-.x-hmenu-sort-desc {    
+.x-hmenu-sort-desc {
 }
 
-.x-cols-icon {    
+.x-cols-icon {
 }
 
 .x-column-header {
@@ -14656,12 +14660,12 @@ a.x-color-picker-item:hover {
 }
 
 .x-nlg .x-grid-header-ct,
-.x-nlg .x-column-header {    
+.x-nlg .x-column-header {
 }
 
 .x-nlg .x-column-header-over,
 .x-nlg .x-column-header-sort-ASC,
-.x-nlg .x-column-header-sort-DESC {    
+.x-nlg .x-column-header-sort-DESC {
 }
 
 .x-column-header-open {
@@ -14675,7 +14679,7 @@ a.x-color-picker-item:hover {
 .x-column-header-over .x-column-header-trigger,
 .x-column-header-open .x-column-header-trigger {
     width: 14px;
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 .x-rtl.x-column-header-trigger {
@@ -14704,10 +14708,10 @@ a.x-color-picker-item:hover {
     background-position: 0 center;
 }
 
-.x-column-header-sort-ASC .x-column-header-text-inner {    
+.x-column-header-sort-ASC .x-column-header-text-inner {
 }
 
-.x-column-header-sort-DESC .x-column-header-text-inner {    
+.x-column-header-sort-DESC .x-column-header-text-inner {
 }
 
 .x-no-header-borders .x-column-header {
@@ -14719,11 +14723,11 @@ a.x-color-picker-item:hover {
 }
 
 .x-cmd-slicer.x-column-header:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-column-header-over:before {
-    display: none;    
+    display: none;
 }
 
 .x-grid-cell-inner-action-col {
@@ -14759,7 +14763,7 @@ a.x-color-picker-item:hover {
 
 .x-grid-checkcolumn {
     width: 13px;
-    height: 13px;    
+    height: 13px;
 }
 
 .x-item-disabled .x-grid-checkcolumn {
@@ -14805,7 +14809,7 @@ a.x-color-picker-item:hover {
 .x-form-text-grid-cell {
     color: #000;
     padding: 1px 5px 2px 5px;
-    background-color: #fff;    
+    background-color: #fff;
     font: normal 11px/15px tahoma, arial, verdana, sans-serif;
     min-height: 18px;
 }
@@ -14832,19 +14836,19 @@ a.x-color-picker-item:hover {
 }
 
 .x-form-invalid-field-grid-cell {
-    background-color: #fff;    
+    background-color: #fff;
     background-repeat: repeat-x;
     background-position: bottom;
 }
 
 .x-form-trigger-grid-cell {
-    width: 17px;    
+    width: 17px;
     border-width: 0 0 1px;
     border-color: #b5b8c8;
     border-style: solid;
 }
 
-.x-form-trigger-grid-cell.x-rtl {    
+.x-form-trigger-grid-cell.x-rtl {
 }
 
 .x-form-trigger-grid-cell.x-form-trigger-over {
@@ -14873,13 +14877,13 @@ a.x-color-picker-item:hover {
     border: 0;
 }
 
-.x-form-spinner-grid-cell {    
+.x-form-spinner-grid-cell {
     background-color: #fff;
     width: 17px;
     height: 10px;
 }
 
-.x-form-spinner-grid-cell.x-rtl {    
+.x-form-spinner-grid-cell.x-rtl {
 }
 
 .x-form-spinner-up-grid-cell {
@@ -14936,14 +14940,14 @@ a.x-color-picker-item:hover {
     height: 13px;
 }
 
-.x-form-radio-grid-cell {    
+.x-form-radio-grid-cell {
 }
 
 .x-form-cb-checked .x-form-radio-grid-cell {
     background-position: 0 -13px;
 }
 
-.x-form-checkbox-grid-cell {    
+.x-form-checkbox-grid-cell {
 }
 
 .x-form-cb-checked .x-form-checkbox-grid-cell {
@@ -15012,7 +15016,7 @@ a.x-color-picker-item:hover {
     background-image: linear-gradient(top, #fff, #eee);
 }
 
-.x-btn-grid-cell-small-mc {    
+.x-btn-grid-cell-small-mc {
     background-position: 0 top;
     background-color: #f8f8f8;
 }
@@ -15092,11 +15096,11 @@ a.x-color-picker-item:hover {
 .x-btn-grid-cell-small-tc,
 .x-btn-grid-cell-small-bc,
 .x-btn-grid-cell-small-ml,
-.x-btn-grid-cell-small-mr {    
+.x-btn-grid-cell-small-mr {
 }
 
 .x-btn-grid-cell-small-ml,
-.x-btn-grid-cell-small-mr {    
+.x-btn-grid-cell-small-mr {
 }
 
 .x-btn-grid-cell-small-mc {
@@ -15104,7 +15108,7 @@ a.x-color-picker-item:hover {
 }
 
 .x-cmd-slicer.x-btn-grid-cell-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-btn-grid-cell-small {
@@ -15201,36 +15205,36 @@ a.x-color-picker-item:hover {
 }
 
 .x-btn-wrap-grid-cell-small.x-btn-arrow-right:after {
-    width: 8px;    
+    width: 8px;
     padding-right: 8px;
 }
 
-.x-btn-wrap-grid-cell-small.x-rtl.x-btn-arrow-right:after {    
+.x-btn-wrap-grid-cell-small.x-rtl.x-btn-arrow-right:after {
 }
 
 .x-btn-wrap-grid-cell-small.x-btn-arrow-bottom:after {
-    height: 8px;    
+    height: 8px;
 }
 
 .x-btn-wrap-grid-cell-small.x-btn-split-right:after {
-    width: 14px;    
+    width: 14px;
     padding-right: 14px;
 }
 
-.x-btn-wrap-grid-cell-small.x-rtl.x-btn-split-right:after {    
+.x-btn-wrap-grid-cell-small.x-rtl.x-btn-split-right:after {
 }
 
 .x-btn-wrap-grid-cell-small.x-btn-split-bottom:after {
-    height: 14px;    
+    height: 14px;
 }
 
-.x-btn-over > .x-btn-wrap-grid-cell-small.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-grid-cell-small.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-grid-cell-small.x-rtl.x-btn-split-right:after {    
+.x-btn-over > .x-btn-wrap-grid-cell-small.x-rtl.x-btn-split-right:after {
 }
 
-.x-btn-over > .x-btn-wrap-grid-cell-small.x-btn-split-bottom:after {    
+.x-btn-over > .x-btn-wrap-grid-cell-small.x-btn-split-bottom:after {
 }
 
 .x-btn-split-right > .x-btn-icon.x-btn-no-text.x-btn-button-grid-cell-small {
@@ -15313,15 +15317,15 @@ a.x-color-picker-item:hover {
 .x-btn-focus .x-btn-grid-cell-small-tr,
 .x-btn-focus .x-btn-grid-cell-small-br,
 .x-btn-focus .x-btn-grid-cell-small-tc,
-.x-btn-focus .x-btn-grid-cell-small-bc {    
+.x-btn-focus .x-btn-grid-cell-small-bc {
 }
 
 .x-btn-focus .x-btn-grid-cell-small-ml,
-.x-btn-focus .x-btn-grid-cell-small-mr {    
+.x-btn-focus .x-btn-grid-cell-small-mr {
 }
 
 .x-btn-focus .x-btn-grid-cell-small-mc {
-    background-color: #fff;    
+    background-color: #fff;
 }
 
 .x-btn-over .x-btn-grid-cell-small-tl,
@@ -15329,15 +15333,15 @@ a.x-color-picker-item:hover {
 .x-btn-over .x-btn-grid-cell-small-tr,
 .x-btn-over .x-btn-grid-cell-small-br,
 .x-btn-over .x-btn-grid-cell-small-tc,
-.x-btn-over .x-btn-grid-cell-small-bc {    
+.x-btn-over .x-btn-grid-cell-small-bc {
 }
 
 .x-btn-over .x-btn-grid-cell-small-ml,
-.x-btn-over .x-btn-grid-cell-small-mr {    
+.x-btn-over .x-btn-grid-cell-small-mr {
 }
 
 .x-btn-over .x-btn-grid-cell-small-mc {
-    background-color: #fff;    
+    background-color: #fff;
 }
 
 .x-btn-focus.x-btn-over .x-btn-grid-cell-small-tl,
@@ -15345,15 +15349,15 @@ a.x-color-picker-item:hover {
 .x-btn-focus.x-btn-over .x-btn-grid-cell-small-tr,
 .x-btn-focus.x-btn-over .x-btn-grid-cell-small-br,
 .x-btn-focus.x-btn-over .x-btn-grid-cell-small-tc,
-.x-btn-focus.x-btn-over .x-btn-grid-cell-small-bc {    
+.x-btn-focus.x-btn-over .x-btn-grid-cell-small-bc {
 }
 
 .x-btn-focus.x-btn-over .x-btn-grid-cell-small-ml,
-.x-btn-focus.x-btn-over .x-btn-grid-cell-small-mr {    
+.x-btn-focus.x-btn-over .x-btn-grid-cell-small-mr {
 }
 
 .x-btn-focus.x-btn-over .x-btn-grid-cell-small-mc {
-    background-color: #fff;    
+    background-color: #fff;
 }
 
 .x-btn.x-btn-menu-active .x-btn-grid-cell-small-tl,
@@ -15367,18 +15371,18 @@ a.x-color-picker-item:hover {
 .x-btn.x-btn-pressed .x-btn-grid-cell-small-tr,
 .x-btn.x-btn-pressed .x-btn-grid-cell-small-br,
 .x-btn.x-btn-pressed .x-btn-grid-cell-small-tc,
-.x-btn.x-btn-pressed .x-btn-grid-cell-small-bc {    
+.x-btn.x-btn-pressed .x-btn-grid-cell-small-bc {
 }
 
 .x-btn.x-btn-menu-active .x-btn-grid-cell-small-ml,
 .x-btn.x-btn-menu-active .x-btn-grid-cell-small-mr,
 .x-btn.x-btn-pressed .x-btn-grid-cell-small-ml,
-.x-btn.x-btn-pressed .x-btn-grid-cell-small-mr {    
+.x-btn.x-btn-pressed .x-btn-grid-cell-small-mr {
 }
 
 .x-btn.x-btn-menu-active .x-btn-grid-cell-small-mc,
 .x-btn.x-btn-pressed .x-btn-grid-cell-small-mc {
-    background-color: #dfdfdf;    
+    background-color: #dfdfdf;
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-grid-cell-small-tl,
@@ -15392,18 +15396,18 @@ a.x-color-picker-item:hover {
 .x-btn-focus.x-btn-pressed .x-btn-grid-cell-small-tr,
 .x-btn-focus.x-btn-pressed .x-btn-grid-cell-small-br,
 .x-btn-focus.x-btn-pressed .x-btn-grid-cell-small-tc,
-.x-btn-focus.x-btn-pressed .x-btn-grid-cell-small-bc {    
+.x-btn-focus.x-btn-pressed .x-btn-grid-cell-small-bc {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-grid-cell-small-ml,
 .x-btn-focus.x-btn-menu-active .x-btn-grid-cell-small-mr,
 .x-btn-focus.x-btn-pressed .x-btn-grid-cell-small-ml,
-.x-btn-focus.x-btn-pressed .x-btn-grid-cell-small-mr {    
+.x-btn-focus.x-btn-pressed .x-btn-grid-cell-small-mr {
 }
 
 .x-btn-focus.x-btn-menu-active .x-btn-grid-cell-small-mc,
 .x-btn-focus.x-btn-pressed .x-btn-grid-cell-small-mc {
-    background-color: #dfdfdf;    
+    background-color: #dfdfdf;
 }
 
 .x-btn.x-btn-disabled .x-btn-grid-cell-small-tl,
@@ -15411,15 +15415,15 @@ a.x-color-picker-item:hover {
 .x-btn.x-btn-disabled .x-btn-grid-cell-small-tr,
 .x-btn.x-btn-disabled .x-btn-grid-cell-small-br,
 .x-btn.x-btn-disabled .x-btn-grid-cell-small-tc,
-.x-btn.x-btn-disabled .x-btn-grid-cell-small-bc {    
+.x-btn.x-btn-disabled .x-btn-grid-cell-small-bc {
 }
 
 .x-btn.x-btn-disabled .x-btn-grid-cell-small-ml,
-.x-btn.x-btn-disabled .x-btn-grid-cell-small-mr {    
+.x-btn.x-btn-disabled .x-btn-grid-cell-small-mr {
 }
 
 .x-btn.x-btn-disabled .x-btn-grid-cell-small-mc {
-    background-color: #fff;    
+    background-color: #fff;
 }
 
 .x-nbr .x-btn-grid-cell-small {
@@ -15512,27 +15516,27 @@ a.x-color-picker-item:hover {
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-grid-cell-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-over.x-btn-grid-cell-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-over.x-btn-grid-cell-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-pressed.x-btn-grid-cell-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-focus.x-btn-pressed.x-btn-grid-cell-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-cmd-slicer.x-btn-disabled.x-btn-grid-cell-small:before {
-    display: none;    
+    display: none;
 }
 
 .x-button-grid-cell-small-cell > .x-grid-cell-inner {
@@ -15558,7 +15562,7 @@ a.x-color-picker-item:hover {
 }
 
 .x-grid-group-hd-collapsible .x-grid-group-title {
-    padding: 0 0 0 14px;    
+    padding: 0 0 0 14px;
 }
 
 .x-rtl.x-grid-view .x-grid-group-hd-collapsible .x-grid-group-title {
@@ -15571,10 +15575,10 @@ a.x-color-picker-item:hover {
     font: bold 11px/13px tahoma, arial, verdana, sans-serif;
 }
 
-.x-grid-group-hd-collapsed .x-grid-group-title {    
+.x-grid-group-hd-collapsed .x-grid-group-title {
 }
 
-.x-group-by-icon {    
+.x-group-by-icon {
 }
 
 .x-grid-rowbody {
@@ -15662,7 +15666,7 @@ a.x-color-picker-item:hover {
 }
 
 .x-nlg .x-menu-item-default.x-menu-item-active {
-    background: #e6e6e6 repeat-x left top;    
+    background: #e6e6e6 repeat-x left top;
 }
 
 .x-menu-item-default.x-menu-item-disabled {

@@ -4,53 +4,48 @@
   开发日期：2018年3月15日09:09:22
 -->
 <template lang="pug">
-  div.art-company-info(data-art="data-art")
-    art-header(title="招聘信息")
-    div.bd
-      scroll.scroll-form(v-bind:refreshDelay="120" ref="scrollForm"
-      v-bind:beforeScroll="true"
-      v-on:beforeScroll="listScroll")
-        div.wrapper
-          el-form(ref="dialogForm" v-bind:model="formModel" v-bind:rules="rules")
-            el-form-item.s-flex_item.kalix-form-table-td(label="岗位名称" prop="position" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.position")
-            el-form-item.s-flex_item.kalix-form-table-td(label="工作省份" prop="region" v-bind:label-width="labelWidth")
-              art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
-            el-form-item.s-flex_item.kalix-form-table-td(label="工作城市" prop="city" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.city")
-            el-form-item.s-flex_item.kalix-form-table-td(label="岗位要求" prop="positionRequires" v-bind:label-width="labelWidth")
-              el-input(v-model="positionRequires" type="textarea" v-bind:rows="4")
-            el-form-item.s-flex_item.kalix-form-table-td(label="岗位所需软件" prop="requireSofts" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.requireSofts" type="textarea" v-bind:rows="4")
-            el-form-item.s-flex_item.kalix-form-table-td(label="岗位个数" prop="jobNumbers" v-bind:label-width="labelWidth")
-              el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="float:right")
-            el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.education")
-            el-form-item.s-flex_item.kalix-form-table-td(label="职能类别" prop="functionCategoryId" v-bind:label-width="labelWidth")
-              art-cascade(v-model="formModel.functionCategoryId")
-            el-form-item.s-flex_item.kalix-form-table-td(label="实习薪资" prop="probationSalary" v-bind:label-width="labelWidth")
-              art-dist-select(v-model="formModel.probationSalary" appName="art" dictType="月薪")
-            el-form-item.s-flex_item.kalix-form-table-td(label="转正薪资" prop="salary" v-bind:label-width="labelWidth")
-              art-dist-select(v-model="formModel.salary" appName="art" dictType="月薪")
-            el-form-item.s-flex_item.kalix-form-table-td(label="应用技术名称" prop="appliedTechnology" v-bind:label-width="labelWidth")
-              el-input(v-model="formModel.appliedTechnology")
-            el-form-item.s-flex_item.kalix-form-table-td(label="个人要求" prop="personRequires" v-bind:label-width="labelWidth")
-              art-dist-check-list(v-model="formModel.personRequires" appName="art" dictType="个人要求" style="width:100%")
-            el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
-              art-dist-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
-    div.ft
-      div.btns
-        el-button.btn-item(type="primary" v-on:click="onSubmitClick") 保 存
+  art-base-form(
+  title="招聘信息"
+  bizKey="role"
+  ref="recruitForm"
+  v-bind:formModel.sync="formModel"
+  v-bind:targetURL="targetURL")
+    div.form-wrapper(slot="slotForm")
+      el-form-item.s-flex_item.kalix-form-table-td(label="岗位名称" prop="position" v-bind:label-width="labelWidth")
+        el-input(v-model="formModel.position")
+      el-form-item.s-flex_item.kalix-form-table-td(label="工作省份" prop="region" v-bind:label-width="labelWidth")
+        art-dist-select(v-model="formModel.region" appName="art" dictType="省份")
+      el-form-item.s-flex_item.kalix-form-table-td(label="工作城市" prop="city" v-bind:label-width="labelWidth")
+        el-input(v-model="formModel.city")
+      el-form-item.s-flex_item.kalix-form-table-td(label="岗位要求" prop="positionRequires" v-bind:label-width="labelWidth")
+        el-input(v-model="positionRequires" type="textarea" v-bind:rows="4")
+      el-form-item.s-flex_item.kalix-form-table-td(label="岗位所需软件" prop="requireSofts" v-bind:label-width="labelWidth")
+        el-input(v-model="formModel.requireSofts" type="textarea" v-bind:rows="4")
+      el-form-item.s-flex_item.kalix-form-table-td(label="岗位个数" prop="jobNumbers" v-bind:label-width="labelWidth")
+        el-input-number(v-model="formModel.jobNumbers" v-bind:min="1" style="float:right")
+      el-form-item.s-flex_item.kalix-form-table-td(label="学历" prop="education" v-bind:label-width="labelWidth")
+        art-dist-select(v-model="formModel.education" appName="art" dictType="学历")
+      el-form-item.s-flex_item.kalix-form-table-td(label="职能类别" prop="functionCategoryId" v-bind:label-width="labelWidth")
+        art-cascade(v-model="formModel.functionCategoryId")
+      el-form-item.s-flex_item.kalix-form-table-td(label="实习薪资" prop="probationSalary" v-bind:label-width="labelWidth")
+        art-dist-select(v-model="formModel.probationSalary" appName="art" dictType="月薪")
+      el-form-item.s-flex_item.kalix-form-table-td(label="转正薪资" prop="salary" v-bind:label-width="labelWidth")
+        art-dist-select(v-model="formModel.salary" appName="art" dictType="月薪")
+      el-form-item.s-flex_item.kalix-form-table-td(label="应用技术名称" prop="appliedTechnology" v-bind:label-width="labelWidth")
+        el-input(v-model="formModel.appliedTechnology")
+      el-form-item.s-flex_item.kalix-form-table-td(label="个人要求" prop="personRequires" v-bind:label-width="labelWidth")
+        art-dist-check-list(v-model="formModel.personRequires" appName="art" dictType="个人要求" style="width:100%")
+      el-form-item.s-flex_item.kalix-form-table-td(label="工作类型" prop="jobType" v-bind:label-width="labelWidth")
+        art-dist-select(v-model="formModel.jobType" appName="art" dictType="工作类型" style="width:100%")
 </template>
 
 <script type="text/ecmascript-6">
+  import ArtBaseForm from '../comp/ArtBaseForm'
   import FormModel from './model'
-  import {Message, Cache} from 'kalix-base'
+  import {Cache} from 'kalix-base'
   import {RecruitURL} from '../config.toml'
   import ArtDistSelect from '../base/ArtDistSelect'
   import ArtDistCheckList from '../base/ArtDistCheckList'
-  import Scroll from '../base/scroll'
-  import ArtHeader from '../../comp/header'
   import ArtCascade from '../base/ArtCascade'
 
   export default {
@@ -58,11 +53,9 @@
       isVisible: false
     },
     activated() {
-      this.$myConsoleLog(' recruitFormInfo - activated', '', '#555500')
       this.open()
     },
     deactivated() {
-      this.$refs.dialogForm.resetFields()
       this.positionRequires = ''
       sessionStorage.removeItem('CurrentRecruit')
     },
@@ -93,7 +86,6 @@
     created() {
     },
     mounted() {
-      this.$myConsoleLog(' recruitFormInfo - mounted', '', '#005555')
     },
     methods: {
       listScroll() {
@@ -102,14 +94,8 @@
           inputs[i].blur()
         }
       },
-      initSwiper() {
-        setTimeout(() => {
-          this.$refs.scrollForm.refresh()
-        }, 20)
-      },
       open() {
-        let item = JSON.parse(Cache.get('CurrentRecruit'))
-        this.initSwiper()
+        let item = this.$route.params.item
         if (item) {
           this.formModel = item
           this.isEdit = true
@@ -146,34 +132,6 @@
         this.formModel.companyAddress = rec.address
         this.$myConsoleLog('rec', rec, '#551A8B')
       },
-      onSubmitClick() {
-        this.formModel.positionRequires = this.positionRequires.replace(/[\r\n]/g, '<br />')
-        this.$refs.dialogForm.validate((valid) => {
-          if (valid) {
-            this.axios.request({
-              method: this.isEdit ? 'PUT' : 'POST',
-              url: this.isEdit ? `${this.targetURL}/${this.formModel.id}` : this.targetURL,
-              data: this.formModel,
-              params: {}
-            }).then(response => {
-              if (response.data.success) {
-//                Message.success(response.data.msg)
-                this.visible = false
-                this.$refs.dialogForm.resetFields()
-                this.positionRequires = ''
-                this.resultRedirect('success')
-              } else {
-                this.resultRedirect('error')
-              }
-              // 刷新列表
-              console.log('[kalix] dialog submit button clicked !')
-            })
-          } else {
-            Message.error('请检查输入项！')
-            return false
-          }
-        })
-      },
       initData() {
         this.formModel.companyName = ''
         this.formModel.companyNature = null
@@ -190,79 +148,39 @@
       }
     },
     components: {
-      ArtHeader,
+      ArtBaseForm,
       ArtDistSelect,
       ArtDistCheckList,
-      ArtCascade,
-      Scroll
+      ArtCascade
     }
   }
 </script>
 <style lang="stylus" type="text/stylus">
-  .scroll-form
-    height: 100%
-    overflow: hidden
+  .el-input__inner
+    border-radius 0
+    border-width 0 0 1px 0 !important
 
-  .art-company-info[data-art]
-    position fixed
-    width 100%
-    height 100%
-    top 0
-    left 0
-    background-color #ffffff
-    .bd
-      position fixed
-      left 0
-      top 48px
-      bottom 70px
-      width 100%
-      overflow hidden
-      .wrapper
-        padding 15px
-    .ft
-      position fixed
-      bottom 0
-      left 0
-      width 100%
-      padding 15px
-      text-align center
-      box-sizing border-box
-      background-color #ffffff
-      .btns
-        display flex
-        .btn-item
-          flex 1
-          background-color #ae935c
-          color #ffffff
-
-    .el-input__inner
-      border-radius 0
-      border-width 0 0 1px 0 !important
-
-    .el-input-number__decrease,
-    .el-input-number__increase
+  .el-input-number__decrease,
+  .el-input-number__increase
+    border-radius 50%
+    border 0
+    background-color transparent
+    color #fff
+    &:after
+      position absolute
+      display block
+      content ''
+      width 20px
+      height 20px
+      background-color #ffa200
+      top 50%
+      left 50%
+      transform translate3d(-50%, -50%, 0)
       border-radius 50%
-      border 0
-      background-color transparent
-      color #fff
-      &:after
-        position absolute
-        display block
-        content ''
-        width 20px
-        height 20px
-        background-color #ffa200
-        top 50%
-        left 50%
-        transform translate3d(-50%, -50%, 0)
-        border-radius 50%
-        z-index -1
+      z-index -1
 
-  .show-enter-active,
-  .show-leave-active
-    transition all .5s
-
-  .show-enter,
-  .show-leave-active
-    transform translate3d(100%, 0, 0)
+</style>
+<style scoped lang="stylus" type="text/stylus">
+  .form-wrapper
+    padding 15px
 </style>

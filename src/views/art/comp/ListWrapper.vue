@@ -57,6 +57,11 @@
         type: String,
         required: true
       },
+      //  数据列表请求的查询条件
+      jsonStr: {
+        type: String,
+        default: ''
+      },
       // 数据字典定义
       dictDefine: {
         type: Array
@@ -160,12 +165,12 @@
         // this.$myConsoleLog('getData this.isFinish', this.listLoadMoreIsFinish, '#191970')
         if (!this.listLoadMoreIsFinish) {
           let _data = {
-            jsonStr: '{"%code%": "' + this.currentUser.code + '"}',
+            jsonStr: this.jsonStr,
             page: this.pager.currentPage,
             start: this.pager.start,
             limit: this.pager.limit
           }
-          console.log('_data', _data)
+          this.$myConsoleLog('_data', _data)
           this.$http.get(this.targetURL, {
             params: _data
           }).then(response => {
@@ -206,12 +211,21 @@
         this.dictDefine.forEach((item) => {
           //  获取 对应的键值对 对象
           let _keyObj = DictKeyValueObject(item.cacheKey, item.type)
-          console.log('[kalix]-[baseTable.vue] dict should get key is ', _keyObj)
-          _data.forEach(function (e) {
+          // console.log('[kalix]-[baseTable.vue] dict should get key is ', _keyObj)
+          _data.forEach((e) => {
             //  检测 _keyObj 是否存在
             if (_keyObj) {
               // 替换对应的列值
-              e[item.targetField] = _keyObj[e[item.sourceField]]
+              if (item.isMultiselect) {
+                let source = e[item.sourceField].split(',')
+                let targets = []
+                source.forEach(_i => {
+                  targets.push(_keyObj[_i.toString()])
+                })
+                e[item.targetField] = targets.join('、')
+              } else {
+                e[item.targetField] = _keyObj[e[item.sourceField]]
+              }
             }
           })
           console.log('[kalix]-[baseTable.vue] _data ', _data)

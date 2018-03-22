@@ -37,7 +37,7 @@
       }
     },
     activated() {
-      // this.open()
+      this.initSwiper()
     },
     methods: {
       onSubmitClick() {

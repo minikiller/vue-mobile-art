@@ -7,6 +7,7 @@ ArtDictsTypesListURL = "/camel/rest/art/dicts/types/list"
 TeachingUnitOrgID = 22601
 FunctionCategroyURL = "/camel/rest/functioncategorys"
 StudentURL = "/camel/rest/students"
+CompanyURL = "/camel/rest/companys"
 
 # table 的默认按钮定义
 [[ToolButtonList]]

@@ -106,6 +106,7 @@
           }
         })
       },
+      // 获取职能类别
       _getFunctionCategroy(callBack) {
         if (!Cache.get('FUNCTION-CATEGROY-DICT')) {
           this.axios.request({
@@ -113,6 +114,7 @@
             url: FunctionCategroyURL,
             params: {}
           }).then(res => {
+            this._getFunctionCategroyObjects(res.data.children)
             Cache.save('FUNCTION-CATEGROY', JSON.stringify(res.data.children))
             callBack()
           })
@@ -152,6 +154,17 @@
             callBack()
           }
         })
+      },
+      // 获取职能类别对象
+      _getFunctionCategroyObjects(cacheData) {
+        let items = {}
+        cacheData[0].children.forEach(e => {
+          items[e.id] = e
+          e.children.forEach(ie => {
+            items[ie.id] = ie
+          })
+        })
+        Cache.save('FUNCTION-CATEGROY-OBJ', JSON.stringify(items))
       }
     },
     components: {},
