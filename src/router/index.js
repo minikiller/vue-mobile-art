@@ -98,7 +98,7 @@ const router = new Router({
         },
         // 学生简历
         {
-          path: '/art_candidate/form',
+          path: '/art_candidate/form/:itemId',
           name: 'candidateForm',
           component: candidateForm
         },
@@ -145,7 +145,7 @@ const router = new Router({
         },
         // 招聘信息
         {
-          path: '/art_company/formInfo',
+          path: '/art_company/formInfo/:itemId',
           name: 'recruitFormInfo',
           component: recruitFormInfo
         },

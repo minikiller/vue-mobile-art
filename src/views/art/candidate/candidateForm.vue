@@ -80,8 +80,13 @@
       })
     },
     methods: {
+      getItem() {
+        let itemId = this.$route.params.itemId
+        let item = JSON.parse(Cache.get('CANDIDATE_CURRENT_ITEM'))
+        return (item.id === (itemId * 1)) ? item : null
+      },
       open() {
-        let item = this.$route.params.item
+        let item = this.getItem
         this.$myConsoleLog(' this.$route.params.item ', this.$route.params.item, '#884888')
         // this.initSwiper()
         if (item) {

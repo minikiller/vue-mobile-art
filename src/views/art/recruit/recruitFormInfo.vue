@@ -94,8 +94,13 @@
           inputs[i].blur()
         }
       },
+      getItem() {
+        let itemId = this.$route.params.itemId
+        let item = JSON.parse(Cache.get('RECRUIT_CURRENT_ITEM'))
+        return (item.id === (itemId * 1)) ? item : null
+      },
       open() {
-        let item = this.$route.params.item
+        let item = this.getItem()
         if (item) {
           this.formModel = item
           this.isEdit = true
@@ -104,7 +109,6 @@
           this.formModel = Object.assign({}, FormModel)
           this.isEdit = false
           this.positionRequires = ''
-          // console.log('FormModel', FormModel)
         }
         this.getCompany()
       },

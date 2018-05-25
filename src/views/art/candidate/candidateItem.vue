@@ -51,7 +51,8 @@
     },
     methods: {
       onEdit() {
-        this.$router.push({name: 'candidateForm', params: {item: this.itemData}})
+        Cache.save('CANDIDATE_CURRENT_ITEM', JSON.stringify(this.itemData))
+        this.$router.push({name: 'candidateForm', params: {itemId: this.itemData.id}})
       },
       onDelete() {
       },

@@ -75,7 +75,9 @@
         // return
       },
       onEdit() {
-        this.$router.push({name: 'recruitFormInfo', params: {item: this.itemData}})
+        Cache.save('RECRUIT_CURRENT_ITEM', JSON.stringify(this.itemData))
+        // this.$router.push({name: 'recruitFormInfo', params: {item: this.itemData}})
+        this.$router.push({name: 'recruitFormInfo', params: {itemId: this.itemData.id}})
       },
       onDelete() {
       },
